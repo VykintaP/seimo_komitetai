@@ -4,26 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/darbotvarkiu_analize.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis/analyze.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis/analyze_plot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis/analyze_topics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis/visualize_topics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/assets/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processing/classify.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processing/clean_questions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processing/merge_agendas.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run_pipeline.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scraper/scraper.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visuals/main.py" afterDir="false" />
+    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="First commit">
+      <change afterPath="$PROJECT_DIR$/analysis/main_analysis.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis/plotting.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis/text_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis/topic_classifier.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis/word_analysis.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_classify.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_cleaning.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_scraper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/topics.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualize/dashboard.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualize/plots.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis/analyze.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis/analyze_plot.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis/analyze_topics.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis/visualize_topics.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/processing/merge_agendas.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scraper/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/scraper/scraper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visuals/main.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +40,21 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "VykintaP"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/VykintaP/darbotvarkiu_analize.git",
+    "accountId": "e319449e-a248-4283-a4aa-ad179d496221"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -53,6 +68,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python tests.Python tests in test_scraper.py.executor": "Run",
     "Python.analyze.executor": "Run",
     "Python.analyze_plot.executor": "Run",
     "Python.analyze_topics.executor": "Run",
@@ -95,13 +111,25 @@
       <option name="presentableId" value="Default" />
       <updated>1747051400073</updated>
     </task>
+    <task id="LOCAL−00001" summary="First commit">
+      <option name="closed" value="true" />
+      <created>1747819812281</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1747819812281</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/visuals/main.py</url>
+          <url>file://$PROJECT_DIR$/visualize/main.py</url>
           <line>8</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
