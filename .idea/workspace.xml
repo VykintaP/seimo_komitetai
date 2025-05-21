@@ -4,28 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="First commit">
-      <change afterPath="$PROJECT_DIR$/analysis/main_analysis.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis/plotting.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis/text_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis/topic_classifier.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis/word_analysis.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_classify.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_cleaning.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_scraper.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/topics.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualize/dashboard.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualize/plots.py" afterDir="false" />
+    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="Second commit - changes scraper and test_scraper, file structure">
+      <change afterPath="$PROJECT_DIR$/processing/cleaning_pipeline.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/processing/data_quality_report.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/processing/label_keywords.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis/analyze.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis/analyze_plot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis/analyze_topics.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis/visualize_topics.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/processing/merge_agendas.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/processing/clean_questions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_pipeline.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scraper/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/scraper/scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visuals/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_cleaning.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_cleaning.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_scraper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +56,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python tests.Python tests in test_cleaning.py.executor": "Run",
     "Python tests.Python tests in test_scraper.py.executor": "Run",
     "Python.analyze.executor": "Run",
     "Python.analyze_plot.executor": "Run",
@@ -75,6 +64,7 @@
     "Python.app.executor": "Run",
     "Python.classify.executor": "Run",
     "Python.clean_questions.executor": "Run",
+    "Python.cleaning_pipeline.executor": "Run",
     "Python.get_commitees.executor": "Run",
     "Python.merge_agendas.executor": "Run",
     "Python.run_pipeline.executor": "Run",
@@ -118,12 +108,20 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1747819812281</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL−00002" summary="Second commit - changes scraper and test_scraper, file structure">
+      <option name="closed" value="true" />
+      <created>1747827267305</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1747827267305</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
+    <MESSAGE value="Second commit - changes scraper and test_scraper, file structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Second commit - changes scraper and test_scraper, file structure" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -132,6 +130,11 @@
           <url>file://$PROJECT_DIR$/visualize/main.py</url>
           <line>8</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/processing/cleaning_pipeline.py</url>
+          <line>24</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

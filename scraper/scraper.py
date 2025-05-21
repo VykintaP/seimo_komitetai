@@ -63,12 +63,9 @@ class CommitteeScraper:
             lines = raw_text.splitlines()
             for line in lines:
                 line = line.strip()
-                if not line:
+                if not line or len(line.split()) < 2:
                     continue
-                cleaned = re.split(r"(pranešėjai|kviečiami)", line, flags=re.IGNORECASE)[0]
-                if not cleaned or len(cleaned.split()) < 2:
-                    continue
-                items.append((date, cleaned.strip(), self.name))
+                items.append((date, line, self.name))
 
         return items
 
@@ -90,7 +87,7 @@ def get_committee_urls():
 def run_scraper():
     committee_urls = get_committee_urls()
     logging.info(f"Rasta {len(committee_urls)} komitetų")
-    data_dir = Path(__file__).resolve().parents[1] / "data"
+    data_dir = Path(__file__).resolve().parents[1] / "data" / "raw"
     data_dir.mkdir(parents=True, exist_ok=True)
 
     for name, url in committee_urls:
