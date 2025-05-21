@@ -4,16 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="Second commit - changes scraper and test_scraper, file structure">
-      <change afterPath="$PROJECT_DIR$/processing/cleaning_pipeline.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processing/data_quality_report.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/processing/label_keywords.py" afterDir="false" />
+    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="Refactor cleaning pipeline and add robust quality + testing tools&#10;&#10;- Split `cleaning_pipeline.py` into strict cleaning logic only (removed classification)&#10;- Created `data_quality_report.py` to generate file-level data quality diagnostics&#10;- Added `label_keywords.py` stub for future NLP feature extraction&#10;- Implemented `test_cleaning.py`:&#10;  - tests `clean_question` normalization&#10;  - tests full `clean_all_raw_files()` pipeline with mock input&#10;  - verifies filtered output and logging&#10;- Minor updates to `scraper.py` and `test_scraper.py` for integration and stability&#10;- Removed legacy `clean_questions.py` (superseded)">
+      <change afterPath="$PROJECT_DIR$/data/cleaned/quality_report.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/cleaned/test_committee_clean.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/metadata/cleaning_log.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/raw/ateities_komitetas.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/raw/audito_komitetas.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/raw/biudzeto_ir_finansu_komitetas.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/raw/ekonomikos_komitetas.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/raw/europos_reikalu_komitetas.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/raw/test_committee.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processing/clean_questions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/scraper/scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_cleaning.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_cleaning.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_scraper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/topics.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/aplinkos_apsaugos_komitetas.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +67,7 @@
     "Python.classify.executor": "Run",
     "Python.clean_questions.executor": "Run",
     "Python.cleaning_pipeline.executor": "Run",
+    "Python.data_quality_report.executor": "Run",
     "Python.get_commitees.executor": "Run",
     "Python.merge_agendas.executor": "Run",
     "Python.run_pipeline.executor": "Run",
@@ -115,13 +118,21 @@
       <option name="presentableId" value="LOCAL−00002" />
       <updated>1747827267305</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL−00003" summary="Refactor cleaning pipeline and add robust quality + testing tools&#10;&#10;- Split `cleaning_pipeline.py` into strict cleaning logic only (removed classification)&#10;- Created `data_quality_report.py` to generate file-level data quality diagnostics&#10;- Added `label_keywords.py` stub for future NLP feature extraction&#10;- Implemented `test_cleaning.py`:&#10;  - tests `clean_question` normalization&#10;  - tests full `clean_all_raw_files()` pipeline with mock input&#10;  - verifies filtered output and logging&#10;- Minor updates to `scraper.py` and `test_scraper.py` for integration and stability&#10;- Removed legacy `clean_questions.py` (superseded)">
+      <option name="closed" value="true" />
+      <created>1747837198441</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1747837198441</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
     <MESSAGE value="Second commit - changes scraper and test_scraper, file structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Second commit - changes scraper and test_scraper, file structure" />
+    <MESSAGE value="Refactor cleaning pipeline and add robust quality + testing tools&#10;&#10;- Split `cleaning_pipeline.py` into strict cleaning logic only (removed classification)&#10;- Created `data_quality_report.py` to generate file-level data quality diagnostics&#10;- Added `label_keywords.py` stub for future NLP feature extraction&#10;- Implemented `test_cleaning.py`:&#10;  - tests `clean_question` normalization&#10;  - tests full `clean_all_raw_files()` pipeline with mock input&#10;  - verifies filtered output and logging&#10;- Minor updates to `scraper.py` and `test_scraper.py` for integration and stability&#10;- Removed legacy `clean_questions.py` (superseded)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor cleaning pipeline and add robust quality + testing tools&#10;&#10;- Split `cleaning_pipeline.py` into strict cleaning logic only (removed classification)&#10;- Created `data_quality_report.py` to generate file-level data quality diagnostics&#10;- Added `label_keywords.py` stub for future NLP feature extraction&#10;- Implemented `test_cleaning.py`:&#10;  - tests `clean_question` normalization&#10;  - tests full `clean_all_raw_files()` pipeline with mock input&#10;  - verifies filtered output and logging&#10;- Minor updates to `scraper.py` and `test_scraper.py` for integration and stability&#10;- Removed legacy `clean_questions.py` (superseded)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

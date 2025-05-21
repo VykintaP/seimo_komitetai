@@ -1,0 +1,2 @@
+file,min_length,max_length,mean_length,total_questions,too_short,too_short_percent,unique_words,future_dates,future_percent
+test_committee_clean.csv,33,33,33.0,1,0,0.0,4,0,0.0
