@@ -27,7 +27,7 @@ if __name__ == "__main__":
     if not check_dir_nonempty(CLEANED_DIR, "cleaned"):
         exit(1)
 
-    print("🔹 Classifying...")
-    classify_all_cleaned_files()
+    # print("🔹 Classifying...")
+    # classify_all_cleaned_files()
 
     print("✅ Pipeline finished successfully.")

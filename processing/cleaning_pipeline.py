@@ -27,15 +27,12 @@ def extract_project_id(text: str) -> str:
     )
     return "; ".join(matches) if matches else None
 
-
-
-
-def clean_all_raw_files(raw_dir=RAW_DIR, cleaned_dir=CLEANED_DIR, metadata_dir=METADATA_DIR):
-    cleaned_dir.mkdir(parents=True, exist_ok=True)
-    metadata_dir.mkdir(parents=True, exist_ok=True)
+def clean_all_raw_files(input_dir: Path, output_dir: Path, log_dir: Path):
+    output_dir.mkdir(parents=True, exist_ok=True)
+    log_dir.mkdir(parents=True, exist_ok=True)
     log = []
 
-    for file in raw_dir.glob("*.csv"):
+    for file in input_dir.glob("*.csv"):
         try:
             print(f"Processing: {file.name}")
             df = pd.read_csv(file)
@@ -65,7 +62,7 @@ def clean_all_raw_files(raw_dir=RAW_DIR, cleaned_dir=CLEANED_DIR, metadata_dir=M
 
             cleaned_df = pd.DataFrame(cleaned_rows)
             out_name = unidecode(file.stem.lower().replace(" ", "_")) + "_clean.csv"
-            cleaned_df.to_csv(cleaned_dir / out_name, index=False, encoding="utf-8")
+            cleaned_df.to_csv(output_dir / out_name, index=False, encoding="utf-8")
             print(f"Saved: {out_name}")
 
             log.append({
@@ -78,12 +75,11 @@ def clean_all_raw_files(raw_dir=RAW_DIR, cleaned_dir=CLEANED_DIR, metadata_dir=M
         except Exception as e:
             log.append({"file": file.name, "error": str(e)})
 
-    log_file = metadata_dir / "cleaning_log.json"
+    log_file = log_dir / "cleaning_log.json"
     with open(log_file, "w", encoding="utf-8") as f:
         json.dump(log, f, indent=2, ensure_ascii=False)
 
     print(f"Cleaning finished. {len(log)} entries logged in {log_file}")
-
 
 if __name__ == "__main__":
     clean_all_raw_files()

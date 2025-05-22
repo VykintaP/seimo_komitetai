@@ -17,9 +17,10 @@ def test_project_id_extraction():
 
 
 def test_clean_all_raw_files_creates_cleaned(tmp_path):
-    raw_dir = tmp_path / "data" / "diagnostics"
-    cleaned_dir = tmp_path / "data" / "diagnostics"
-    metadata_dir = tmp_path / "data" / "diagnostics"
+    raw_dir = tmp_path / "data" / "raw"
+    cleaned_dir = tmp_path / "data" / "cleaned"
+    metadata_dir = tmp_path / "data" / "metadata"
+
     raw_dir.mkdir(parents=True)
     cleaned_dir.mkdir(parents=True)
     metadata_dir.mkdir(parents=True)
@@ -44,7 +45,8 @@ def test_clean_all_raw_files_creates_cleaned(tmp_path):
 
     shutil.copy(test_file, original_raw / test_file.name)
 
-    clean_all_raw_files()
+    clean_all_raw_files(input_dir=raw_dir, output_dir=cleaned_dir, log_dir=metadata_dir)
+
 
     output_file = original_cleaned / "test_committee_clean.csv"
     assert output_file.exists()

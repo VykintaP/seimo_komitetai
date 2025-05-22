@@ -8,6 +8,11 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
+def extract_project_id_from_text(text: str) -> str:
+    matches = re.findall(r"(?:Projekt(?:o|as)?\s+Nr\.?|Įstatymo\s+projektas\s+Nr\.?|Dokumento\s+Nr\.?|Nr\.)\s*([A-Z0-9\-\/]+)", text, flags=re.IGNORECASE)
+    return "; ".join(matches) if matches else ""
+
+
 class CommitteeScraper:
     def __init__(self, name, url):
         self.name = name
@@ -70,10 +75,15 @@ class CommitteeScraper:
                 if not line or len(line.split()) < 2:
                     continue
 
-                project = cells[project_idx].get_text(strip=True) if project_idx is not None and project_idx < len(cells) else ""
-                responsible = cells[responsible_idx].get_text(strip=True) if responsible_idx is not None and responsible_idx < len(cells) else ""
-                invited = cells[invited_idx].get_text(strip=True) if invited_idx is not None and invited_idx < len(cells) else ""
+                if project_idx is not None and project_idx < len(cells):
+                    project = cells[project_idx].get_text(strip=True)
+                else:
+                    project = extract_project_id_from_text(line)
 
+                responsible = cells[responsible_idx].get_text(
+                    strip=True) if responsible_idx is not None and responsible_idx < len(cells) else ""
+                invited = cells[invited_idx].get_text(strip=True) if invited_idx is not None and invited_idx < len(
+                    cells) else ""
 
                 items.append((date, line, self.name, project, responsible, invited))
 
