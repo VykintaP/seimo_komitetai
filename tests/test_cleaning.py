@@ -32,32 +32,19 @@ def test_clean_all_raw_files_creates_cleaned(tmp_path):
     test_file = raw_dir / "test_committee.csv"
     test_input.to_csv(test_file, index=False)
 
-    original_raw = Path(__file__).resolve().parents[1] / "data" / "diagnostics"
-    original_cleaned = Path(__file__).resolve().parents[1] / "data" / "diagnostics"
-    original_meta = Path(__file__).resolve().parents[1] / "data" / "diagnostics"
-
-    shutil.rmtree(original_raw, ignore_errors=True)
-    shutil.rmtree(original_cleaned, ignore_errors=True)
-    shutil.rmtree(original_meta, ignore_errors=True)
-    original_raw.mkdir(parents=True)
-    original_cleaned.mkdir(parents=True)
-    original_meta.mkdir(parents=True)
-
-    shutil.copy(test_file, original_raw / test_file.name)
-
     clean_all_raw_files(input_dir=raw_dir, output_dir=cleaned_dir, log_dir=metadata_dir)
 
-
-    output_file = original_cleaned / "test_committee_clean.csv"
+    output_file = cleaned_dir / "test_committee_clean.csv"
     assert output_file.exists()
+
     df = pd.read_csv(output_file)
     assert len(df) == 1
     assert "Svarstomas klausimas" in df["question"].iloc[0]
 
-    log_file = original_meta / "cleaning_log.json"
-
+    log_file = metadata_dir / "cleaning_log.json"
+    assert log_file.exists()
     assert "project_id" in df.columns
     assert pd.isna(df["project_id"].iloc[0]) or isinstance(df["project_id"].iloc[0], str)
 
-
+    log_file = metadata_dir / "cleaning_log.json"
     assert log_file.exists()

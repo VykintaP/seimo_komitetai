@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="Changed cleaning and scraping to identify project_idx flexibly">
-      <change afterPath="$PROJECT_DIR$/tests/run_tests.py" afterDir="false" />
+    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="more elaborate testing,">
+      <change afterPath="$PROJECT_DIR$/train_classifier.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processing/classify.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing/classify.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis/text_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/generate_training_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis/topic_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/translate_and_classify.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis/word_analysis.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/processing/classify.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/processing/cleaning_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing/cleaning_pipeline.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/scraper/scraper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_cleaning.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_cleaning.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,6 +73,7 @@
     "Python.cleaning_pipeline.executor": "Run",
     "Python.dashboard.executor": "Run",
     "Python.data_quality_report.executor": "Run",
+    "Python.generate_training_data.executor": "Run",
     "Python.get_commitees.executor": "Run",
     "Python.main_analysis.executor": "Run",
     "Python.merge_agendas.executor": "Run",
@@ -78,6 +81,8 @@
     "Python.run_pipeline.executor": "Run",
     "Python.run_tests.executor": "Run",
     "Python.scraper.executor": "Run",
+    "Python.train_classifier.executor": "Run",
+    "Python.translate_and_classify.executor": "Run",
     "Python.visualize_topics.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -145,7 +150,14 @@
       <option name="presentableId" value="LOCAL−00005" />
       <updated>1747907880224</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL−00006" summary="more elaborate testing,">
+      <option name="closed" value="true" />
+      <created>1747914124363</created>
+      <option name="number" value="LOCAL−00006" />
+      <option name="presentableId" value="LOCAL−00006" />
+      <updated>1747914124363</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -153,7 +165,8 @@
     <MESSAGE value="Second commit - changes scraper and test_scraper, file structure" />
     <MESSAGE value="Refactor cleaning pipeline and add robust quality + testing tools&#10;&#10;- Split `cleaning_pipeline.py` into strict cleaning logic only (removed classification)&#10;- Created `data_quality_report.py` to generate file-level data quality diagnostics&#10;- Added `label_keywords.py` stub for future NLP feature extraction&#10;- Implemented `test_cleaning.py`:&#10;  - tests `clean_question` normalization&#10;  - tests full `clean_all_raw_files()` pipeline with mock input&#10;  - verifies filtered output and logging&#10;- Minor updates to `scraper.py` and `test_scraper.py` for integration and stability&#10;- Removed legacy `clean_questions.py` (superseded)" />
     <MESSAGE value="Changed cleaning and scraping to identify project_idx flexibly" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed cleaning and scraping to identify project_idx flexibly" />
+    <MESSAGE value="more elaborate testing," />
+    <option name="LAST_COMMIT_MESSAGE" value="more elaborate testing," />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
