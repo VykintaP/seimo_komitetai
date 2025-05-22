@@ -1,5 +1,7 @@
 import pytest
 from scraper.scraper import get_committee_urls, CommitteeScraper
+import re
+
 
 
 def get_best_event_url(base_url, scraper):
@@ -34,5 +36,11 @@ def test_event_of_each_committee(name, url):
     assert isinstance(items, list)
     assert len(items) > 0, f"{name} ({event_url}) grąžino 0 klausimų"
     for item in items:
-        assert len(item) >= 3
-        assert isinstance(item[1], str)
+        assert len(item) == 6, f"{name} ({event_url}): laukų skaičius != 6"
+        assert isinstance(item[0], str)  # date
+        assert isinstance(item[1], str)  # question
+        assert isinstance(item[2], str)  # committee
+        assert isinstance(item[3], str)  # project_id
+        assert isinstance(item[4], str)  # responsible_actor
+        assert isinstance(item[5], str)  # invited_presenters
+

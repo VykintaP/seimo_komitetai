@@ -2,16 +2,24 @@ import pandas as pd
 from pathlib import Path
 from processing.cleaning_pipeline import clean_all_raw_files, clean_question
 import shutil
+from processing.cleaning_pipeline import extract_project_id
+
 
 def test_clean_question_spaces():
     raw = "   Čia   yra \n    klausimas.  "
     cleaned = clean_question(raw)
     assert cleaned == "Čia yra klausimas."
 
+def test_project_id_extraction():
+    text = "Svarstomas Projektas Nr. XII-1234 ir Įstatymo projektas Nr. IX-456"
+    result = extract_project_id(text)
+    assert result == "XII-1234; IX-456"
+
+
 def test_clean_all_raw_files_creates_cleaned(tmp_path):
-    raw_dir = tmp_path / "data" / "raw"
-    cleaned_dir = tmp_path / "data" / "cleaned"
-    metadata_dir = tmp_path / "data" / "metadata"
+    raw_dir = tmp_path / "data" / "diagnostics"
+    cleaned_dir = tmp_path / "data" / "diagnostics"
+    metadata_dir = tmp_path / "data" / "diagnostics"
     raw_dir.mkdir(parents=True)
     cleaned_dir.mkdir(parents=True)
     metadata_dir.mkdir(parents=True)
@@ -23,9 +31,9 @@ def test_clean_all_raw_files_creates_cleaned(tmp_path):
     test_file = raw_dir / "test_committee.csv"
     test_input.to_csv(test_file, index=False)
 
-    original_raw = Path(__file__).resolve().parents[1] / "data" / "raw"
-    original_cleaned = Path(__file__).resolve().parents[1] / "data" / "cleaned"
-    original_meta = Path(__file__).resolve().parents[1] / "data" / "metadata"
+    original_raw = Path(__file__).resolve().parents[1] / "data" / "diagnostics"
+    original_cleaned = Path(__file__).resolve().parents[1] / "data" / "diagnostics"
+    original_meta = Path(__file__).resolve().parents[1] / "data" / "diagnostics"
 
     shutil.rmtree(original_raw, ignore_errors=True)
     shutil.rmtree(original_cleaned, ignore_errors=True)
@@ -45,4 +53,9 @@ def test_clean_all_raw_files_creates_cleaned(tmp_path):
     assert "Svarstomas klausimas" in df["question"].iloc[0]
 
     log_file = original_meta / "cleaning_log.json"
+
+    assert "project_id" in df.columns
+    assert pd.isna(df["project_id"].iloc[0]) or isinstance(df["project_id"].iloc[0], str)
+
+
     assert log_file.exists()

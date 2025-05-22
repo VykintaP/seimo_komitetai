@@ -42,6 +42,10 @@ class CommitteeScraper:
 
         date_idx = next((i for i, t in header_map.items() if "data" in t or "laikas" in t), None)
         question_idx = next((i for i, t in header_map.items() if "klausim" in t), None)
+        project_idx = next(
+            (i for i, t in header_map.items() if "projekto nr" in t or "projekto" in t or "dokument" in t), None)
+        responsible_idx = next((i for i, t in header_map.items() if "rengėjas" in t or "atsakingas" in t), None)
+        invited_idx = next((i for i, t in header_map.items() if "kviečiami" in t or "pranešėj" in t), None)
 
         if date_idx is None or question_idx is None:
             logging.warning("Nepavyko nustatyti date/question stulpelių – praleidžiama lentelė")
@@ -65,7 +69,13 @@ class CommitteeScraper:
                 line = line.strip()
                 if not line or len(line.split()) < 2:
                     continue
-                items.append((date, line, self.name))
+
+                project = cells[project_idx].get_text(strip=True) if project_idx is not None and project_idx < len(cells) else ""
+                responsible = cells[responsible_idx].get_text(strip=True) if responsible_idx is not None and responsible_idx < len(cells) else ""
+                invited = cells[invited_idx].get_text(strip=True) if invited_idx is not None and invited_idx < len(cells) else ""
+
+
+                items.append((date, line, self.name, project, responsible, invited))
 
         return items
 
@@ -87,8 +97,8 @@ def get_committee_urls():
 def run_scraper():
     committee_urls = get_committee_urls()
     logging.info(f"Rasta {len(committee_urls)} komitetų")
-    data_dir = Path(__file__).resolve().parents[1] / "data" / "raw"
-    data_dir.mkdir(parents=True, exist_ok=True)
+    raw_dir = Path(__file__).resolve().parents[1] / "data" / "raw"
+    raw_dir.mkdir(parents=True, exist_ok=True)
 
     for name, url in committee_urls:
         try:
@@ -106,9 +116,9 @@ def run_scraper():
                     logging.warning(f"  Klaida analizuojant {agenda_url}: {e}")
 
             if all_items:
-                df = pd.DataFrame(all_items, columns=["date", "question", "committee"])
+                df = pd.DataFrame(all_items, columns=["date", "question", "committee", "project_id", "responsible_actor", "invited_presenters"])
                 filename = unidecode(name.lower()).replace(" ", "_").replace("-", "_")
-                filepath = data_dir / f"{filename}.csv"
+                filepath = raw_dir / f"{filename}.csv"
                 df.to_csv(filepath, index=False, encoding="utf-8")
                 logging.info(f"  Išsaugota {len(df)} klausimų į {filepath}")
             else:

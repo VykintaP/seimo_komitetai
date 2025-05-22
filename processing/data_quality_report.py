@@ -1,17 +1,18 @@
 import pandas as pd
 from pathlib import Path
 
-CLEANED_DIR = Path(__file__).resolve().parents[1] / "data" / "cleaned"
+CLEANED_DIR = Path(__file__).resolve().parents[1] / "data" / "diagnostics"
 REPORT_PATH = CLEANED_DIR / "quality_report.csv"
 
 def analyze_file(filepath):
     df = pd.read_csv(filepath)
     report = {}
-    report["file"] = filepath.name
+    report["committee"] = filepath.name.replace("_clean.csv", "").replace("_", " ").title()
     lengths = df["question"].astype(str).apply(len)
     report["min_length"] = lengths.min()
     report["max_length"] = lengths.max()
     report["mean_length"] = round(lengths.mean(), 2)
+    report["median_length"] = lengths.median()
     report["total_questions"] = len(df)
     report["too_short"] = (lengths < 20).sum()
     report["too_short_percent"] = round(report["too_short"] / len(df) * 100, 2)
