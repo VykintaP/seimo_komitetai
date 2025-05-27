@@ -93,9 +93,3 @@ def classify_all_files(input_dir, output_dir):
         output_path = output_dir / file.name
         df_classified.to_csv(output_path, index=False, encoding="utf-8")
         logging.info(f"Išsaugota: {output_path}")
-
-if __name__ == "__main__":
-    classify_all_files("data/cleaned", "data/classified")
-
-
-

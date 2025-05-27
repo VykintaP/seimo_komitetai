@@ -1,7 +1,5 @@
 import pytest
-from scraper.scraper import get_committee_urls, CommitteeScraper
-import re
-
+from processing.scraper import get_committee_urls, CommitteeScraper
 
 
 def get_best_event_url(base_url, scraper):

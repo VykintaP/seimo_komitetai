@@ -1,9 +1,12 @@
-from scraper.scraper import run_scraper
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from processing.scraper import run_scraper
+from ml_pipeline.classify_with_mistral import classify_all_files_with_mistral
 from processing.cleaning_pipeline import clean_all_raw_files
-from translate_and_classify import classify_all_files
 from pathlib import Path
-import subprocess
-import pandas as pd
+
+
 
 RAW_DIR = Path("data/raw")
 CLEANED_DIR = Path("data/cleaned")
@@ -20,14 +23,12 @@ def check_dir_nonempty(path, label):
 
 def generate_training_data():
     print("Generating training data...")
-    from generate_training_data import all_data
-    full_df = pd.concat(all_data, ignore_index=True)
-    full_df.to_csv(TRAINING_DATA, index=False, encoding="utf-8")
-    print(f"[OK] Saved training data to {TRAINING_DATA}")
+    df = generate_data_from_classified(CLASSIFIED_DIR, TRAINING_DATA)
+    print(f"[OK] Saved training data to {TRAINING_DATA} ({len(df)} rows)")
 
 def train_model():
     print("Training classifier...")
-    subprocess.run(["python", "train_classifier.py"], check=True)
+    logreg_train_model()
 
 if __name__ == "__main__":
     print("Step 1: Scraping")
@@ -37,13 +38,14 @@ if __name__ == "__main__":
         exit(1)
 
     print("Step 2: Cleaning")
-    clean_all_raw_files()
+    clean_all_raw_files(RAW_DIR, CLEANED_DIR, Path("data/metadata"))
 
     if not check_dir_nonempty(CLEANED_DIR, "cleaned"):
         exit(1)
 
     print("Step 3: Classifying")
-    classify_all_files(CLEANED_DIR, CLASSIFIED_DIR)
+    classify_all_files_with_mistral(CLEANED_DIR, CLASSIFIED_DIR)
+]
 
     if not check_dir_nonempty(CLASSIFIED_DIR, "classified"):
         exit(1)

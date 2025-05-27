@@ -4,16 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="more elaborate testing,">
-      <change afterPath="$PROJECT_DIR$/train_classifier.py" afterDir="false" />
+    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="added classification (transformers, translator)">
+      <change afterPath="$PROJECT_DIR$/archive/generate_training_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/archive/test_classified_data_quality.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/archive/test_train_classifier.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/archive/test_translate_and_classify.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/archive/train_logreg_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/archive/train_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/archive/training_data_generator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_mistral.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis/text_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/generate_training_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis/topic_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/translate_and_classify.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis/word_analysis.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/processing/classify.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis/main_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/analysis/main_analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generate_training_data.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/processing/cleaning_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing/cleaning_pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_cleaning.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_cleaning.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/processing/label_keywords.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/classified/demo.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/run_pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scraper/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing/scraper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/run_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/run_tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_classify.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml_pipeline/mistral_classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_scraper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train_classifier.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/translate_and_classify.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/zero_shot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/plots.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/plots.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,50 +73,81 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.Python tests in test_classify.py.executor": "Run",
-    "Python tests.Python tests in test_cleaning.py.executor": "Run",
-    "Python tests.Python tests in test_scraper.py.executor": "Run",
-    "Python.analyze.executor": "Run",
-    "Python.analyze_plot.executor": "Run",
-    "Python.analyze_topics.executor": "Run",
-    "Python.app.executor": "Run",
-    "Python.classify.executor": "Run",
-    "Python.clean_questions.executor": "Run",
-    "Python.cleaning_pipeline.executor": "Run",
-    "Python.dashboard.executor": "Run",
-    "Python.data_quality_report.executor": "Run",
-    "Python.generate_training_data.executor": "Run",
-    "Python.get_commitees.executor": "Run",
-    "Python.main_analysis.executor": "Run",
-    "Python.merge_agendas.executor": "Run",
-    "Python.plotting.executor": "Run",
-    "Python.run_pipeline.executor": "Run",
-    "Python.run_tests.executor": "Run",
-    "Python.scraper.executor": "Run",
-    "Python.train_classifier.executor": "Run",
-    "Python.translate_and_classify.executor": "Run",
-    "Python.visualize_topics.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests in test_classify.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_cleaning.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_scraper.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_train_classifier.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.analyze.executor&quot;: &quot;Run&quot;,
+    &quot;Python.analyze_plot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.analyze_topics.executor&quot;: &quot;Run&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.classify.executor&quot;: &quot;Run&quot;,
+    &quot;Python.clean_questions.executor&quot;: &quot;Run&quot;,
+    &quot;Python.cleaning_pipeline.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dashboard.executor&quot;: &quot;Run&quot;,
+    &quot;Python.data_quality_report.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generate_training_data.executor&quot;: &quot;Run&quot;,
+    &quot;Python.get_commitees.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main_analysis.executor&quot;: &quot;Run&quot;,
+    &quot;Python.merge_agendas.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mistral_classifier.executor&quot;: &quot;Run&quot;,
+    &quot;Python.plotting.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_pipeline.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_tests.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scraper.executor&quot;: &quot;Run&quot;,
+    &quot;Python.train_classifier.executor&quot;: &quot;Run&quot;,
+    &quot;Python.translate_and_classify.executor&quot;: &quot;Run&quot;,
+    &quot;Python.visualize_topics.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\data\diagnostics" />
-      <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\visuals" />
-      <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\scraper" />
-      <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\analysis" />
+      <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\archive" />
+      <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\tests" />
+      <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\scripts" />
       <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\processing" />
+      <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\ml_pipeline" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="run_pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="darbotvarkiu_analize" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/run_pipeline.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.run_pipeline" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-2ee2454479a3-9cdd278e9d02-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-251.25410.122" />
+        <option value="bundled-python-sdk-dfff61a61320-9cdd278e9d02-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-251.25410.159" />
       </set>
     </attachedChunks>
   </component>
@@ -157,7 +202,14 @@
       <option name="presentableId" value="LOCAL−00006" />
       <updated>1747914124363</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL−00007" summary="added classification (transformers, translator)">
+      <option name="closed" value="true" />
+      <created>1747923291359</created>
+      <option name="number" value="LOCAL−00007" />
+      <option name="presentableId" value="LOCAL−00007" />
+      <updated>1747923291359</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -166,7 +218,8 @@
     <MESSAGE value="Refactor cleaning pipeline and add robust quality + testing tools&#10;&#10;- Split `cleaning_pipeline.py` into strict cleaning logic only (removed classification)&#10;- Created `data_quality_report.py` to generate file-level data quality diagnostics&#10;- Added `label_keywords.py` stub for future NLP feature extraction&#10;- Implemented `test_cleaning.py`:&#10;  - tests `clean_question` normalization&#10;  - tests full `clean_all_raw_files()` pipeline with mock input&#10;  - verifies filtered output and logging&#10;- Minor updates to `scraper.py` and `test_scraper.py` for integration and stability&#10;- Removed legacy `clean_questions.py` (superseded)" />
     <MESSAGE value="Changed cleaning and scraping to identify project_idx flexibly" />
     <MESSAGE value="more elaborate testing," />
-    <option name="LAST_COMMIT_MESSAGE" value="more elaborate testing," />
+    <MESSAGE value="added classification (transformers, translator)" />
+    <option name="LAST_COMMIT_MESSAGE" value="added classification (transformers, translator)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
