@@ -4,30 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="added classification (transformers, translator)">
-      <change afterPath="$PROJECT_DIR$/archive/generate_training_data.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archive/test_classified_data_quality.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archive/test_train_classifier.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archive/test_translate_and_classify.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archive/train_logreg_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archive/train_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archive/training_data_generator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_mistral.py" afterDir="false" />
+    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="classification with mistral_classifier.py">
+      <change afterPath="$PROJECT_DIR$/ml_pipeline/mistral_api_classifier.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis/main_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/analysis/main_analysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generate_training_data.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/processing/cleaning_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing/cleaning_pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processing/label_keywords.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/classified/demo.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/run_pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing/scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/run_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/run_tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_classify.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml_pipeline/mistral_classifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_classifier.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/translate_and_classify.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/zero_shot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/plots.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/plots.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classified/aplinkos_apsaugos_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classified/ateities_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classified/audito_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classified/biudzeto_ir_finansu_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classified/demo.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classified/ekonomikos_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classified/europos_reikalu_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/classified/kaimo_reikalu_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaned/aplinkos_apsaugos_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaned/ateities_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaned/audito_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaned/biudzeto_ir_finansu_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaned/ekonomikos_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaned/europos_reikalu_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaned/kaimo_reikalu_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaned/kulturos_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaned/nacionalinio_saugumo_ir_gynybos_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaned/socialiniu_reikalu_ir_darbo_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaned/sveikatos_reikalu_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaned/svietimo_ir_mokslo_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaned/teises_ir_teisetvarkos_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaned/uzsienio_reikalu_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaned/valstybes_valdymo_ir_savivaldybiu_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cleaned/zmogaus_teisiu_komitetas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_pipeline/mistral_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/mistral_classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/run_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/run_pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_mistral.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_mistral.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/dashboard.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +99,7 @@
     &quot;Python.get_commitees.executor&quot;: &quot;Run&quot;,
     &quot;Python.main_analysis.executor&quot;: &quot;Run&quot;,
     &quot;Python.merge_agendas.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mistral_api_classifier.executor&quot;: &quot;Run&quot;,
     &quot;Python.mistral_classifier.executor&quot;: &quot;Run&quot;,
     &quot;Python.plotting.executor&quot;: &quot;Run&quot;,
     &quot;Python.run_pipeline.executor&quot;: &quot;Run&quot;,
@@ -209,7 +217,21 @@
       <option name="presentableId" value="LOCAL−00007" />
       <updated>1747923291359</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL−00008" summary="classification with mistral_classifier.py">
+      <option name="closed" value="true" />
+      <created>1748344300643</created>
+      <option name="number" value="LOCAL−00008" />
+      <option name="presentableId" value="LOCAL−00008" />
+      <updated>1748344300643</updated>
+    </task>
+    <task id="LOCAL−00009" summary="classification with mistral_classifier.py">
+      <option name="closed" value="true" />
+      <created>1748344315080</created>
+      <option name="number" value="LOCAL−00009" />
+      <option name="presentableId" value="LOCAL−00009" />
+      <updated>1748344315080</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -219,7 +241,8 @@
     <MESSAGE value="Changed cleaning and scraping to identify project_idx flexibly" />
     <MESSAGE value="more elaborate testing," />
     <MESSAGE value="added classification (transformers, translator)" />
-    <option name="LAST_COMMIT_MESSAGE" value="added classification (transformers, translator)" />
+    <MESSAGE value="classification with mistral_classifier.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="classification with mistral_classifier.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

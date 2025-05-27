@@ -2,16 +2,16 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from processing.scraper import run_scraper
-from ml_pipeline.classify_with_mistral import classify_all_files_with_mistral
+from ml_pipeline.mistral_api_classifier import classify_with_api
 from processing.cleaning_pipeline import clean_all_raw_files
 from pathlib import Path
 
 
 
-RAW_DIR = Path("data/raw")
-CLEANED_DIR = Path("data/cleaned")
-CLASSIFIED_DIR = Path("data/classified")
-TRAINING_DATA = Path("data/training_data.csv")
+RAW_DIR = Path("darbotvarkiu_analize/data/raw")
+CLEANED_DIR = Path("darbotvarkiu_analizedata/cleaned")
+CLASSIFIED_DIR = Path("darbotvarkiu_analizedata/classified")
+# TRAINING_DATA = Path("data/training_data.csv")
 
 def check_dir_nonempty(path, label):
     files = list(path.glob("*.csv"))
@@ -21,14 +21,14 @@ def check_dir_nonempty(path, label):
     print(f"[OK] Found {len(files)} {label} CSV files in {path}")
     return True
 
-def generate_training_data():
-    print("Generating training data...")
-    df = generate_data_from_classified(CLASSIFIED_DIR, TRAINING_DATA)
-    print(f"[OK] Saved training data to {TRAINING_DATA} ({len(df)} rows)")
-
-def train_model():
-    print("Training classifier...")
-    logreg_train_model()
+# def generate_training_data():
+#     print("Generating training data...")
+#     df = generate_data_from_classified(CLASSIFIED_DIR, TRAINING_DATA)
+#     print(f"[OK] Saved training data to {TRAINING_DATA} ({len(df)} rows)")
+#
+# def train_model():
+#     print("Training classifier...")
+#     logreg_train_model()
 
 if __name__ == "__main__":
     print("Step 1: Scraping")
@@ -38,22 +38,22 @@ if __name__ == "__main__":
         exit(1)
 
     print("Step 2: Cleaning")
-    clean_all_raw_files(RAW_DIR, CLEANED_DIR, Path("data/metadata"))
+    clean_all_raw_files(RAW_DIR, CLEANED_DIR, Path("darbotvarkiu_analize/data/metadata"))
 
     if not check_dir_nonempty(CLEANED_DIR, "cleaned"):
         exit(1)
 
     print("Step 3: Classifying")
-    classify_all_files_with_mistral(CLEANED_DIR, CLASSIFIED_DIR)
-]
+    classify_with_api (CLEANED_DIR, CLASSIFIED_DIR)
+
 
     if not check_dir_nonempty(CLASSIFIED_DIR, "classified"):
         exit(1)
 
-    print("Step 4: Generating training data")
-    generate_training_data()
-
-    print("Step 5: Training model")
-    train_model()
+    # print("Step 4: Generating training data")
+    # generate_training_data()
+    #
+    # print("Step 5: Training model")
+    # train_model()
 
     print("Pipeline finished successfully.")
