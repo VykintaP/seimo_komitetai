@@ -4,36 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="classification with mistral_classifier.py">
-      <change afterPath="$PROJECT_DIR$/ml_pipeline/mistral_api_classifier.py" afterDir="false" />
+    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="classification with mistral_classifier API">
+      <change afterPath="$PROJECT_DIR$/assets/custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schema.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/load_to_sql.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualize/committee_donut.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/classified/aplinkos_apsaugos_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/classified/ateities_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/classified/audito_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/classified/biudzeto_ir_finansu_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/classified/demo.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/classified/ekonomikos_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/classified/europos_reikalu_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/classified/kaimo_reikalu_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/aplinkos_apsaugos_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/ateities_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/audito_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/biudzeto_ir_finansu_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/ekonomikos_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/europos_reikalu_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/kaimo_reikalu_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/kulturos_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/nacionalinio_saugumo_ir_gynybos_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/socialiniu_reikalu_ir_darbo_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/sveikatos_reikalu_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/svietimo_ir_mokslo_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/teises_ir_teisetvarkos_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/uzsienio_reikalu_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/valstybes_valdymo_ir_savivaldybiu_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/zmogaus_teisiu_komitetas.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_pipeline/mistral_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/mistral_classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis/main_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/analysis/main_analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/aplinkos_apsaugos_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/aplinkos_apsaugos_komitetas.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/audito_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/audito_komitetas.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/kaimo_reikalu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/kaimo_reikalu_komitetas.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/nacionalinio_saugumo_ir_gynybos_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/nacionalinio_saugumo_ir_gynybos_komitetas.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/socialiniu_reikalu_ir_darbo_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/socialiniu_reikalu_ir_darbo_komitetas.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/sveikatos_reikalu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/sveikatos_reikalu_komitetas.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/teises_ir_teisetvarkos_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/teises_ir_teisetvarkos_komitetas.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/zmogaus_teisiu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/zmogaus_teisiu_komitetas.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_pipeline/mistral_api_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml_pipeline/mistral_api_classifier.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/run_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/run_pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_mistral.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_mistral.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visualize/dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/dashboard.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,40 +67,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests in test_classify.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_cleaning.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_scraper.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_train_classifier.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.analyze.executor&quot;: &quot;Run&quot;,
-    &quot;Python.analyze_plot.executor&quot;: &quot;Run&quot;,
-    &quot;Python.analyze_topics.executor&quot;: &quot;Run&quot;,
-    &quot;Python.app.executor&quot;: &quot;Run&quot;,
-    &quot;Python.classify.executor&quot;: &quot;Run&quot;,
-    &quot;Python.clean_questions.executor&quot;: &quot;Run&quot;,
-    &quot;Python.cleaning_pipeline.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dashboard.executor&quot;: &quot;Run&quot;,
-    &quot;Python.data_quality_report.executor&quot;: &quot;Run&quot;,
-    &quot;Python.generate_training_data.executor&quot;: &quot;Run&quot;,
-    &quot;Python.get_commitees.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main_analysis.executor&quot;: &quot;Run&quot;,
-    &quot;Python.merge_agendas.executor&quot;: &quot;Run&quot;,
-    &quot;Python.mistral_api_classifier.executor&quot;: &quot;Run&quot;,
-    &quot;Python.mistral_classifier.executor&quot;: &quot;Run&quot;,
-    &quot;Python.plotting.executor&quot;: &quot;Run&quot;,
-    &quot;Python.run_pipeline.executor&quot;: &quot;Run&quot;,
-    &quot;Python.run_tests.executor&quot;: &quot;Run&quot;,
-    &quot;Python.scraper.executor&quot;: &quot;Run&quot;,
-    &quot;Python.train_classifier.executor&quot;: &quot;Run&quot;,
-    &quot;Python.translate_and_classify.executor&quot;: &quot;Run&quot;,
-    &quot;Python.visualize_topics.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests in test_classify.py.executor": "Run",
+    "Python tests.Python tests in test_cleaning.py.executor": "Run",
+    "Python tests.Python tests in test_scraper.py.executor": "Run",
+    "Python tests.Python tests in test_train_classifier.py.executor": "Run",
+    "Python.analyze.executor": "Run",
+    "Python.analyze_plot.executor": "Run",
+    "Python.analyze_topics.executor": "Run",
+    "Python.app.executor": "Run",
+    "Python.classify.executor": "Run",
+    "Python.clean_questions.executor": "Run",
+    "Python.cleaning_pipeline.executor": "Run",
+    "Python.committee_donut.executor": "Run",
+    "Python.dashboard.executor": "Run",
+    "Python.data_quality_report.executor": "Run",
+    "Python.generate_training_data.executor": "Run",
+    "Python.get_commitees.executor": "Run",
+    "Python.main_analysis.executor": "Run",
+    "Python.merge_agendas.executor": "Run",
+    "Python.mistral_api_classifier.executor": "Run",
+    "Python.mistral_classifier.executor": "Run",
+    "Python.plotting.executor": "Run",
+    "Python.run_pipeline.executor": "Run",
+    "Python.run_tests.executor": "Run",
+    "Python.scraper.executor": "Run",
+    "Python.train_classifier.executor": "Run",
+    "Python.translate_and_classify.executor": "Run",
+    "Python.visualize_topics.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\archive" />
@@ -231,7 +219,14 @@
       <option name="presentableId" value="LOCAL−00009" />
       <updated>1748344315080</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL−00010" summary="classification with mistral_classifier API">
+      <option name="closed" value="true" />
+      <created>1748350765761</created>
+      <option name="number" value="LOCAL−00010" />
+      <option name="presentableId" value="LOCAL−00010" />
+      <updated>1748350765761</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -242,7 +237,8 @@
     <MESSAGE value="more elaborate testing," />
     <MESSAGE value="added classification (transformers, translator)" />
     <MESSAGE value="classification with mistral_classifier.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="classification with mistral_classifier.py" />
+    <MESSAGE value="classification with mistral_classifier API" />
+    <option name="LAST_COMMIT_MESSAGE" value="classification with mistral_classifier API" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,11 +1,12 @@
 import pandas as pd
 from pathlib import Path
+import logging
+
+logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
 def plot_questions_per_week():
-    import pandas as pd
     import matplotlib.pyplot as plt
     import seaborn as sns
-    from pathlib import Path
 
     cleaned_dir = Path(__file__).resolve().parents[1] / "data" / "cleaned"
     files = list(cleaned_dir.glob("*.csv"))
@@ -18,9 +19,12 @@ def plot_questions_per_week():
 
         name = filepath.stem.replace("_", " ").title()
         date_parsed = pd.to_datetime(df["date"], errors="coerce")
+        num_invalid_dates = df["date"].isna().sum() + df["date"].eq("").sum()
+        if num_invalid_dates > 0:
+            logging.warning(f"{filepath.name}: {num_invalid_dates} neparsivertų datų")
+
         start_date = date_parsed.min()
         end_date = date_parsed.max()
-
         if pd.isna(start_date) or pd.isna(end_date) or end_date <= start_date:
             continue
 
@@ -55,17 +59,16 @@ def summarize_cleaned_data():
         required_cols = {"date", "question", "committee"}
         if not required_cols.issubset(df.columns):
             continue
-        name = filepath.stem.replace("_", " ").title()
 
+        name = filepath.stem.replace("_", " ").title()
         num_questions = len(df)
         empty_questions = df['question'].isna().sum() + df['question'].eq("").sum()
         empty_dates = df['date'].isna().sum() + df['date'].eq("").sum()
 
-
-        try:
-            date_parsed = pd.to_datetime(df['date'], errors='coerce')
-        except Exception:
-            date_parsed = pd.Series([pd.NaT] * len(df))
+        date_parsed = pd.to_datetime(df['date'], errors='coerce')
+        num_invalid_dates = df['date'].isna().sum() + df['date'].eq("").sum()
+        if num_invalid_dates > 0:
+            logging.warning(f"{filepath.name}: {num_invalid_dates} neparsivertų datų")
 
         start_date = date_parsed.min()
         end_date = date_parsed.max()
@@ -80,7 +83,7 @@ def summarize_cleaned_data():
         if unique_dates <= 3:
             flag = "mažai posėdžių"
         elif avg_questions_per_date > 15:
-            flag = "⚠ \\daug klausimų viename posėdyje"
+            flag = "⚠ daug klausimų viename posėdyje"
 
         summary.append({
             "committee": name,
@@ -108,8 +111,7 @@ def summarize_cleaned_data():
     print(f"- Daugiausia klausimų: {summary_df.iloc[0]['committee']} ({summary_df.iloc[0]['questions']})")
     print(f"- Mažiausiai klausimų: {summary_df.iloc[-1]['committee']} ({summary_df.iloc[-1]['questions']})")
 
+
 if __name__ == "__main__":
     summarize_cleaned_data()
-
-
-plot_questions_per_week()
+    plot_questions_per_week()

@@ -2,14 +2,16 @@ import requests
 import pandas as pd
 from pathlib import Path
 import time
+from deep_translator import GoogleTranslator
 
-# Patikriname, ar yra CSV failų 'data/cleaned' aplanke
-cleaned_dir = Path("darbotvarkiu_analize/data/cleaned")
-print(f"Files found in 'darbotvarkiu_analize/data/cleaned': {list(cleaned_dir.glob('*.csv'))}")
+HF_TOKEN = "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"
 
-API_URL = "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.1"
-HF_TOKEN = "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"  # <- ČIA ĮKLIJUOK SAVO Hugging Face tokeną
-headers = {"Authorization": f"Bearer {HF_TOKEN}"}
+API_URL = "https://u73js246kn9da1w7.us-east4.gcp.endpoints.huggingface.cloud"
+
+headers = {
+    "Authorization": f"Bearer {HF_TOKEN}",
+    "Content-Type": "application/json"
+}
 
 TOPICS = [
     "Valstybės valdymas, regioninė politika ir viešasis administravimas",
@@ -28,52 +30,105 @@ TOPICS = [
     "Užsienio politika",
     "Žemės ir maisto ūkis, kaimo plėtra ir žuvininkystė"
 ]
+EN_TOPICS = [
+    "State governance, regional policy and public administration",
+    "Environment, forests and climate change",
+    "Energy",
+    "Public finance",
+    "Economic competitiveness and state information resources",
+    "State security and defense",
+    "Public security",
+    "Culture",
+    "Social security and employment",
+    "Transportation and communications",
+    "Health",
+    "Education, science and sport",
+    "Justice",
+    "Foreign policy",
+    "Land and food farming, rural development and fisheries"
+]
+
+def is_question_informative(q: str) -> bool:
+        q = q.strip()
+        if len(q) < 30:
+            return False
+        bendriniai = ["Įstatymas", "pakeitimas", "straipsnis", "projektas", "Nr.", "priedas", "XIV", "IX"]
+        atitikimai = sum(1 for zodis in bendriniai if zodis.lower() in q.lower())
+        if atitikimai >= 3 and len(q.split()) < 12:
+            return False
+        return True
+
 
 def classify_with_api(question: str) -> str:
-    prompt = f"""
-Klausimas: "{question}"
-Pasirink viena atitinkančią viešosios politikos temą iš šių:
-{", ".join(TOPICS)}
-
-Atsakyk tik tema, be jokio paaiškinimo.
-"""
-    response = requests.post(API_URL, headers=headers, json={"inputs": prompt})
-
-    # Išvedame užklausą ir API atsakymą
-    print(f"\nUžklausa:\n{prompt.strip()}")
-    print(f"API statusas: {response.status_code}")
-    print(f"API atsakymas: {response.text[:500]}...")  # rodome tik pradžią
-
-    if response.status_code != 200:
-        print(f"API klaida: Statusas - {response.status_code}, Atsakymas - {response.text}")
-        return "API klaida"
+    if not is_question_informative(question):
+        return "Nėra"
 
     try:
-        output = response.json()
-        if isinstance(output, list) and "generated_text" in output[0]:
-            result = output[0]["generated_text"]
-            for topic in reversed(TOPICS):
-                if topic in result:
-                    return topic
-            return "Neatpažinta tema"
-        else:
-            print("API atsakymas neturi laukiamų duomenų.")
-            return "Neteisingas formatas"
+        translated_q = GoogleTranslator(source='lt', target='en').translate(question)
     except Exception as e:
-        print(f"Klaida apdorojant API atsakymą: {e}")
-        return "Neteisingas atsakymas"
+        print(f"Vertimo į EN klaida: {e}")
+        return "Vertimo klaida"
 
-def process_files():
-    cleaned_dir = Path("darbotvarkiu_analize/data/cleaned")
-    classified_dir = Path("darbotvarkiu_analize/data/classified")
+    prompt = f"""
+    Question: {translated_q}
+    Which of the following public policy topics best describes the question? Choose only one and answer ONLY with the topic name from the list below.
+    
+    {chr(10).join(EN_TOPICS)}
+
+    Topic:
+    """
+
+    try:
+        response = requests.post(API_URL, headers=headers, json={"inputs": prompt}, timeout=10)
+        time.sleep(0.5)
+        if response.status_code != 200:
+            print(f"API klaida: {response.status_code}, {response.text}")
+            return f"API klaida: {response.status_code}"
+    except Exception as e:
+        print(f"API užklausos klaida: {e}")
+        return "API užklausos klaida"
+
+    output = response.json()
+    print("DEBUG API output:", output)
+
+    result = output[0]["generated_text"].strip()
+    if "Topic:" in result:
+        answer_en = result.split("Topic:")[-1].strip().split("\n")[0]
+    else:
+        answer_en = result.split("\n")[-1].strip()
+
+   \
+    topic_map = dict(zip(EN_TOPICS, TOPICS))
+    if answer_en == "Unclear – not enough context":
+        return "Neaišku – nepakanka informacijos"
+
+    topic_map = dict(zip(EN_TOPICS, TOPICS))
+    if answer_en in topic_map:
+        return topic_map[answer_en]
+    else:
+        return "Neatpažinta tema"
+
+    if answer_en not in topic_map:
+        print(f"Neatpažinta tema: {answer_en}")
+        return "Neatpažinta tema"
+
+
+def safe_classify(question: str) -> str:
+    try:
+        return classify_with_api(question)
+    except Exception as e:
+        print(f"Klaida apdorojant klausimą: {e}")
+        return "Klasifikavimo klaida"
+
+
+def classify_all_files_with_mistral(cleaned_dir: Path, classified_dir: Path):
     classified_dir.mkdir(parents=True, exist_ok=True)
+    files = list(cleaned_dir.glob("*.csv"))
+    print(f"Found {len(files)} files in '{cleaned_dir}'")
 
-    # Apdorojame visus CSV failus 'data/cleaned' aplanke
-    for file in cleaned_dir.glob("*.csv"):
+    for file in files:
+        print(f"\n--- Now processing file: {file.name} ---")
         output_path = classified_dir / file.name
-        print(f"Overwriting {file.name} (reclassifying)")
-
-        print(f"Classifying {file.name} via API...")
 
         df = pd.read_csv(file)
         if "question" not in df.columns:
@@ -81,13 +136,17 @@ def process_files():
             continue
 
         df = df.dropna(subset=["question"])
-        df["theme"] = df["question"].apply(classify_with_api)
+        try:
+            df["theme"] = df["question"].apply(safe_classify)
+        except Exception as e:
+            print(f"Error while classifying file {file.name}: {e}")
 
         df.to_csv(output_path, index=False)
         print(f"Saved: {output_path}")
 
-        # Pridėti vėlavimą tarp užklausų, kad išvengti API apribojimų
-        time.sleep(1)
 
 if __name__ == "__main__":
-    process_files()
+    base_dir = Path(__file__).resolve().parents[1]
+    cleaned = base_dir / "data" / "cleaned"
+    classified = base_dir / "data" / "classified"
+    classify_all_files_with_mistral(cleaned, classified)
