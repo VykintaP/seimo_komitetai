@@ -4,22 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="classification with mistral_classifier API">
-      <change afterPath="$PROJECT_DIR$/assets/custom.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schema.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/load_to_sql.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualize/committee_donut.py" afterDir="false" />
+    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="added:&#10;&#10;translation LT &lt;-&gt; EN&#10;donnut pie&#10;sql">
+      <change afterPath="$PROJECT_DIR$/archive/theme_area.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualize/committee_profiles.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualize/theme_distribution.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis/main_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/analysis/main_analysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/aplinkos_apsaugos_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/aplinkos_apsaugos_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/audito_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/audito_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/kaimo_reikalu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/kaimo_reikalu_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/nacionalinio_saugumo_ir_gynybos_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/nacionalinio_saugumo_ir_gynybos_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/socialiniu_reikalu_ir_darbo_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/socialiniu_reikalu_ir_darbo_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/sveikatos_reikalu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/sveikatos_reikalu_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/teises_ir_teisetvarkos_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/teises_ir_teisetvarkos_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/zmogaus_teisiu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/zmogaus_teisiu_komitetas.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/custom.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ml_pipeline/mistral_api_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml_pipeline/mistral_api_classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/load_to_sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/load_to_sql.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/run_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/run_pipeline.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visualize/dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/dashboard.py" afterDir="false" />
     </list>
@@ -56,6 +49,9 @@
     &quot;accountId&quot;: &quot;e319449e-a248-4283-a4aa-ad179d496221&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -81,10 +77,12 @@
     "Python.clean_questions.executor": "Run",
     "Python.cleaning_pipeline.executor": "Run",
     "Python.committee_donut.executor": "Run",
+    "Python.committee_profiles.executor": "Run",
     "Python.dashboard.executor": "Run",
     "Python.data_quality_report.executor": "Run",
     "Python.generate_training_data.executor": "Run",
     "Python.get_commitees.executor": "Run",
+    "Python.load_to_sql.executor": "Run",
     "Python.main_analysis.executor": "Run",
     "Python.merge_agendas.executor": "Run",
     "Python.mistral_api_classifier.executor": "Run",
@@ -93,6 +91,8 @@
     "Python.run_pipeline.executor": "Run",
     "Python.run_tests.executor": "Run",
     "Python.scraper.executor": "Run",
+    "Python.theme_area.executor": "Run",
+    "Python.theme_distribution.executor": "Run",
     "Python.train_classifier.executor": "Run",
     "Python.translate_and_classify.executor": "Run",
     "Python.visualize_topics.executor": "Run",
@@ -226,7 +226,14 @@
       <option name="presentableId" value="LOCAL−00010" />
       <updated>1748350765761</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL−00011" summary="added:&#10;&#10;translation LT &lt;-&gt; EN&#10;donnut pie&#10;sql">
+      <option name="closed" value="true" />
+      <created>1748435746670</created>
+      <option name="number" value="LOCAL−00011" />
+      <option name="presentableId" value="LOCAL−00011" />
+      <updated>1748435746670</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -238,7 +245,8 @@
     <MESSAGE value="added classification (transformers, translator)" />
     <MESSAGE value="classification with mistral_classifier.py" />
     <MESSAGE value="classification with mistral_classifier API" />
-    <option name="LAST_COMMIT_MESSAGE" value="classification with mistral_classifier API" />
+    <MESSAGE value="added:&#10;&#10;translation LT &lt;-&gt; EN&#10;donnut pie&#10;sql" />
+    <option name="LAST_COMMIT_MESSAGE" value="added:&#10;&#10;translation LT &lt;-&gt; EN&#10;donnut pie&#10;sql" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

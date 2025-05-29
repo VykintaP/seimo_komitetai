@@ -6,8 +6,10 @@ from deep_translator import GoogleTranslator
 
 HF_TOKEN = "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"
 
-API_URL = "https://u73js246kn9da1w7.us-east4.gcp.endpoints.huggingface.cloud"
+# mistral-7b-instruct-v0-1-hdx
+API_URL = "https://knja4utso3nn54pk.us-east4.gcp.endpoints.huggingface.cloud"
 
+# autentifikacija
 headers = {
     "Authorization": f"Bearer {HF_TOKEN}",
     "Content-Type": "application/json"
@@ -71,7 +73,7 @@ def classify_with_api(question: str) -> str:
 
     prompt = f"""
     Question: {translated_q}
-    Which of the following public policy topics best describes the question? Choose only one and answer ONLY with the topic name from the list below.
+    Which of the following public policy topics best describes the question? Choose only one and answer ONLY with the topic name from the list below, no explanation.
     
     {chr(10).join(EN_TOPICS)}
 
@@ -97,7 +99,7 @@ def classify_with_api(question: str) -> str:
     else:
         answer_en = result.split("\n")[-1].strip()
 
-   \
+
     topic_map = dict(zip(EN_TOPICS, TOPICS))
     if answer_en == "Unclear – not enough context":
         return "Neaišku – nepakanka informacijos"
@@ -109,7 +111,6 @@ def classify_with_api(question: str) -> str:
         return "Neatpažinta tema"
 
     if answer_en not in topic_map:
-        print(f"Neatpažinta tema: {answer_en}")
         return "Neatpažinta tema"
 
 

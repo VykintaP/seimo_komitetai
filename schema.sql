@@ -1,9 +1,10 @@
 CREATE TABLE IF NOT EXISTS classified_questions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    komitetas TEXT NOT NULL,
+    komitetas TEXT,
     data TEXT,
-    klausimas TEXT NOT NULL,
+    klausimas TEXT,
     tema TEXT,
-    vertimas_en TEXT,
-    tikslumo_įvertis REAL
+    project_id TEXT,
+    responsible_actor TEXT,
+    invited_presenters TEXT
 );
