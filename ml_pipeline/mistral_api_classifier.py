@@ -3,7 +3,8 @@ import pandas as pd
 from pathlib import Path
 import time
 from deep_translator import GoogleTranslator
-
+from config import DB_PATH, TABLE_CLASSIFIED
+conn = sqlite3.connect(DB_PATH)
 HF_TOKEN = "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"
 
 #flan-t5-xl-pmr

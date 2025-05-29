@@ -14,7 +14,6 @@ app.layout = html.Div([
     get_theme_distribution_layout(),
 
 ])
-register_donut_callbacks(app)
 
 @callback(
     Output("tabs", "value"),

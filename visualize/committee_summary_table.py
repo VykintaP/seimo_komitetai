@@ -4,7 +4,7 @@ from dash import html, dcc, dash_table
 
 from pathlib import Path
 
-DB_PATH = Path(__file__).resolve().parents[1] / "classified_questions.db"
+DB_PATH = Path(__file__).resolve().parents[1] / "data" / "classified_questions.db"
 
 def get_committee_summary_component():
     conn = sqlite3.connect(DB_PATH)

@@ -4,7 +4,7 @@ from dash import html, dcc, Input, Output, callback
 import plotly.express as px
 from pathlib import Path
 
-db_path = Path(__file__).resolve().parents[1] / "classified_questions.db"
+db_path = Path(__file__).resolve().parents[1] / "data" / "classified_questions.db"
 
 def get_committee_donut():
     conn = sqlite3.connect(db_path)

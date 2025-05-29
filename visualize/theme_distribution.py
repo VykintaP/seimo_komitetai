@@ -4,7 +4,7 @@ from pathlib import Path
 import plotly.express as px
 from dash import html, dcc, Input, Output, State, callback, dash_table
 
-db_path = Path(__file__).resolve().parents[1] / "classified_questions.db"
+db_path = Path(__file__).resolve().parents[1] / "data" / "classified_questions.db"
 
 def load_data():
     conn = sqlite3.connect(db_path)
@@ -16,7 +16,7 @@ def load_data():
 df_all = load_data()
 
 def get_theme_distribution_layout():
-    db_path = Path(__file__).resolve().parents[1] / "classified_questions.db"
+    db_path = Path(__file__).resolve().parents[1] / "data" / "classified_questions.db"
     conn = sqlite3.connect(db_path)
     df = pd.read_sql_query("SELECT tema FROM classified_questions", conn)
     conn.close()

@@ -1,7 +1,8 @@
 import sqlite3
 import pandas as pd
 from pathlib import Path
-
+conn = sqlite3.connect(DB_PATH)
+cur.execute(f"SELECT * FROM {TABLE_CLASSIFIED}")
 BASE_DIR = Path(__file__).resolve().parents[1]
 CLASSIFIED_DIR = BASE_DIR / "data" / "classified"
 DB_PATH = BASE_DIR / "data" / "classified_questions.db"

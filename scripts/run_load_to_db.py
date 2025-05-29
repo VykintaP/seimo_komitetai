@@ -2,8 +2,9 @@ from pathlib import Path
 import pandas as pd
 import sqlite3
 
-classified_dir = Path("data/classified")
+
 BASE_DIR = Path(__file__).resolve().parents[1]
+classified_dir = BASE_DIR / "data" / "classified"
 db_path = BASE_DIR / "data" / "classified_questions.db"
 
 
