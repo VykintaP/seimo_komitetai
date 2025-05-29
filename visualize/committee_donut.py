@@ -3,13 +3,19 @@ import sqlite3
 from dash import html, dcc, Input, Output, callback
 import plotly.express as px
 from pathlib import Path
+from config import DB_PATH, TABLE_CLASSIFIED
 
-db_path = Path(__file__).resolve().parents[1] / "data" / "classified_questions.db"
+DB_PATH = Path("data/classified_questions.db")
+TABLE_CLASSIFIED = "classified_questions"
+
+def query_df(sql: str) -> pd.DataFrame:
+      conn = sqlite3.connect(DB_PATH)
+      df = pd.read_sql_query(sql, conn)
+      conn.close()
+      return df
 
 def get_committee_donut():
-    conn = sqlite3.connect(db_path)
-    df = pd.read_sql_query("SELECT komitetas FROM classified_questions", conn)
-    conn.close()
+    df = query_df(f"SELECT komitetas FROM {TABLE_CLASSIFIED}")
 
     df = df[df["komitetas"].notna()]
     committee_counts = df["komitetas"].value_counts().reset_index()
@@ -57,10 +63,8 @@ def get_donut_layout(app):
     def update_theme_chart(committee):
         if not committee:
             return html.P("Pasirink komitetą donut grafike.")
+        df = query_df(f"SELECT komitetas, tema FROM {TABLE_CLASSIFIED}")
 
-        conn = sqlite3.connect(db_path)
-        df = pd.read_sql_query("SELECT komitetas, tema FROM classified_questions", conn)
-        conn.close()
 
         df = df[(df["komitetas"] == committee) & (df["tema"].notna())]
         theme_counts = df["tema"].value_counts().reset_index()
