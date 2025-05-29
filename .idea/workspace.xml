@@ -4,16 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="added:&#10;&#10;translation LT &lt;-&gt; EN&#10;donnut pie&#10;sql">
-      <change afterPath="$PROJECT_DIR$/archive/theme_area.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualize/committee_profiles.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualize/theme_distribution.py" afterDir="false" />
+    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="fixed some visualisations">
+      <change afterPath="$PROJECT_DIR$/check_db.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/run_load_to_db.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualize/committee_summary_table.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/aplinkos_apsaugos_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/aplinkos_apsaugos_komitetas.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/europos_reikalu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/europos_reikalu_komitetas.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/nacionalinio_saugumo_ir_gynybos_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/nacionalinio_saugumo_ir_gynybos_komitetas.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/uzsienio_reikalu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/uzsienio_reikalu_komitetas.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/raw/valstybes_valdymo_ir_savivaldybiu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/valstybes_valdymo_ir_savivaldybiu_komitetas.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ml_pipeline/mistral_api_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml_pipeline/mistral_api_classifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/load_to_sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/load_to_sql.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/run_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/run_pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/committee_donut.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/committee_donut.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/committee_profiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/committee_profiles.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visualize/dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/dashboard.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,11 +78,13 @@
     "Python.analyze_plot.executor": "Run",
     "Python.analyze_topics.executor": "Run",
     "Python.app.executor": "Run",
+    "Python.check_db.executor": "Run",
     "Python.classify.executor": "Run",
     "Python.clean_questions.executor": "Run",
     "Python.cleaning_pipeline.executor": "Run",
     "Python.committee_donut.executor": "Run",
     "Python.committee_profiles.executor": "Run",
+    "Python.committee_summary_table.executor": "Run",
     "Python.dashboard.executor": "Run",
     "Python.data_quality_report.executor": "Run",
     "Python.generate_training_data.executor": "Run",
@@ -88,6 +95,7 @@
     "Python.mistral_api_classifier.executor": "Run",
     "Python.mistral_classifier.executor": "Run",
     "Python.plotting.executor": "Run",
+    "Python.run_load_to_db.executor": "Run",
     "Python.run_pipeline.executor": "Run",
     "Python.run_tests.executor": "Run",
     "Python.scraper.executor": "Run",
@@ -104,11 +112,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\data" />
       <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\archive" />
       <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\tests" />
       <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\scripts" />
       <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\processing" />
-      <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\ml_pipeline" />
     </key>
   </component>
   <component name="RunManager">
@@ -233,7 +241,14 @@
       <option name="presentableId" value="LOCAL−00011" />
       <updated>1748435746670</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL−00012" summary="fixed some visualisations">
+      <option name="closed" value="true" />
+      <created>1748509870306</created>
+      <option name="number" value="LOCAL−00012" />
+      <option name="presentableId" value="LOCAL−00012" />
+      <updated>1748509870306</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -246,7 +261,8 @@
     <MESSAGE value="classification with mistral_classifier.py" />
     <MESSAGE value="classification with mistral_classifier API" />
     <MESSAGE value="added:&#10;&#10;translation LT &lt;-&gt; EN&#10;donnut pie&#10;sql" />
-    <option name="LAST_COMMIT_MESSAGE" value="added:&#10;&#10;translation LT &lt;-&gt; EN&#10;donnut pie&#10;sql" />
+    <MESSAGE value="fixed some visualisations" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed some visualisations" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -255,6 +271,11 @@
           <url>file://$PROJECT_DIR$/visualize/main.py</url>
           <line>8</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/scripts/run_load_to_db.py</url>
+          <line>13</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

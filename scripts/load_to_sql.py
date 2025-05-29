@@ -2,11 +2,11 @@ import sqlite3
 import pandas as pd
 from pathlib import Path
 
-def main():
-    CLASSIFIED_DIR = Path(__file__).resolve().parents[1] / "data" / "classified"
-    DB_PATH = Path(__file__).resolve().parents[1] / "classified_questions.db"
-    SCHEMA_PATH = Path(__file__).resolve().parent.parent / "schema.sql"
+BASE_DIR = Path(__file__).resolve().parents[1]
+CLASSIFIED_DIR = BASE_DIR / "data" / "classified"
+DB_PATH = BASE_DIR / "data" / "classified_questions.db"
 
+def main():
     print(f"[DEBUG] Looking for CSV files in: {CLASSIFIED_DIR.resolve()}")
     print(f"[DEBUG] Found files: {[f.name for f in CLASSIFIED_DIR.glob('*.csv')]}")
 

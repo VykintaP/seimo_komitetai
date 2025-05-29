@@ -52,7 +52,8 @@ if __name__ == "__main__":
         exit(1)
 
     print("Step 3: Classifying")
-    classify_with_api(CLEANED_DIR, CLASSIFIED_DIR)
+    from ml_pipeline.mistral_api_classifier import classify_all_files_with_mistral
+    classify_all_files_with_mistral(CLEANED_DIR, CLASSIFIED_DIR)
 
     if not check_dir_nonempty(CLASSIFIED_DIR, "classified"):
         exit(1)

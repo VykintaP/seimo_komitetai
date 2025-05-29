@@ -6,8 +6,8 @@ from deep_translator import GoogleTranslator
 
 HF_TOKEN = "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"
 
-# mistral-7b-instruct-v0-1-hdx
-API_URL = "https://knja4utso3nn54pk.us-east4.gcp.endpoints.huggingface.cloud"
+#flan-t5-xl-pmr
+API_URL = "https://u73js246kn9da1w7.us-east4.gcp.endpoints.huggingface.cloud"
 
 # autentifikacija
 headers = {

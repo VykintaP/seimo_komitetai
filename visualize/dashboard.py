@@ -1,19 +1,21 @@
-from dash import Dash, html, Input, Output, State, callback, dash_table
+import dash_bootstrap_components as dbc
+
+from dash import Dash, html, Input, Output, callback, dash_table
 from visualize.committee_donut import get_donut_layout
 from visualize.theme_distribution import get_theme_distribution_layout
-from visualize.committee_profiles import get_committee_profiles_layout
 from visualize.theme_distribution import df_all
 
-app = Dash(__name__)
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.title = "Ką veikia Seimo komitetai?"
 
 app.layout = html.Div([
-    html.H1("Seimo temų analizė", style={"color": "#2C3E50"}),
+    html.H1("Seimo komitetų darbotvarkių analizė", style={"color": "#2C3E50"}),
     get_donut_layout(app),
     get_theme_distribution_layout(),
-    get_committee_profiles_layout()
 
 ])
+register_donut_callbacks(app)
+
 @callback(
     Output("tabs", "value"),
     Output("selected-theme", "data"),
@@ -48,5 +50,3 @@ def display_questions(theme):
 if __name__ == "__main__":
     app.run(debug=True)
 
-from scripts.load_to_sql import main as load_to_sql_main
-load_to_sql_main()

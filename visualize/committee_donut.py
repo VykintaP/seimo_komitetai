@@ -1,77 +1,81 @@
 import pandas as pd
+import sqlite3
+from dash import html, dcc, Input, Output, callback
 import plotly.express as px
-from dash import html, dcc, Input, Output
 from pathlib import Path
 
+db_path = Path(__file__).resolve().parents[1] / "classified_questions.db"
+
+def get_committee_donut():
+    conn = sqlite3.connect(db_path)
+    df = pd.read_sql_query("SELECT komitetas FROM classified_questions", conn)
+    conn.close()
+
+    df = df[df["komitetas"].notna()]
+    committee_counts = df["komitetas"].value_counts().reset_index()
+    committee_counts.columns = ["Komitetas", "Klausimų skaičius"]
+
+    fig = px.pie(
+        committee_counts,
+        names="Komitetas",
+        values="Klausimų skaičius",
+        hole=0.5,
+        title="Klausimų skaičius pagal komitetą"
+    )
+
+    fig.update_traces(textposition="inside", textinfo="percent+label", hoverinfo="label+value")
+
+    return html.Div([
+        dcc.Store(id="selected-committee"),
+        html.H3("Komitetų pasiskirstymas", style={"color": "#2C3E50"}),
+        dcc.Graph(id="committee-donut", figure=fig),
+        html.Div(id="theme-by-committee")
+    ])
+
+
 def get_donut_layout(app):
-    classified_dir = Path(__file__).resolve().parents[1] / "data" / "classified"
-    files = list(classified_dir.glob("*.csv"))
-
-    committees = {
-        file.name: file.stem.replace("_", " ").title()
-        for file in files
-        if "theme" in pd.read_csv(file).columns
-    }
-
-    seimas_colors = ['#AE1C28', '#FDB913', '#007A33', '#000000', '#555555', '#999999', '#CCCCCC']
-
     layout = html.Div([
-        html.H2("Temų pasiskirstymas pagal pasirinktą komitetą"),
-        html.Div([
-            dcc.Dropdown(
-                id="committee-dropdown",
-                options=[{"label": v, "value": k} for k, v in committees.items()],
-                value=list(committees.keys())[0],
-                className="dash-dropdown"
-            )
-        ], className="card"),
-
-        html.Div([
-            dcc.Graph(id="donut-chart"),
-            html.Div(id="summary-text", style={
-                "textAlign": "center",
-                "fontSize": "16px",
-                "color": "#2C3E50",
-                "marginTop": "10px"
-            })
-        ], className="card")
+        get_committee_donut()
     ])
 
     @app.callback(
-        [Output("donut-chart", "figure"),
-         Output("summary-text", "children")],
-        Input("committee-dropdown", "value")
+        Output("selected-committee", "data"),
+        Input("committee-donut", "clickData"),
+        prevent_initial_call=True
     )
-    def update_donut_chart(selected_file):
-        path = classified_dir / selected_file
-        df = pd.read_csv(path)
-        df = df[df["theme"].notna()]
+    def store_selected_committee(clickData):
+        if clickData:
+            committee = clickData["points"][0]["label"]
+            return committee
+        return None
 
-        counts = df.groupby("theme").agg({
-            "question": "first",
-            "theme": "count"
-        }).rename(columns={
-            "theme": "Klausimų skaičius",
-            "question": "Pavyzdinis klausimas"
-        }).reset_index()
-        counts = counts.rename(columns={"theme": "Tema"})
+    @app.callback(
+        Output("theme-by-committee", "children"),
+        Input("selected-committee", "data"),
+        prevent_initial_call=True
+    )
+    def update_theme_chart(committee):
+        if not committee:
+            return html.P("Pasirink komitetą donut grafike.")
 
-        # Trumpesnė tema legendoje
-        counts["Trumpas pavadinimas"] = counts["Tema"].apply(lambda x: x.split(",")[0])
+        conn = sqlite3.connect(db_path)
+        df = pd.read_sql_query("SELECT komitetas, tema FROM classified_questions", conn)
+        conn.close()
 
-        fig = px.pie(
-            counts,
-            names="Trumpas pavadinimas",
-            values="Klausimų skaičius",
-            hole=0.4,
-            title=committees[selected_file],
-            hover_data=["Tema", "Pavyzdinis klausimas"],
-            color_discrete_sequence=seimas_colors
+        df = df[(df["komitetas"] == committee) & (df["tema"].notna())]
+        theme_counts = df["tema"].value_counts().reset_index()
+        theme_counts.columns = ["Tema", "Klausimų skaičius"]
+
+        fig = px.bar(
+            theme_counts,
+            x="Klausimų skaičius",
+            y="Tema",
+            orientation="h",
+            title=f"Temos komitete: {committee}"
         )
 
-        fig.update_traces(textposition="inside", textinfo="percent+label")
-        fig.update_layout(margin={"t": 60, "b": 20, "l": 20, "r": 20})
+        fig.update_traces(hovertemplate="%{y}: %{x} klausimų")
 
-        return fig, f"Iš viso nagrinėta {df.shape[0]} klausimų."
+        return dcc.Graph(figure=fig)
 
     return layout
