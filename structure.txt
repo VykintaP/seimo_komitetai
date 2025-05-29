@@ -1,0 +1,36 @@
+darbotvarkiu_analize/
+├── .venv/
+├── analysis/
+│   └── main_analysis.py
+├── archive/
+├── assets/
+│   ├── custom.css
+│   └── seimas_logo.png.png
+├── data/
+│   ├── classified/
+│   ├── cleaned/
+│   ├── diagnostics/
+│   ├── metadata/
+│   ├── raw/
+│   └── classified_questions.db
+├── ml_pipeline/
+│   └── mistral_api_classifier.py
+├── processing/
+├── scripts/
+│   ├── load_to_sql.py
+│   ├── run_load_to_db.py
+│   ├── run_pipeline.py
+│   └── run_tests.py
+├── tests/
+│   ├── test_cleaning.py
+│   ├── test_mistral.py
+│   └── test_scraper.py
+├── visualize/
+│   ├── committee_donut.py
+│   ├── committee_summary_table.py
+│   ├── dashboard.py
+│   └── theme_distribution.py
+├── check_db.py
+├── README.md
+├── requirements.txt
+└── schema.sql
