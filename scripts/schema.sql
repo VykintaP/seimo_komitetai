@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS classified_questions (
     data TEXT,
     klausimas TEXT,
     tema TEXT,
-    project_id TEXT,
-    responsible_actor TEXT,
-    invited_presenters TEXT
+    projektas TEXT,
+    atsakingi TEXT,
+    dalyviai TEXT
 );

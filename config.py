@@ -1,12 +1,20 @@
 # config.py
-"""
-Centralūs projektų parametrai: DB failas ir lentelių vardai.
-"""
-# kelias iki sqlite DB
-DB_PATH = "data/classified_questions.db"
+from pathlib import Path
 
-# lentelei, kurioje saugome visą klasifikacijos rezultatą
+# 1) Bendras kelias iki duomenų bazės
+DB_PATH = Path(__file__).parent / "data" / "classified_questions.db"
+
+# 2) Vieningas lentelės vardas
 TABLE_CLASSIFIED = "classified_questions"
 
-# (priešingiems atvejams: diagnostikos ataskaitoms ar pan.)
-TABLE_DIAGNOSTICS = "data_quality_reports"
+# 3) Stulpelių alias’ai, jei DB schema skiriasi:
+COL_DATE      = "date"      # originalus laukas DB
+COL_QUESTION  = "question"
+COL_THEME     = "theme"
+
+# 4) (nebūtina) žemėlapis alias → lietuviški pavadinimai
+ALIASES = {
+    COL_DATE:     "data",
+    COL_QUESTION: "klausimas",
+    COL_THEME:    "tema",
+}

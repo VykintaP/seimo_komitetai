@@ -1,9 +1,12 @@
 import pandas as pd
 from pathlib import Path
 
-CLEANED_DIR = Path(__file__).resolve().parents[1] / "data" / "diagnostics"
-REPORT_PATH = CLEANED_DIR / "quality_report.csv"
+CLEANED_DIR = Path(__file__).resolve().parents[1] / "data" / "cleaned"
+DIAGNOSTICS_DIR = Path(__file__).resolve().parents[1] / "data" / "diagnostics"
+DIAGNOSTICS_DIR.mkdir(parents=True, exist_ok=True)
+REPORT_PATH = DIAGNOSTICS_DIR / "quality_report.csv"
 
+# bendri statistiniai rodikliai
 def analyze_file(filepath):
     df = pd.read_csv(filepath)
     report = {}
@@ -27,7 +30,7 @@ def analyze_file(filepath):
 
 def main():
     results = []
-    for file in CLEANED_DIR.glob("*_clean.csv"):
+    for file in CLEANED_DIR.glob("*.csv"):
         results.append(analyze_file(file))
     df_report = pd.DataFrame(results)
     df_report.to_csv(REPORT_PATH, index=False)

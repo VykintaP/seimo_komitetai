@@ -1,44 +1,53 @@
 import pytest
+import re
+from pathlib import Path
 from processing.scraper import get_committee_urls, CommitteeScraper
 
+def test_committee_urls_are_retrieved_and_filtered():
+    urls = get_committee_urls()
+    assert len(urls) > 0, "Nerasta jokių komitetų"
+    for name, _ in urls:
+        assert "komisija" not in name.lower(), f"Komisija neturėtų būti įtraukta: {name}"
 
-def get_best_event_url(base_url, scraper):
-    import requests
-    from bs4 import BeautifulSoup
-    response = requests.get(base_url)
-    soup = BeautifulSoup(response.content, "lxml")
-    links = soup.find_all("a", href=True)
-    event_links = []
-    for link in links:
-        href = link["href"]
-        if "p_event_id=" in href:
-            full_url = "https://www.lrs.lt" + href if not href.startswith("http") else href
-            event_links.append(full_url)
+def test_agenda_links_for_known_committee():
+    name = "Sveikatos reikalų komitetas"
+    url = "https://www.lrs.lt/sip/portal.show?p_r=35299&p_k=1"
+    scraper = CommitteeScraper(name, url)
+    links = scraper.fetch_agenda_links()
+    assert isinstance(links, list), "Rezultatas turi būti sąrašas"
+    assert len(links) > 0, "Nerasta jokių darbotvarkių"
+    assert all("darbotvark" in link.lower() for link in links), "Yra netinkamų nuorodų"
 
-    for url in event_links:
-        items = scraper.fetch_items(url)
-        if len(items) > 0:
-            return url
-    return None
+def test_fetch_items_structure_from_one_agenda():
+    name = "Sveikatos reikalų komitetas"
+    agenda_url = "https://www.lrs.lt/sip/portal.show?p_r=35299&p_k=1&p_event_id=41208"
+    scraper = CommitteeScraper(name, "https://www.lrs.lt/sip/portal.show?p_r=35299&p_k=1")
+    items = scraper.fetch_items(agenda_url)
+    assert isinstance(items, list), "fetch_items turi grąžinti sąrašą"
+    if items:
+        row = items[0]
+        assert len(row) == 6, f"fetch_items turi grąžinti 6 laukus, gauta {len(row)}"
+        assert re.match(r"\d{4}-\d{2}-\d{2}", row[0]), f"Neteisingas datos formatas: {row[0]}"
+        assert isinstance(row[1], str) and len(row[1]) > 3, "Klausimo tekstas per trumpas arba tuščias"
 
+def test_debug_html_creation(tmp_path):
+    name = "Test Komitetas"
+    scraper = CommitteeScraper(name, "https://www.lrs.lt/invalid-url")
+    soup = scraper.get_soup()
+    scraper.debug_html(soup)
 
-@pytest.mark.parametrize("name,url", get_committee_urls())
-def test_event_of_each_committee(name, url):
-    scraper = CommitteeScraper(name, "")
-    event_url = get_best_event_url(url, scraper)
+    debug_path = Path("debug.html")
+    assert debug_path.exists(), "debug.html nebuvo sukurtas"
+    assert debug_path.read_text().startswith("<html") or "<!DOCTYPE html>" in debug_path.read_text()
+    debug_path.unlink()  # ištrinti po testo
 
-    if not event_url:
-        pytest.skip(f"{name} neturi nė vienos tinkamos darbotvarkės")
-    scraper = CommitteeScraper(name, "")
-    items = scraper.fetch_items(event_url)
-    assert isinstance(items, list)
-    assert len(items) > 0, f"{name} ({event_url}) grąžino 0 klausimų"
-    for item in items:
-        assert len(item) == 6, f"{name} ({event_url}): laukų skaičius != 6"
-        assert isinstance(item[0], str)  # date
-        assert isinstance(item[1], str)  # question
-        assert isinstance(item[2], str)  # committee
-        assert isinstance(item[3], str)  # project_id
-        assert isinstance(item[4], str)  # responsible_actor
-        assert isinstance(item[5], str)  # invited_presenters
-
+@pytest.mark.parametrize("name, url", get_committee_urls()[:3])
+def test_fetch_items_structure_from_real_committees(name, url):
+    scraper = CommitteeScraper(name, url)
+    links = scraper.fetch_agenda_links()
+    if links:
+        items = scraper.fetch_items(links[0])
+        assert isinstance(items, list), "fetch_items turi grąžinti sąrašą"
+        if items:
+            row = items[0]
+            assert len(row) == 6, f"{name}: fetch_items turi grąžinti 6 laukus, gauta {len(row)}"

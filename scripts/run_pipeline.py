@@ -6,9 +6,8 @@ import sqlite3
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# pipeline žingsniai
+
 from processing.scraper import run_scraper
-from ml_pipeline.mistral_api_classifier import classify_with_api
 from processing.cleaning_pipeline import clean_all_raw_files
 
 BASE_DIR = Path(__file__).resolve().parents[1]
@@ -58,24 +57,10 @@ if __name__ == "__main__":
     if not check_dir_nonempty(CLASSIFIED_DIR, "classified"):
         exit(1)
 
-    print("Step 4: Writing to database")
-    DB_PATH = BASE_DIR / "classified_questions.db"
+    print("Step 4: Writing classified data to database")
+    from scripts.load_to_sql import main as load_to_sql
 
-    def load_classified_to_db(classified_dir, db_path):
-        conn = sqlite3.connect(db_path)
-        all_dfs = []
-        for file in classified_dir.glob("*.csv"):
-            df = pd.read_csv(file)
-            df["komitetas"] = file.stem
-            all_dfs.append(df)
-        full_df = pd.concat(all_dfs, ignore_index=True)
-        full_df.to_sql("classified_questions", conn, if_exists="replace", index=False)
-        conn.close()
-        print(f"[OK] Uploaded {len(full_df)} rows to {db_path.name}")
-
-    load_classified_to_db(CLASSIFIED_DIR, DB_PATH)
-
-
+    load_to_sql()
 
 
     def load_cleaned_to_db(cleaned_dir, db_path):
@@ -92,6 +77,7 @@ if __name__ == "__main__":
 
 
     print("Step 4a: Writing cleaned questions to database")
+    DB_PATH = BASE_DIR / "data" / "classified_questions.db"
     load_cleaned_to_db(CLEANED_DIR, DB_PATH)
 
     print("Pipeline finished successfully.")

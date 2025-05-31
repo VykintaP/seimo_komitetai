@@ -3,15 +3,20 @@ import sqlite3
 from pathlib import Path
 import plotly.express as px
 from dash import html, dcc, Input, Output, State, callback, dash_table
+from config import DB_PATH, TABLE_CLASSIFIED
 
-db_path = Path(__file__).resolve().parents[1] / "data" / "classified_questions.db"
+conn = sqlite3.connect(DB_PATH)
+schema = pd.read_sql_query(f"PRAGMA table_info({TABLE_CLASSIFIED})", conn)
+conn.close()
+
 
 def load_data():
-    conn = sqlite3.connect(db_path)
+    conn = sqlite3.connect(DB_PATH)
     df = pd.read_sql_query("SELECT data, klausimas, tema FROM classified_questions", conn)
     conn.close()
     df = df[df["tema"].notna()]
     return df
+
 
 df_all = load_data()
 

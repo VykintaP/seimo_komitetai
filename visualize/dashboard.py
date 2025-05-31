@@ -1,17 +1,29 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import dash_bootstrap_components as dbc
-
 from dash import Dash, html, Input, Output, callback, dash_table
-from visualize.committee_donut import get_donut_layout
-from visualize.theme_distribution import get_theme_distribution_layout
-from visualize.theme_distribution import df_all
+from visualize.committee_diagram import get_donut_layout
+import sqlite3
+import pandas as pd
+
+DB_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'classified_questions.db')
+
+def load_df_all():
+    conn = sqlite3.connect(DB_PATH)
+    df = pd.read_sql_query("SELECT data, klausimas, tema FROM classified_questions", conn)
+    conn.close()
+    return df
+
+df_all = load_df_all()
+
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.title = "Ką veikia Seimo komitetai?"
 
 app.layout = html.Div([
     html.H1("Seimo komitetų darbotvarkių analizė", style={"color": "#2C3E50"}),
-    get_donut_layout(app),
-    get_theme_distribution_layout(),
+    get_donut_layout(app)
 
 ])
 

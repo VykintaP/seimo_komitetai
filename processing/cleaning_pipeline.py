@@ -1,55 +1,69 @@
 import pandas as pd
-from pathlib import Path
 import logging
+from pathlib import Path
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
-def clean_question(text):
-    if not isinstance(text, str):
-        return None
-    text = text.strip()
-    if len(text) < 15:
-        return None
-    return text
+# Katalogų keliai
+BASE_DIR = Path(__file__).resolve().parents[1]
+RAW_DIR = BASE_DIR / "data" / "raw"
+CLEANED_DIR = BASE_DIR / "data" / "cleaned"
+CLEANED_DIR.mkdir(parents=True, exist_ok=True)
 
-def clean_all_raw_files(raw_dir: Path, cleaned_dir: Path, metadata_dir: Path = None):
-    raw_dir = Path(raw_dir)
-    cleaned_dir = Path(cleaned_dir)
-    cleaned_dir.mkdir(parents=True, exist_ok=True)
+# Būtini stulpeliai
+REQUIRED_COLUMNS = {
+    "date", "question", "committee",
+    "project", "responsible", "attendees"
+}
 
-    files = list(raw_dir.glob("*.csv"))
+TEXT_FIELDS = ["question", "responsible", "attendees"]
+
+def clean_text(text):
+    return (
+        str(text)
+        .replace("\xa0", " ")
+        .replace("•", "-")
+        .replace("●", "-")
+        .replace("–", "-")
+        .replace("\n", " ")
+        .strip()
+    )
+
+def clean_file(file_path: Path):
+    df = pd.read_csv(file_path)
+
+
+    # užpildo tuščiais nežinomas reikšmes, sutvarko tarpus
+    for col in TEXT_FIELDS:
+        df[f"cleaned_{col}"] = (
+            df[col]
+            .fillna("")
+            .astype(str)
+            .str.replace(r"\s+", " ", regex=True)
+            .apply(clean_text)
+        )
+
+    output_columns = [
+        "date", "committee",
+        "question", "project",
+        "responsible", "attendees"
+    ]
+    out_path = CLEANED_DIR / file_path.name
+    df[output_columns].to_csv(out_path, index=False, encoding="utf-8")
+    logging.info(f"[{file_path.name}] Išsaugota {len(df)} klausimų -> {out_path}")
+
+# visų csv valymas
+def run_cleaning():
+    files = list(RAW_DIR.glob("*.csv"))
     if not files:
-        logging.warning(f"No raw CSV files found in {raw_dir}")
+        logging.warning(f"Nėra failų {RAW_DIR}")
         return
 
-    for file in files:
+    for file_path in files:
         try:
-            df = pd.read_csv(file)
+            clean_file(file_path)
         except Exception as e:
-            logging.warning(f"Failed to read {file.name}: {e}")
-            continue
+            logging.error(f"Klaida - {file_path.name}: {e}")
 
-        if df.empty or "question" not in df.columns:
-            logging.warning(f"Skipping {file.name} – no 'question' column or empty file.")
-            continue
-
-        cleaned_rows = []
-        for _, row in df.iterrows():
-            question = clean_question(row.get("question", ""))
-            if question:
-                cleaned_rows.append({
-                    "date": row.get("date"),
-                    "question": question,
-                    "committee": row.get("committee"),
-                    "project_id": row.get("project_id"),
-                    "responsible_actor": row.get("responsible_actor"),
-                    "invited_presenters": row.get("invited_presenters"),
-                })
-
-        if cleaned_rows:
-            df_cleaned = pd.DataFrame(cleaned_rows)
-            cleaned_path = cleaned_dir / file.name
-            df_cleaned.to_csv(cleaned_path, index=False, encoding="utf-8")
-            logging.info(f"Saved {len(df_cleaned)} rows to {cleaned_path}")
-        else:
-            logging.warning(f"No valid questions in {file.name}")
+if __name__ == "__main__":
+    run_cleaning()

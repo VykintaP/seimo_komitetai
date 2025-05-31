@@ -4,6 +4,8 @@ from pathlib import Path
 import time
 from deep_translator import GoogleTranslator
 from config import DB_PATH, TABLE_CLASSIFIED
+from collections import Counter
+
 conn = sqlite3.connect(DB_PATH)
 HF_TOKEN = "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"
 
@@ -51,15 +53,37 @@ EN_TOPICS = [
     "Land and food farming, rural development and fisheries"
 ]
 
-def is_question_informative(q: str) -> bool:
-        q = q.strip()
-        if len(q) < 30:
-            return False
-        bendriniai = ["Įstatymas", "pakeitimas", "straipsnis", "projektas", "Nr.", "priedas", "XIV", "IX"]
-        atitikimai = sum(1 for zodis in bendriniai if zodis.lower() in q.lower())
-        if atitikimai >= 3 and len(q.split()) < 12:
-            return False
-        return True
+EN_SUBTOPICS = [
+    "Public administration", "Regional policy", "Forests", "Climate change",
+    "Energy security", "Budget", "Digital economy", "Defense", "Police",
+    "Museums", "Pensions", "Employment", "Road transport", "Hospitals",
+    "Education", "Courts", "EU relations", "Agriculture", "Rural development", "Fisheries"
+]
+
+SUBTOPIC_TO_TOPIC = {
+    "Public administration": "State governance, regional policy and public administration",
+    "Regional policy": "State governance, regional policy and public administration",
+    "Forests": "Environment, forests and climate change",
+    "Climate change": "Environment, forests and climate change",
+    "Energy security": "Energy",
+    "Budget": "Public finance",
+    "Digital economy": "Economic competitiveness and state information resources",
+    "Defense": "State security and defense",
+    "Police": "Public security",
+    "Museums": "Culture",
+    "Pensions": "Social security and employment",
+    "Employment": "Social security and employment",
+    "Road transport": "Transportation and communications",
+    "Hospitals": "Health",
+    "Education": "Education, science and sport",
+    "Courts": "Justice",
+    "EU relations": "Foreign policy",
+    "Agriculture": "Land and food farming, rural development and fisheries",
+    "Rural development": "Land and food farming, rural development and fisheries",
+    "Fisheries": "Land and food farming, rural development and fisheries"
+}
+
+unmapped_subtopics = []
 
 
 def classify_with_api(question: str) -> str:
@@ -72,13 +96,16 @@ def classify_with_api(question: str) -> str:
         print(f"Vertimo į EN klaida: {e}")
         return "Vertimo klaida"
 
-    prompt = f"""
-    Question: {translated_q}
-    Which of the following public policy topics best describes the question? Choose only one and answer ONLY with the topic name from the list below, no explanation.
-    
-    {chr(10).join(EN_TOPICS)}
+    subtopics_str = "\n".join(EN_SUBTOPICS)
 
-    Topic:
+    prompt = f"""
+    Classify the following policy question into one of the subtopics listed below. Choose only one and respond with the subtopic name, no explanation:
+
+    {subtopics_str}
+
+    Question: {translated_q}
+
+    Subtopic:
     """
 
     try:
@@ -92,27 +119,68 @@ def classify_with_api(question: str) -> str:
         return "API užklausos klaida"
 
     output = response.json()
-    print("DEBUG API output:", output)
+    print("DEBUG API:", output)
 
     result = output[0]["generated_text"].strip()
-    if "Topic:" in result:
-        answer_en = result.split("Topic:")[-1].strip().split("\n")[0]
-    else:
-        answer_en = result.split("\n")[-1].strip()
+
+    answer_subtopic = result.split("\n")[-1].strip()
+
+    # Bandome dar kartą naudodami jei nesuklasifikuoja pirmu bandimu
+    if answer_subtopic not in SUBTOPIC_TO_TOPIC:
+        print(f"[WARNING] Neatpažinta subtema: {answer_subtopic}")
 
 
-    topic_map = dict(zip(EN_TOPICS, TOPICS))
-    if answer_en == "Unclear – not enough context":
-        return "Neaišku – nepakanka informacijos"
+        retry_1 = retry_with_topics(translated_q)
+        if retry_1 in TOPICS:
+            return retry_1
 
-    topic_map = dict(zip(EN_TOPICS, TOPICS))
-    if answer_en in topic_map:
-        return topic_map[answer_en]
-    else:
+
+        retry_2 = retry_with_topics(translated_q, explain=True)
+        if retry_2 in TOPICS:
+            return retry_2
+
+
         return "Neatpažinta tema"
 
-    if answer_en not in topic_map:
-        return "Neatpažinta tema"
+    print(f"[WARNING] Neatpažinta subtema: {answer_subtopic}")
+    unmapped_subtopics.append(answer_subtopic)
+
+def retry_with_topics(translated_q: str, explain: bool = False) -> str:
+    topic_str = "\n".join(EN_TOPICS)
+    prompt = f"""
+    Classify the following policy question into one of the topics listed below. Choose only one and respond with the topic name, no explanation:
+
+    {topic_str}
+
+    Question: {translated_q}
+
+    Topic:
+    """ if not explain else f"""
+    We were not able to classify the question earlier. Please try again.
+
+    Classify the following policy question into one of the topics listed below. Choose only one and respond with the topic name:
+
+    {topic_str}
+
+    Question: {translated_q}
+    Topic:
+    """
+    try:
+        response = requests.post(API_URL, headers=headers, json={"inputs": prompt}, timeout=10)
+        time.sleep(0.5)
+        if response.status_code != 200:
+            print(f"[RETRY] API klaida: {response.status_code}")
+            return "RETRY API klaida"
+    except Exception as e:
+        print(f"[RETRY] API užklausos klaida: {e}")
+        return "RETRY API klaida"
+
+    output = response.json()
+    result = output[0]["generated_text"].strip()
+    topic = result.split("\n")[-1].strip()
+    if topic in TOPICS:
+        return topic
+    return "Neatpažinta tema"
 
 
 def safe_classify(question: str) -> str:
@@ -126,25 +194,41 @@ def safe_classify(question: str) -> str:
 def classify_all_files_with_mistral(cleaned_dir: Path, classified_dir: Path):
     classified_dir.mkdir(parents=True, exist_ok=True)
     files = list(cleaned_dir.glob("*.csv"))
-    print(f"Found {len(files)} files in '{cleaned_dir}'")
+    print(f"Rasti {len(files)} failai '{cleaned_dir}'")
+    quality_counter = Counter()
 
     for file in files:
-        print(f"\n--- Now processing file: {file.name} ---")
+        print(f"\n--- Apdorojamas failas: {file.name} ---")
         output_path = classified_dir / file.name
 
         df = pd.read_csv(file)
         if "question" not in df.columns:
-            print(f"File {file.name} has no 'question' column, skipping.")
+            print(f"Failas {file.name} neturi 'klausimai' stulpelio, praleidžiama.")
             continue
 
         df = df.dropna(subset=["question"])
         try:
             df["theme"] = df["question"].apply(safe_classify)
         except Exception as e:
-            print(f"Error while classifying file {file.name}: {e}")
+            print(f"Klaida klasifikuojant {file.name}: {e}")
 
         df.to_csv(output_path, index=False)
-        print(f"Saved: {output_path}")
+        quality_counter.update(df["theme"].value_counts().to_dict())
+
+        print(f"Išsaugota: {output_path}")
+
+        diagnostics_dir = base_dir / "data" / "diagnostics"
+        diagnostics_dir.mkdir(parents=True, exist_ok=True)
+        out_path = diagnostics_dir / "classification_quality.csv"
+        pd.DataFrame.from_dict(quality_counter, orient="index", columns=["count"]) \
+            .sort_values("count", ascending=False) \
+            .to_csv(out_path)
+        print(f"Klasifikavimo kokybės santrauka išsaugota: {out_path}")
+
+    if unmapped_subtopics:
+        diagnostics_dir = base_dir / "data" / "diagnostics"
+        diagnostics_dir.mkdir(parents=True, exist_ok=True)
+        pd.Series(unmapped_subtopics).value_counts().to_csv(diagnostics_dir / "unmapped_subtopics.csv")
 
 
 if __name__ == "__main__":

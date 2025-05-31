@@ -1,11 +1,12 @@
 import sqlite3
 import pandas as pd
 from pathlib import Path
-conn = sqlite3.connect(DB_PATH)
-cur.execute(f"SELECT * FROM {TABLE_CLASSIFIED}")
+
+
 BASE_DIR = Path(__file__).resolve().parents[1]
 CLASSIFIED_DIR = BASE_DIR / "data" / "classified"
 DB_PATH = BASE_DIR / "data" / "classified_questions.db"
+SCHEMA_PATH = BASE_DIR / "scripts" / "schema.sql"
 
 def main():
     print(f"[DEBUG] Looking for CSV files in: {CLASSIFIED_DIR.resolve()}")
@@ -17,11 +18,12 @@ def main():
     with open(SCHEMA_PATH, "r", encoding="utf-8") as f:
         cursor.executescript(f.read())
 
+    all_dfs = []
+
     for file in CLASSIFIED_DIR.glob("*.csv"):
-        komitetas = file.stem  # failo vardas be .csv
+        komitetas = file.stem
         df = pd.read_csv(file)
 
-        # Pridedam 'committee' jei jo nėra
         if "committee" not in df.columns:
             df["committee"] = komitetas
 
@@ -30,26 +32,49 @@ def main():
             "question": "klausimas",
             "theme": "tema",
             "committee": "komitetas",
+            "projektas": "projektas",
+            "atsakingi": "atsakingi",
+            "dalyviai": "dalyviai"
         }
 
-        required_cols = set(RENAME_MAP.keys())
-        if not required_cols.issubset(df.columns):
-            print(f"[SKIPPED] {file.name} – missing columns: {required_cols - set(df.columns)}")
-            print(f"[DEBUG] Available columns: {df.columns.tolist()}")
+        if not set(RENAME_MAP.keys()).issubset(df.columns):
+            print(f"[SKIPPED] {file.name} – missing columns: {set(RENAME_MAP) - set(df.columns)}")
             continue
 
         df = df.rename(columns=RENAME_MAP)
 
-        columns_to_insert = ["komitetas", "data", "klausimas", "tema"]
-        for col in ["project_id", "responsible_actor", "invited_presenters"]:
-            if col in df.columns:
-                columns_to_insert.append(col)
+        for col in ["projektas", "atsakingi", "dalyviai"]:
+            if col not in df.columns:
+                df[col] = None
 
-        df[columns_to_insert].to_sql(
-            "classified_questions", conn, if_exists="replace", index=False
-        )
+        df = df[["komitetas", "data", "klausimas", "tema", "projektas", "atsakingi", "dalyviai"]]
+        all_dfs.append(df)
 
-        print(f"[OK] {file.name} – {len(df)} įrašų įkelta")
+    if all_dfs:
+        full_df = pd.concat(all_dfs, ignore_index=True)
+
+        # kiek temų neatpažinta
+        unknown_count = (full_df["tema"] == "Neatpažinta tema").sum()
+        total_count = len(full_df)
+        percent = round(unknown_count / total_count * 100, 2) if total_count else 0
+
+        print(f"[INFO] Neatpažinta tema: {unknown_count} klausimų ({percent}%)")
+
+        # Įrašyti į data/diagnostics katalogą
+        diagnostics_dir = Path(__file__).resolve().parents[1] / "data" / "diagnostics"
+        diagnostics_dir.mkdir(parents=True, exist_ok=True)
+        out_path = diagnostics_dir / "classification_quality.csv"
+
+        pd.DataFrame([{
+            "total_questions": total_count,
+            "unknown_theme_count": unknown_count,
+            "unknown_theme_percent": percent
+        }]).to_csv(out_path, index=False)
+
+        print(f"[INFO] Klasifikavimo kokybė išsaugota: {out_path}")
+
+    else:
+        print("[STOP] Nei vienas failas nebuvo įkeltas – galbūt stulpeliai neatitiko struktūros?")
 
     conn.close()
 
