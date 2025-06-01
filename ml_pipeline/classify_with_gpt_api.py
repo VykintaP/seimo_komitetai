@@ -1,23 +1,22 @@
-import requests
+import openai
+from deep_translator import GoogleTranslator
+from dotenv import load_dotenv
+import os
 import pandas as pd
 from pathlib import Path
-import time
-from deep_translator import GoogleTranslator
-from config import DB_PATH, TABLE_CLASSIFIED
+import sqlite3
 from collections import Counter
+import time
+
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 conn = sqlite3.connect(DB_PATH)
-HF_TOKEN = "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"
 
-#flan-t5-xl-pmr
-API_URL = "https://u73js246kn9da1w7.us-east4.gcp.endpoints.huggingface.cloud"
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
-# autentifikacija
-headers = {
-    "Authorization": f"Bearer {HF_TOKEN}",
-    "Content-Type": "application/json"
-}
-
+# Valstybės veiklos sritys pagal LR Strateginio valdymo įstatymo 3 str. 26 dalį
 TOPICS = [
     "Valstybės valdymas, regioninė politika ir viešasis administravimas",
     "Aplinka, miškai ir klimato kaita",
@@ -35,6 +34,7 @@ TOPICS = [
     "Užsienio politika",
     "Žemės ir maisto ūkis, kaimo plėtra ir žuvininkystė"
 ]
+
 EN_TOPICS = [
     "State governance, regional policy and public administration",
     "Environment, forests and climate change",
@@ -53,39 +53,48 @@ EN_TOPICS = [
     "Land and food farming, rural development and fisheries"
 ]
 
-EN_SUBTOPICS = [
-    "Public administration", "Regional policy", "Forests", "Climate change",
-    "Energy security", "Budget", "Digital economy", "Defense", "Police",
-    "Museums", "Pensions", "Employment", "Road transport", "Hospitals",
-    "Education", "Courts", "EU relations", "Agriculture", "Rural development", "Fisheries"
-]
+# Automatiškai sugeneruoti subtemas ir jų žemėlapį
+def extract_subtopics(topics: list[str]) -> tuple[list[str], dict[str, str]]:
+    subtopics = set()
+    subtopic_map = {}
 
-SUBTOPIC_TO_TOPIC = {
-    "Public administration": "State governance, regional policy and public administration",
-    "Regional policy": "State governance, regional policy and public administration",
-    "Forests": "Environment, forests and climate change",
-    "Climate change": "Environment, forests and climate change",
-    "Energy security": "Energy",
-    "Budget": "Public finance",
-    "Digital economy": "Economic competitiveness and state information resources",
-    "Defense": "State security and defense",
-    "Police": "Public security",
-    "Museums": "Culture",
-    "Pensions": "Social security and employment",
-    "Employment": "Social security and employment",
-    "Road transport": "Transportation and communications",
-    "Hospitals": "Health",
-    "Education": "Education, science and sport",
-    "Courts": "Justice",
-    "EU relations": "Foreign policy",
-    "Agriculture": "Land and food farming, rural development and fisheries",
-    "Rural development": "Land and food farming, rural development and fisheries",
-    "Fisheries": "Land and food farming, rural development and fisheries"
-}
+    for topic in topics:
+
+        fragments = topic.split(",")
+        for frag in fragments:
+            frag = frag.strip()
+
+            if " and " in frag:
+                parts = frag.split(" and ")
+                for part in parts:
+                    clean_part = part.strip().lower()
+                    subtopics.add(clean_part)
+                    subtopic_map[clean_part] = topic
+            else:
+                clean_frag = frag.strip().lower()
+                subtopics.add(clean_frag)
+                subtopic_map[clean_frag] = topic
+
+    return sorted(subtopics), subtopic_map
+
+
+
+EN_SUBTOPICS, SUBTOPIC_TO_TOPIC = extract_subtopics(EN_TOPICS)
+
+# grąžina į temas atgal
+def generate_subtopic_map(topics: list[str]) -> dict:
+    mapping = {}
+    for topic in topics:
+        parts = [p.strip().lower() for p in topic.replace(",", "").split()]
+        for word in parts:
+            if word not in mapping:
+                mapping[word] = topic
+    return mapping
+
 
 unmapped_subtopics = []
 
-
+# klasifikavimas
 def classify_with_api(question: str) -> str:
     if not is_question_informative(question):
         return "Nėra"
@@ -99,17 +108,26 @@ def classify_with_api(question: str) -> str:
     subtopics_str = "\n".join(EN_SUBTOPICS)
 
     prompt = f"""
-    Classify the following policy question into one of the subtopics listed below. Choose only one and respond with the subtopic name, no explanation:
+    You are a government policy analyst. Your job is to classify agenda items into policy subtopics.
 
-    {subtopics_str}
+    A policy agenda item is: {translated_q}
+    
+    Which of the following public policy subtopic best describes the question? Choose only one and answer ONLY with the subtopic from the list below, no explanation.
 
-    Question: {translated_q}
+    # Subtopic:
+    {chr(10).join(f'- "{t}"' for t in EN_SUBTOPICS)}
+    
+    Answer must exactly match one of the subtopics above.
 
-    Subtopic:
+    Answer:
     """
 
     try:
-        response = requests.post(API_URL, headers=headers, json={"inputs": prompt}, timeout=10)
+        response = openai.ChatCompletion.create(
+            model="gpt-4o",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0,
+        )
         time.sleep(0.5)
         if response.status_code != 200:
             print(f"API klaida: {response.status_code}, {response.text}")
@@ -121,29 +139,30 @@ def classify_with_api(question: str) -> str:
     output = response.json()
     print("DEBUG API:", output)
 
-    result = output[0]["generated_text"].strip()
+    result = response["choices"][0]["message"]["content"].strip().lower()
 
-    answer_subtopic = result.split("\n")[-1].strip()
+    answer_subtopic = result.split("\n")[-1].strip().lower()
+
 
     # Bandome dar kartą naudodami jei nesuklasifikuoja pirmu bandimu
     if answer_subtopic not in SUBTOPIC_TO_TOPIC:
         print(f"[WARNING] Neatpažinta subtema: {answer_subtopic}")
 
-
         retry_1 = retry_with_topics(translated_q)
         if retry_1 in TOPICS:
             return retry_1
-
 
         retry_2 = retry_with_topics(translated_q, explain=True)
         if retry_2 in TOPICS:
             return retry_2
 
-
+        unmapped_subtopics.append(answer_subtopic)
         return "Neatpažinta tema"
 
-    print(f"[WARNING] Neatpažinta subtema: {answer_subtopic}")
-    unmapped_subtopics.append(answer_subtopic)
+    return SUBTOPIC_TO_TOPIC[answer_subtopic]
+
+print(f"[WARNING] Neatpažinta subtema: {answer_subtopic}")
+
 
 def retry_with_topics(translated_q: str, explain: bool = False) -> str:
     topic_str = "\n".join(EN_TOPICS)
