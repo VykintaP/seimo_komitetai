@@ -1,61 +1,10 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-import dash_bootstrap_components as dbc
-from dash import Dash, html, Input, Output, callback, dash_table
-from visualize.committee_diagram import get_donut_layout
-import sqlite3
-import pandas as pd
+from dash import Dash
+from visualize.layout import serve_layout
 
-DB_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'classified_questions.db')
+app = Dash(__name__, suppress_callback_exceptions=True)
+app.layout = serve_layout
 
-def load_df_all():
-    conn = sqlite3.connect(DB_PATH)
-    df = pd.read_sql_query("SELECT data, klausimas, tema FROM classified_questions", conn)
-    conn.close()
-    return df
-
-df_all = load_df_all()
-
-
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.title = "Ką veikia Seimo komitetai?"
-
-app.layout = html.Div([
-    html.H1("Seimo komitetų darbotvarkių analizė", style={"color": "#2C3E50"}),
-    get_donut_layout(app)
-
-])
-
-@callback(
-    Output("tabs", "value"),
-    Output("selected-theme", "data"),
-    Input("theme-bar", "clickData"),
-    prevent_initial_call=True
-)
-def update_on_click(clickData):
-    if clickData:
-        theme = clickData["points"][0]["y"]
-        return "questions", theme
-    return dash.no_update, dash.no_update
-
-
-@callback(
-    Output("questions-container", "children"),
-    Input("selected-theme", "data")
-)
-def display_questions(theme):
-    if not theme:
-        return html.P("Pasirink tema grafike.")
-
-    df_filtered = df_all[df_all["tema"] == theme][["data", "klausimas"]]
-    return dash_table.DataTable(
-        columns=[{"name": i.capitalize(), "id": i} for i in df_filtered.columns],
-        data=df_filtered.to_dict("records"),
-        page_size=20,
-        style_table={"overflowX": "auto"},
-        style_cell={"textAlign": "left"},
-    )
+import visualize.callbacks.layout_callbacks
 
 
 if __name__ == "__main__":

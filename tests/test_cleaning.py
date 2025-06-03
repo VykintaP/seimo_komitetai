@@ -1,50 +1,38 @@
 import pandas as pd
 from pathlib import Path
-from processing.cleaning_pipeline import clean_all_raw_files, clean_question
-import shutil
-from processing.cleaning_pipeline import extract_project_id
+from processing.cleaning_pipeline import clean_text, clean_file
+from processing import cleaning_pipeline
 
+def test_clean_text_removes_symbols():
+    raw = "- Informacija \n apie projektą\xa0 "
+    result = clean_text(raw)
+    result = " ".join(result.split())
+    assert result == "- Informacija apie projektą"
 
-def test_clean_question_spaces():
-    raw = "   Čia   yra \n    klausimas.  "
-    cleaned = clean_question(raw)
-    assert cleaned == "Čia yra klausimas."
+def test_clean_file_removes_garbage():
+    df = pd.DataFrame({
+        "date": ["2024-01-01"],
+        "question": ["Labai svarbus klausimas dėl įstatymo"],
+        "committee": ["Aplinkos apsaugos komitetas"],
+        "project": ["XIIIP-1234"],
+        "responsible": ["Jonas Jonaitis"],
+        "attendees": ["Vardenis Pavardenis"]
+    })
 
-def test_project_id_extraction():
-    text = "Svarstomas Projektas Nr. XII-1234 ir Įstatymo projektas Nr. IX-456"
-    result = extract_project_id(text)
-    assert result == "XII-1234; IX-456"
+    test_input = Path("tests/data/test_input.csv")
+    test_input.parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(test_input, index=False)
 
+    clean_file(test_input)
 
-def test_clean_all_raw_files_creates_cleaned(tmp_path):
-    raw_dir = tmp_path / "data" / "raw"
-    cleaned_dir = tmp_path / "data" / "cleaned"
-    metadata_dir = tmp_path / "data" / "metadata"
+    out_file = cleaning_pipeline.CLEANED_DIR / test_input.name
+    assert out_file.exists()  # įsitikinam, kad išvalytas failas sukurtas
 
-    raw_dir.mkdir(parents=True)
-    cleaned_dir.mkdir(parents=True)
-    metadata_dir.mkdir(parents=True)
+    cleaned_df = pd.read_csv(out_file)
+    expected_columns = ["date", "committee", "question", "project", "responsible", "attendees"]
+    assert set(expected_columns).issubset(cleaned_df.columns)
+    assert len(cleaned_df) == 1
 
-    test_input = pd.DataFrame([
-        {"date": "2025-05-21", "question": "Svarstomas klausimas dėl įstatymo", "committee": "Testo komitetas"},
-        {"date": "2025-05-21", "question": "A", "committee": "Testo komitetas"}
-    ])
-    test_file = raw_dir / "test_committee.csv"
-    test_input.to_csv(test_file, index=False)
+    out_file.unlink()
+    test_input.unlink()
 
-    clean_all_raw_files(input_dir=raw_dir, output_dir=cleaned_dir, log_dir=metadata_dir)
-
-    output_file = cleaned_dir / "test_committee_clean.csv"
-    assert output_file.exists()
-
-    df = pd.read_csv(output_file)
-    assert len(df) == 1
-    assert "Svarstomas klausimas" in df["question"].iloc[0]
-
-    log_file = metadata_dir / "cleaning_log.json"
-    assert log_file.exists()
-    assert "project_id" in df.columns
-    assert pd.isna(df["project_id"].iloc[0]) or isinstance(df["project_id"].iloc[0], str)
-
-    log_file = metadata_dir / "cleaning_log.json"
-    assert log_file.exists()

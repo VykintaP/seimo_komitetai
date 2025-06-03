@@ -42,6 +42,10 @@ def clean_file(file_path: Path):
             .str.replace(r"\s+", " ", regex=True)
             .apply(clean_text)
         )
+        # Atmesti klausimus, kurie per trumpi arba be turinio
+        df = df[df["cleaned_question"].str.len() > 10]
+        df = df[~df["cleaned_question"].str.lower().str.strip().isin(
+            ["", "none", "nan", "nėra", "informacija", "papildoma medžiaga"])]
 
     output_columns = [
         "date", "committee",

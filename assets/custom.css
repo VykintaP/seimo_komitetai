@@ -1,67 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Open+Sans&family=Roboto+Mono&display=swap');
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #FFFFFF;
+    margin: 0;
+    padding: 2rem;
+    color: #2C3E50;
+}
 
-/* Centrinis konteineris */
+h1, h2, h3, h4 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #2C3E50;
+    margin-bottom: 1rem;
+}
+
 .main-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 20px;
 }
 
-/* Bendras fonas ir tekstas */
-body {
-    background-color: #F5F7FA;
-    font-family: 'Open Sans', sans-serif;
-    margin: 0;
-    padding: 0;
+.grid-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
-/* Antraštės */
-h1 {
-    font-size: 32px;
-    font-weight: 600;
-    text-align: center;
-    color: #2C3E50;
-    font-family: 'IBM Plex Sans', sans-serif;
-    margin-bottom: 20px;
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
-h2 {
-    font-size: 24px;
-    font-weight: 500;
-    text-align: center;
-    color: #2C3E50;
-    font-family: 'IBM Plex Sans', sans-serif;
-    margin-bottom: 16px;
-}
-
-h4 {
-    font-size: 20px;
-    font-weight: 500;
-    text-align: center;
-    color: #2C3E50;
-    font-family: 'IBM Plex Sans', sans-serif;
-    margin-bottom: 16px;
-}
-
-/* Kortelės dizainas */
-.card {
-    background-color: #FFFFFF;
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.06);
-    margin-bottom: 32px;
-}
-
-/* Dropdown stilius */
-.dash-dropdown {
-    margin: 0 auto 24px auto;
-    max-width: 400px;
+.dash-dropdown, .DatePickerRange {
     width: 100%;
 }
 
-/* Rodiklių tinklelis */
-.indicator-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+.dash-table-container {
+    margin-top: 2rem;
+    font-family: 'Roboto Mono', monospace;
 }
+
+.tab--selected {
+    border-bottom: 3px solid #2C3E50 !important;
+}
+

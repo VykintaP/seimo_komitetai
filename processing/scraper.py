@@ -87,22 +87,26 @@ class CommitteeScraper:
                 elif current_invited_block != []:
                     current_invited_block.append(line)
                     continue
-                elif len(line.split()) < 2:
+                elif len(line.split()) < 3 and re.match(r"^[A-ZĄČĘĖĮŠŲŪŽ]\.\s?[A-ZĄČĘĖĮŠŲŪŽ][a-ząčęėįšųūž]+$", line):
                     continue
-
+                elif len(line.split()) < 3 and re.match(
+                        r"^[A-ZĄČĘĖĮŠŲŪŽ][a-ząčęėįšųūž]+(\s+[A-ZĄČĘĖĮŠŲŪŽ][a-ząčęėįšųūž]+)?$", line):
+                    continue
 
                 if current_question:
                     invited = "; ".join(current_invited_block)
                     items.append(
                         (current_date, current_question, self.name, current_project, current_responsible, invited))
                     current_invited_block = []
+                # Praleidžia beprasmius klausimus: tik skaičiai ar per trumpi
+                if len(line) < 5 or re.match(r"^\d+(\.\d+)?$", line):
+                    continue
 
                 current_question = line
                 project_from_text = extract_project_id_from_text(raw_text)
                 cell_project_text = cells[project_idx].get_text(
                     strip=True) if project_idx is not None and project_idx < len(cells) else ""
                 current_project = project_from_text or cell_project_text
-
                 current_responsible = cells[responsible_idx].get_text(
                     strip=True) if responsible_idx is not None and responsible_idx < len(cells) else ""
 
@@ -129,10 +133,14 @@ def get_committee_urls():
         urls.append((title, full_url))
     return urls
 
-def run_scraper():
+def run_scraper(output_dir=None):
+    if output_dir is None:
+        output_dir = Path(__file__).resolve().parents[1] / "data" / "raw"
+
     committee_urls = get_committee_urls()
     logging.info(f"Rasta {len(committee_urls)} komitetų")
-    raw_dir = Path(__file__).resolve().parents[1] / "data" / "raw"
+
+    raw_dir = output_dir
     raw_dir.mkdir(parents=True, exist_ok=True)
 
     # surenka darbotvarkes
@@ -160,6 +168,6 @@ def run_scraper():
 
         except Exception as e:
             logging.error(f"Klaida komiteto puslapyje {url}: {e}")
-
+        raw_dir = output_dir
 if __name__ == "__main__":
     run_scraper()
