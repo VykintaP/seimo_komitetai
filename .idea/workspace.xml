@@ -4,35 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="Improve robustness of topic classification: added logging for unmapped subtopics and optional CSV export for diagnostics">
-      <change afterPath="$PROJECT_DIR$/archive/committee_callbacks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archive/committee_chart.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archive/create_structure.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archive/dashboard.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archive/init_callbacks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archive/wordcloud_component.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualize/callbacks/filter_callbacks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualize/callbacks/layout_callbacks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualize/components/filters.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualize/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualize/utils/db.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualize/utils/filtering.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="restarted creating dash">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/seimas_logo.png.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/seimas_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_pipeline/classify_with_gpt_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml_pipeline/classify_with_gpt_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processing/cleaning_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing/cleaning_pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processing/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing/scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/load_to_sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/load_to_sql.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/run_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/run_pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_classify_with_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_classify_with_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_cleaning.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_cleaning.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/committee_diagram.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/committee_summary_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/committee_summary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/callbacks/filter_callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/callbacks/filter_callbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/callbacks/layout_callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/callbacks/layout_callbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/components/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/filters.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visualize/dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/dashboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/utils/filtering.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/utils/filtering.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,59 +60,60 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests in test_classify.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_classify_with_api.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_cleaning.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_gpt_key.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_scraper.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_train_classifier.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.analyze.executor&quot;: &quot;Run&quot;,
-    &quot;Python.analyze_plot.executor&quot;: &quot;Run&quot;,
-    &quot;Python.analyze_topics.executor&quot;: &quot;Run&quot;,
-    &quot;Python.app.executor&quot;: &quot;Run&quot;,
-    &quot;Python.check_db.executor&quot;: &quot;Run&quot;,
-    &quot;Python.classify.executor&quot;: &quot;Run&quot;,
-    &quot;Python.classify_with_gpt_api.executor&quot;: &quot;Run&quot;,
-    &quot;Python.clean_questions.executor&quot;: &quot;Run&quot;,
-    &quot;Python.cleaning_pipeline.executor&quot;: &quot;Run&quot;,
-    &quot;Python.committee_callbacks.executor&quot;: &quot;Run&quot;,
-    &quot;Python.committee_diagram.executor&quot;: &quot;Run&quot;,
-    &quot;Python.committee_donut.executor&quot;: &quot;Run&quot;,
-    &quot;Python.committee_profiles.executor&quot;: &quot;Run&quot;,
-    &quot;Python.committee_summary_table.executor&quot;: &quot;Run&quot;,
-    &quot;Python.config.executor&quot;: &quot;Run&quot;,
-    &quot;Python.create_structure.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dashboard.executor&quot;: &quot;Run&quot;,
-    &quot;Python.data_quality_report.executor&quot;: &quot;Run&quot;,
-    &quot;Python.filters.executor&quot;: &quot;Run&quot;,
-    &quot;Python.generate_training_data.executor&quot;: &quot;Run&quot;,
-    &quot;Python.get_commitees.executor&quot;: &quot;Run&quot;,
-    &quot;Python.inspect_schema.executor&quot;: &quot;Run&quot;,
-    &quot;Python.load_to_sql.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main_analysis.executor&quot;: &quot;Run&quot;,
-    &quot;Python.merge_agendas.executor&quot;: &quot;Run&quot;,
-    &quot;Python.mistral_api_classifier.executor&quot;: &quot;Run&quot;,
-    &quot;Python.mistral_classifier.executor&quot;: &quot;Run&quot;,
-    &quot;Python.plotting.executor&quot;: &quot;Run&quot;,
-    &quot;Python.run_load_to_db.executor&quot;: &quot;Run&quot;,
-    &quot;Python.run_pipeline.executor&quot;: &quot;Run&quot;,
-    &quot;Python.run_tests.executor&quot;: &quot;Run&quot;,
-    &quot;Python.scraper.executor&quot;: &quot;Run&quot;,
-    &quot;Python.theme_area.executor&quot;: &quot;Run&quot;,
-    &quot;Python.theme_distribution.executor&quot;: &quot;Run&quot;,
-    &quot;Python.train_classifier.executor&quot;: &quot;Run&quot;,
-    &quot;Python.translate_and_classify.executor&quot;: &quot;Run&quot;,
-    &quot;Python.visualize_topics.executor&quot;: &quot;Run&quot;,
-    &quot;Python.wordcloud_component.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Vykinta/PycharmProjects/darbotvarkiu_analize/archive&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests in test_classify.py.executor": "Run",
+    "Python tests.Python tests in test_classify_with_api.py.executor": "Run",
+    "Python tests.Python tests in test_cleaning.py.executor": "Run",
+    "Python tests.Python tests in test_gpt_key.py.executor": "Run",
+    "Python tests.Python tests in test_scraper.py.executor": "Run",
+    "Python tests.Python tests in test_train_classifier.py.executor": "Run",
+    "Python.analyze.executor": "Run",
+    "Python.analyze_plot.executor": "Run",
+    "Python.analyze_topics.executor": "Run",
+    "Python.app.executor": "Run",
+    "Python.check_db.executor": "Run",
+    "Python.classify.executor": "Run",
+    "Python.classify_with_gpt_api.executor": "Run",
+    "Python.clean_questions.executor": "Run",
+    "Python.cleaning_pipeline.executor": "Run",
+    "Python.committee_callbacks.executor": "Run",
+    "Python.committee_diagram.executor": "Run",
+    "Python.committee_donut.executor": "Run",
+    "Python.committee_profiles.executor": "Run",
+    "Python.committee_summary_table.executor": "Run",
+    "Python.config.executor": "Run",
+    "Python.create_structure.executor": "Run",
+    "Python.dashboard.executor": "Run",
+    "Python.data_quality_report.executor": "Run",
+    "Python.filters.executor": "Run",
+    "Python.generate_training_data.executor": "Run",
+    "Python.get_commitees.executor": "Run",
+    "Python.inspect_schema.executor": "Run",
+    "Python.layout_callbacks.executor": "Run",
+    "Python.load_to_sql.executor": "Run",
+    "Python.main_analysis.executor": "Run",
+    "Python.merge_agendas.executor": "Run",
+    "Python.mistral_api_classifier.executor": "Run",
+    "Python.mistral_classifier.executor": "Run",
+    "Python.plotting.executor": "Run",
+    "Python.run_load_to_db.executor": "Run",
+    "Python.run_pipeline.executor": "Run",
+    "Python.run_tests.executor": "Run",
+    "Python.scraper.executor": "Run",
+    "Python.theme_area.executor": "Run",
+    "Python.theme_distribution.executor": "Run",
+    "Python.train_classifier.executor": "Run",
+    "Python.translate_and_classify.executor": "Run",
+    "Python.visualize_topics.executor": "Run",
+    "Python.wordcloud_component.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Vykinta/PycharmProjects/darbotvarkiu_analize/archive",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\archive" />
@@ -146,7 +126,30 @@
       <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\data" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.dashboard">
+    <configuration name="dashboard" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="darbotvarkiu_analize" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.13 (darbotvarkiu_analize)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/visualize/dashboard.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="run_pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="darbotvarkiu_analize" />
       <option name="ENV_FILES" value="" />
@@ -169,6 +172,10 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.dashboard" />
+      <item itemvalue="Python.run_pipeline" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.run_pipeline" />
@@ -296,7 +303,14 @@
       <option name="presentableId" value="LOCAL−00015" />
       <updated>1748722251441</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL−00016" summary="restarted creating dash">
+      <option name="closed" value="true" />
+      <created>1748960365726</created>
+      <option name="number" value="LOCAL−00016" />
+      <option name="presentableId" value="LOCAL−00016" />
+      <updated>1748960365726</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -311,7 +325,8 @@
     <MESSAGE value="added:&#10;&#10;translation LT &lt;-&gt; EN&#10;donnut pie&#10;sql" />
     <MESSAGE value="fixed some visualisations" />
     <MESSAGE value="Improve robustness of topic classification: added logging for unmapped subtopics and optional CSV export for diagnostics" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improve robustness of topic classification: added logging for unmapped subtopics and optional CSV export for diagnostics" />
+    <MESSAGE value="restarted creating dash" />
+    <option name="LAST_COMMIT_MESSAGE" value="restarted creating dash" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
