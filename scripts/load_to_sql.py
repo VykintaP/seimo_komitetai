@@ -1,16 +1,26 @@
 import sqlite3
 import pandas as pd
 from pathlib import Path
-
+import logging
+logger = logging.getLogger(__name__)
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 CLASSIFIED_DIR = BASE_DIR / "data" / "classified"
 DB_PATH = BASE_DIR / "data" / "classified_questions.db"
 SCHEMA_PATH = BASE_DIR / "scripts" / "schema.sql"
 
+RENAME_MAP = {
+            "date": "data",
+            "question": "klausimas",
+            "theme": "tema",
+            "committee": "komitetas",
+            "project": "projektas",
+            "responsible": "atsakingi",
+            "attendees": "dalyviai"
+        }
 def main():
-    print(f"[DEBUG] Looking for CSV files in: {CLASSIFIED_DIR.resolve()}")
-    print(f"[DEBUG] Found files: {[f.name for f in CLASSIFIED_DIR.glob('*.csv')]}")
+    logging.debug (f"[DEBUG] Looking for CSV files in: {CLASSIFIED_DIR.resolve()}")
+    logging.debug (f"[DEBUG] Found files: {[f.name for f in CLASSIFIED_DIR.glob('*.csv')]}")
 
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
@@ -23,19 +33,11 @@ def main():
     for file in CLASSIFIED_DIR.glob("*.csv"):
         komitetas = file.stem
         df = pd.read_csv(file)
-
-        if "committee" not in df.columns:
-            df["committee"] = komitetas
-
-        RENAME_MAP = {
-            "date": "data",
-            "question": "klausimas",
-            "theme": "tema",
-            "committee": "komitetas",
-            "projektas": "projektas",
-            "atsakingi": "atsakingi",
-            "dalyviai": "dalyviai"
-        }
+        expected = set(RENAME_MAP.keys())
+        missing = expected - set(df.columns)
+        if missing:
+            logger.warning(f"[SKIPPED] {file.name} – trūksta {missing}")
+            continue
 
         if not set(RENAME_MAP.keys()).issubset(df.columns):
             print(f"[SKIPPED] {file.name} – missing columns: {set(RENAME_MAP) - set(df.columns)}")
@@ -58,7 +60,7 @@ def main():
         total_count = len(full_df)
         percent = round(unknown_count / total_count * 100, 2) if total_count else 0
 
-        print(f"[INFO] Neatpažinta tema: {unknown_count} klausimų ({percent}%)")
+        logger.info(f"[INFO] Neatpažinta tema: {unknown_count} klausimų ({percent}%)")
 
         # Įrašyti į data/diagnostics katalogą
         diagnostics_dir = Path(__file__).resolve().parents[1] / "data" / "diagnostics"
@@ -71,10 +73,12 @@ def main():
             "unknown_theme_percent": percent
         }]).to_csv(out_path, index=False)
 
-        print(f"[INFO] Klasifikavimo kokybė išsaugota: {out_path}")
+        logger.info(f"[INFO] Klasifikavimo kokybė išsaugota: {out_path}")
 
     else:
-        print("[STOP] Nei vienas failas nebuvo įkeltas – galbūt stulpeliai neatitiko struktūros?")
+        logger.error("[STOP] Nei vienas failas nebuvo įkeltas – galbūt stulpeliai neatitiko struktūros?")
+    full_df.to_sql(name="classified_questions", con=conn, index=False, if_exists="replace")
+    logger.info(f"[INFO] Įrašyta {len(full_df)} klausimų į duomenų bazę: {DB_PATH}")
 
     conn.close()
 

@@ -6,9 +6,10 @@ import sqlite3
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-
 from processing.scraper import run_scraper
-from processing.cleaning_pipeline import clean_all_raw_files
+from processing.cleaning_pipeline import run_cleaning
+from ml_pipeline.classify_with_gpt_api import classify_all_files_with_gpt
+
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 RAW_DIR = BASE_DIR / "data" / "raw"
@@ -37,6 +38,18 @@ Executes pipeline steps:
 """
 
 
+def load_cleaned_to_db(cleaned_dir, db_path):
+    conn = sqlite3.connect(db_path)
+    all_dfs = []
+    for file in cleaned_dir.glob("*.csv"):
+        df = pd.read_csv(file)
+        df["komitetas"] = file.stem
+        all_dfs.append(df)
+    full_df = pd.concat(all_dfs, ignore_index=True)
+    full_df.to_sql("cleaned_questions", conn, if_exists="replace", index=False)
+    conn.close()
+    print(f"[OK] Uploaded {len(full_df)} rows to {db_path.name} (cleaned_questions)")
+
 if __name__ == "__main__":
     print("Step 1: Scraping")
     run_scraper()
@@ -45,39 +58,24 @@ if __name__ == "__main__":
         exit(1)
 
     print("Step 2: Cleaning")
-    clean_all_raw_files(RAW_DIR, CLEANED_DIR, METADATA_DIR)
+    run_cleaning()
 
     if not check_dir_nonempty(CLEANED_DIR, "cleaned"):
         exit(1)
 
     print("Step 3: Classifying")
-    from ml_pipeline.mistral_api_classifier import classify_all_files_with_mistral
-    classify_all_files_with_mistral(CLEANED_DIR, CLASSIFIED_DIR)
+    classify_all_files_with_gpt(CLEANED_DIR, CLASSIFIED_DIR, BASE_DIR)
+
 
     if not check_dir_nonempty(CLASSIFIED_DIR, "classified"):
         exit(1)
 
     print("Step 4: Writing classified data to database")
     from scripts.load_to_sql import main as load_to_sql
-
     load_to_sql()
 
-
-    def load_cleaned_to_db(cleaned_dir, db_path):
-        conn = sqlite3.connect(db_path)
-        all_dfs = []
-        for file in cleaned_dir.glob("*.csv"):
-            df = pd.read_csv(file)
-            df["komitetas"] = file.stem
-            all_dfs.append(df)
-        full_df = pd.concat(all_dfs, ignore_index=True)
-        full_df.to_sql("cleaned_questions", conn, if_exists="replace", index=False)
-        conn.close()
-        print(f"[OK] Uploaded {len(full_df)} rows to {db_path.name} (cleaned_questions)")
-
-
-    print("Step 4a: Writing cleaned questions to database")
+    print("Step 5: Writing cleaned questions to database")
     DB_PATH = BASE_DIR / "data" / "classified_questions.db"
     load_cleaned_to_db(CLEANED_DIR, DB_PATH)
 
-    print("Pipeline finished successfully.")
+    print("[DONE] Finished successfully.")

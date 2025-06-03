@@ -1,25 +1,19 @@
-import pandas as pd
-import sqlite3
-from dash import html, dcc, dash_table
+from visualize.utils.db import query_df
+from config import TABLE_CLASSIFIED
+from dash import html, dash_table
 
-from pathlib import Path
-
-DB_PATH = Path(__file__).resolve().parents[1] / "data" / "classified_questions.db"
-
-def get_committee_summary_component():
-    conn = sqlite3.connect(DB_PATH)
-    query = """
+def get_committee_summary():
+    query = f"""
         SELECT
             komitetas,
             COUNT(*) AS klausimai,
             COUNT(DISTINCT data) AS unikalios_datos,
             ROUND(COUNT(*) * 1.0 / COUNT(DISTINCT data), 2) AS vid_klausimu_per_poseidi
-        FROM classified_questions
+        FROM {TABLE_CLASSIFIED}
         GROUP BY komitetas
         ORDER BY klausimai DESC
     """
-    df = pd.read_sql_query(query, conn)
-    conn.close()
+    df = query_df(query)
 
     df = df.rename(columns={
         "komitetas": "Komitetas",

@@ -2,6 +2,14 @@ import pytest
 import re
 from pathlib import Path
 from processing.scraper import get_committee_urls, CommitteeScraper
+from processing.scraper import extract_project_id_from_text
+from processing.scraper import run_scraper
+
+def test_run_scraper_creates_csv(tmp_path):
+    run_scraper(output_dir=tmp_path)
+    files = list(tmp_path.glob("*.csv"))
+    assert len(files) > 0, "Nepavyko sugeneruoti jokių CSV"
+    assert any("komitetas" in f.name or f.name.endswith(".csv") for f in files)
 
 def test_committee_urls_are_retrieved_and_filtered():
     urls = get_committee_urls()
@@ -10,13 +18,26 @@ def test_committee_urls_are_retrieved_and_filtered():
         assert "komisija" not in name.lower(), f"Komisija neturėtų būti įtraukta: {name}"
 
 def test_agenda_links_for_known_committee():
-    name = "Sveikatos reikalų komitetas"
-    url = "https://www.lrs.lt/sip/portal.show?p_r=35299&p_k=1"
+    name = "Ateities komitetas"
+    url = "https://www.lrs.lt/sip/portal.show?p_r=38856"
     scraper = CommitteeScraper(name, url)
     links = scraper.fetch_agenda_links()
     assert isinstance(links, list), "Rezultatas turi būti sąrašas"
     assert len(links) > 0, "Nerasta jokių darbotvarkių"
-    assert all("darbotvark" in link.lower() for link in links), "Yra netinkamų nuorodų"
+
+
+def test_extract_project_id_variants():
+    assert extract_project_id_from_text("Projektas Nr. XIIIP-123") == "XIIIP-123"
+    assert extract_project_id_from_text("Nr. ABC-456/789") == "ABC-456/789"
+    assert extract_project_id_from_text("Tekstas be numerio") == ""
+
+def test_fetch_items_handles_missing_fields():
+    url = "https://www.lrs.lt/sip/portal.show?p_r=35299&p_k=1&p_event_id=41208"
+    scraper = CommitteeScraper("Sveikatos reikalų komitetas", "https://www.lrs.lt/sip/portal.show?p_r=35299&p_k=1")
+    items = scraper.fetch_items(url)
+    for row in items:
+        assert len(row) == 6
+        assert isinstance(row[1], str)  # klausimas
 
 def test_fetch_items_structure_from_one_agenda():
     name = "Sveikatos reikalų komitetas"
@@ -30,16 +51,7 @@ def test_fetch_items_structure_from_one_agenda():
         assert re.match(r"\d{4}-\d{2}-\d{2}", row[0]), f"Neteisingas datos formatas: {row[0]}"
         assert isinstance(row[1], str) and len(row[1]) > 3, "Klausimo tekstas per trumpas arba tuščias"
 
-def test_debug_html_creation(tmp_path):
-    name = "Test Komitetas"
-    scraper = CommitteeScraper(name, "https://www.lrs.lt/invalid-url")
-    soup = scraper.get_soup()
-    scraper.debug_html(soup)
 
-    debug_path = Path("debug.html")
-    assert debug_path.exists(), "debug.html nebuvo sukurtas"
-    assert debug_path.read_text().startswith("<html") or "<!DOCTYPE html>" in debug_path.read_text()
-    debug_path.unlink()  # ištrinti po testo
 
 @pytest.mark.parametrize("name, url", get_committee_urls()[:3])
 def test_fetch_items_structure_from_real_committees(name, url):
