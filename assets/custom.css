@@ -13,24 +13,30 @@ h1, h2, h3, h4 {
 }
 
 .main-container {
-    max-width: 1200px;
-    margin: 0 auto;
+  padding: 2rem;
+  background-color: #F5F7FA;
+  font-family: "Open Sans", sans-serif;
 }
 
 .grid-filters {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
-
 
 .grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
 }
-
+.card {
+  background-color: #FFFFFF;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: none;
+  border: 1px solid #E0E0E0;
+}
 .dash-dropdown, .DatePickerRange {
     width: 100%;
 }

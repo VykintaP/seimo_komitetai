@@ -1,15 +1,13 @@
 import pandas as pd
 
-def filter_df_by_filters(df: pd.DataFrame, filters: dict) -> pd.DataFrame:
-    if not filters:
-        return df
+def filter_df_by_filters(df, filters: dict) -> pd.DataFrame:
+    start = filters.get("start")
+    end = filters.get("end")
 
-    start = filters.get("start", "1900-01-01")
-    end = filters.get("end", "2100-01-01")
-    committees = filters.get("committees", [])
+    if start and end:
+        df = df[(df["data"] >= start) & (df["data"] <= end)]
 
-    df = df[(df["data"] >= start) & (df["data"] <= end)]
-
+    committees = filters.get("committees")
     if committees:
         df = df[df["komitetas"].isin(committees)]
 
