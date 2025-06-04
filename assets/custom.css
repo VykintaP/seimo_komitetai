@@ -47,6 +47,6 @@ h1, h2, h3, h4 {
 }
 
 .tab--selected {
-    border-bottom: 3px solid #2C3E50 !important;
+  background-color: #F4D03F;
 }
 

@@ -1,0 +1,28 @@
+stop_words_manual = [
+    "aptarimas", "aptariami", "aptarti",
+    "dėl", "dokumentas",
+    "informacija", "ir",
+    "klausimas", "klausimai",
+    "komitetas", "komiteto",
+    "lietuva", "lietuvoje", "lietuvos",
+    "numatoma", "numatytas",
+    "pakeitimas", "pakeitimo",
+    "pagal", "peržiūra",
+    "posėdis", "posėdžio",
+    "pristatyti", "pristatymas",
+    "projektas", "projekto", "projektui", "projektų", "projektą",
+    "siūloma", "siūlomi", "siūlymas",
+    "sprendimas", "straipsnis",
+    "svarstomas", "svarstomi", "svarstymas", "svarstyti",
+    "įgyvendinimo", "įstatymas", "įstatymo", "įstatymų",
+    "ministerija", "respublika", "seimas", "tvirtinimas", "darbotvarkė", "atstovas", "kitas"
+
+    ]
+
+# Išsaugom kaip txt
+stopwords_path = Path("/mnt/data/stop_words_lt.txt")
+with stopwords_path.open("w", encoding="utf-8") as f:
+    for word in sorted(set(stop_words_manual)):
+        f.write(word + "\n")
+
+stopwords_path.name

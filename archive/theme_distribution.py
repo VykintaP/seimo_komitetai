@@ -43,7 +43,7 @@ def get_theme_distribution_layout():
 
     return html.Div([
         dcc.Store(id="selected-theme"),
-        dcc.Tabs(id="tabs", value="distribution", children=[
+        dcc.Tabs(id="main-tabs", value="distribution", children=[
             dcc.Tab(label="Temų pasiskirstymas", value="distribution", children=[
                 dcc.Graph(id="theme-bar", figure=fig)
             ]),

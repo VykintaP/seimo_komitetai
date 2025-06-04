@@ -17,7 +17,8 @@ logging.basicConfig(level=logging.INFO)
     Input("selected-topic", "data")
 )
 def render_tab(tab, filtered_data, selected_topic):
-    print("[DEBUG] render_tab() triggered")
+    print("[DEBUG] tab =", tab)
+
     if filtered_data:
         df = pd.DataFrame(filtered_data)
     else:
@@ -25,7 +26,9 @@ def render_tab(tab, filtered_data, selected_topic):
             "komitetas", "data", "klausimas", "tema",
             "projektas", "atsakingi", "dalyviai"
         ])
-
+    print("[DEBUG] df.shape =", df.shape)
+    print("[DEBUG] columns =", df.columns.tolist())
+    print("[DEBUG] render_tab() triggered")
     if tab == "dashboard":
         if not df.empty and "tema" in df.columns:
             bar_fig = bar_topics.get_bar_figure(df, selected_topic)
@@ -37,7 +40,6 @@ def render_tab(tab, filtered_data, selected_topic):
             line_fig = {}
 
         return html.Div([
-            filters_module.get_filters(),
 
             html.Div(className="grid-2", children=[
                 html.Div(className="card", children=[
