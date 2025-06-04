@@ -1,5 +1,5 @@
 from dash import html, dcc
-from utils.db import query_df
+from visualize.utils.db import query_df
 from config import TABLE_CLASSIFIED
 import pandas as pd
 
@@ -9,13 +9,7 @@ def get_filters():
     committees = sorted(df["komitetas"].dropna().unique())
 
     return html.Div(className="grid-filters", children=[
-        dcc.Dropdown(
-            id="committee-filter",
-            options=[{"label": komitetas, "value": komitetas} for komitetas in committees],
-            placeholder="Pasirink komitetą (-us)",
-            multi=True,
-            clearable=True
-        ),
+
         dcc.DatePickerRange(
             id="date-filter",
             display_format="YYYY-MM-DD",
