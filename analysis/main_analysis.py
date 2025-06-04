@@ -1,6 +1,8 @@
 import pandas as pd
 from pathlib import Path
 import logging
+from collections import Counter
+import string
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
@@ -111,7 +113,66 @@ def summarize_cleaned_data():
     print(f"- Daugiausia klausimų: {summary_df.iloc[0]['committee']} ({summary_df.iloc[0]['questions']})")
     print(f"- Mažiausiai klausimų: {summary_df.iloc[-1]['committee']} ({summary_df.iloc[-1]['questions']})")
 
+def most_common_words_filtered(cleaned_dir: Path, stopwords_path: Path, top_n: int = 15):
+    diagnostics_dir = Path(__file__).resolve().parents[1] / "data" / "diagnostics"
+    diagnostics_dir.mkdir(parents=True, exist_ok=True)
+
+    stop_words = set(word.strip() for word in stopwords_path.open(encoding="utf-8"))
+    files = list(cleaned_dir.glob("*.csv"))
+    results = []
+
+    for filepath in files:
+        df = pd.read_csv(filepath)
+        if "question" not in df.columns:
+            continue
+
+        all_words = " ".join(df["question"].dropna().astype(str)).lower()
+        all_words = all_words.translate(str.maketrans("", "", string.punctuation))
+        words = [w for w in all_words.split() if len(w) > 3 and not w.startswith("www") and w not in stop_words]
+        counter = Counter(words)
+        top_words = counter.most_common(top_n)
+
+        results.append({
+            "komitetas": filepath.stem.replace("_", " "),
+            "filtruoti žodžiai": ", ".join(f"{w} ({c})" for w, c in top_words)
+        })
+
+    df_result = pd.DataFrame(results)
+    df_result.to_csv(diagnostics_dir / "words_by_committee_cleaned.csv", index=False, encoding="utf-8-sig")
+    print("[OK] Išvalyti žodžiai išsaugoti į words_by_committee_cleaned.csv")
+
+def most_common_words_by_committee(cleaned_dir: Path, top_n: int = 15):
+    files = list(cleaned_dir.glob("*.csv"))
+    results = []
+
+    diagnostics_dir = Path(__file__).resolve().parents[1] / "data" / "diagnostics"
+    diagnostics_dir.mkdir(parents=True, exist_ok=True)
+
+    for filepath in files:
+        df = pd.read_csv(filepath)
+        if "question" not in df.columns:
+            continue
+
+        all_words = " ".join(df["question"].dropna().astype(str)).lower()
+        all_words = all_words.translate(str.maketrans("", "", string.punctuation))
+        words = [w for w in all_words.split() if len(w) > 3 and not w.startswith("www")]
+        counter = Counter(words)
+        top_words = counter.most_common(top_n)
+
+        results.append({
+            "komitetas": filepath.stem.replace("_", " "),
+            "dažniausi žodžiai": ", ".join(f"{w} ({c})" for w, c in top_words)
+        })
+
+    df_result = pd.DataFrame(results)
+    df_result.to_csv(diagnostics_dir / "words_by_committee.csv", index=False, encoding="utf-8-sig")
+    print(df_result)
 
 if __name__ == "__main__":
     summarize_cleaned_data()
     plot_questions_per_week()
+    most_common_words_filtered(
+        cleaned_dir=Path(__file__).resolve().parents[1] / "data" / "cleaned",
+        stopwords_path=Path(__file__).resolve().parents[1] / "stop_words_lt.txt"
+    )
+    most_common_words_by_committee(Path(__file__).resolve().parents[1] / "data" / "cleaned")

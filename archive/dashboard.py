@@ -13,7 +13,7 @@ app.layout = html.Div(className="main-container", children=[
     dcc.Store(id="filtered-df"),  # <- čia buvo trūkstamas kablelis
     html.H1("Seimo komitetų darbotvarkių analizė", style={"color": "#2C3E50"}),
 
-    dcc.Tabs(id="tabs", value="overview", children=[
+    dcc.Tabs(id="main-tabs", value="overview", children=[
         dcc.Tab(label="Apžvalga", value="overview"),
         dcc.Tab(label="Žodžių debesis", value="wordcloud"),
         dcc.Tab(label="Temų analizė", value="themes"),
@@ -27,7 +27,7 @@ app.layout = html.Div(className="main-container", children=[
 
 @app.callback(
     Output("tab-content", "children"),
-    Input("tabs", "value"),
+    Input("main-tabs", "value"),
     State("filtered-df", "data")
 )
 def render_tab(tab, data):

@@ -4,14 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="restarted creating dash">
+    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="improved dash">
+      <change afterPath="$PROJECT_DIR$/processing/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/processing/lemmatization.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/clean_words_by_committee.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stop_words_lt.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis/main_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/analysis/main_analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/dashboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/theme_distribution.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/theme_distribution.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/callbacks/filter_callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/callbacks/filter_callbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/diagnostics/diagnostics.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/diagnostics/diagnostics.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visualize/callbacks/layout_callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/callbacks/layout_callbacks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/components/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/filters.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visualize/dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/dashboard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/utils/filtering.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/utils/filtering.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +81,7 @@
     "Python.classify.executor": "Run",
     "Python.classify_with_gpt_api.executor": "Run",
     "Python.clean_questions.executor": "Run",
+    "Python.clean_words_by_committee.executor": "Run",
     "Python.cleaning_pipeline.executor": "Run",
     "Python.committee_callbacks.executor": "Run",
     "Python.committee_diagram.executor": "Run",
@@ -126,7 +132,7 @@
       <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.dashboard">
+  <component name="RunManager">
     <configuration name="dashboard" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="darbotvarkiu_analize" />
       <option name="ENV_FILES" value="" />
@@ -310,7 +316,21 @@
       <option name="presentableId" value="LOCAL−00016" />
       <updated>1748960365726</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL−00017" summary="improved dash">
+      <option name="closed" value="true" />
+      <created>1748980618177</created>
+      <option name="number" value="LOCAL−00017" />
+      <option name="presentableId" value="LOCAL−00017" />
+      <updated>1748980618177</updated>
+    </task>
+    <task id="LOCAL−00018" summary="improved dash">
+      <option name="closed" value="true" />
+      <created>1748980634343</created>
+      <option name="number" value="LOCAL−00018" />
+      <option name="presentableId" value="LOCAL−00018" />
+      <updated>1748980634343</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -326,7 +346,8 @@
     <MESSAGE value="fixed some visualisations" />
     <MESSAGE value="Improve robustness of topic classification: added logging for unmapped subtopics and optional CSV export for diagnostics" />
     <MESSAGE value="restarted creating dash" />
-    <option name="LAST_COMMIT_MESSAGE" value="restarted creating dash" />
+    <MESSAGE value="improved dash" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved dash" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
