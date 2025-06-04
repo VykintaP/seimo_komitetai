@@ -4,11 +4,7 @@ os.environ["TRANSFORMERS_CACHE"] = "E:/hf_models_cache"
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 import torch
 
-model = AutoModelForCausalLM.from_pretrained(
-    model_id,
-    torch_dtype=torch.float32,
-    device_map={"": "cpu"},  # <- priverstinai CPU
-    cache_dir="E:/hf_cache"
+# "truksta"
 )
 
 

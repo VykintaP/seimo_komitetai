@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="add lemminization (not implemented yet)">
-      <change afterPath="$PROJECT_DIR$/visualize/assets/custom.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualize/components/bar_committees.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualize/utils/topic_labels.py" afterDir="false" />
+    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="dash">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/custom.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/seimas_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/assets/seimas_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inspect_schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/inspect_schema.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/callbacks/filter_callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/callbacks/filter_callbacks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/callbacks/layout_callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/callbacks/layout_callbacks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/components/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/filters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/google_api_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/google_api_classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/mistral_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/mistral_classifier.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -336,7 +329,14 @@
       <option name="presentableId" value="LOCAL−00019" />
       <updated>1749042500803</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL−00020" summary="dash">
+      <option name="closed" value="true" />
+      <created>1749067412813</created>
+      <option name="number" value="LOCAL−00020" />
+      <option name="presentableId" value="LOCAL−00020" />
+      <updated>1749067412813</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -354,7 +354,8 @@
     <MESSAGE value="restarted creating dash" />
     <MESSAGE value="improved dash" />
     <MESSAGE value="add lemminization (not implemented yet)" />
-    <option name="LAST_COMMIT_MESSAGE" value="add lemminization (not implemented yet)" />
+    <MESSAGE value="dash" />
+    <option name="LAST_COMMIT_MESSAGE" value="dash" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
