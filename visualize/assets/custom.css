@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Open+Sans&family=Roboto+Mono&display=swap');
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #FFFFFF;
+  margin: 0;
+  padding: 2rem;
+  color: #2C3E50;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #2C3E50;
+  margin-bottom: 1rem;
+}
+
+.main-container {
+  padding: 2rem;
+  background-color: #F5F7FA;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.grid-filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.section {
+  margin-top: 2rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+
+.card {
+  background-color: #FFFFFF;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: none;
+  border: 1px solid #E0E0E0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.card--primary {
+  border: 2px solid #C0392B;
+  background-color: #FFF7F7;
+}
+
+.dash-dropdown, .DatePickerRange {
+  width: 100%;
+}
+
+.dash-table-container {
+  margin-top: 2rem;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.tab--selected {
+  background-color: #F4D03F;
+  font-weight: bold;
+  border-bottom: 2px solid #C0392B;
+}
+
+
+.responsive-grid {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+  min-width: 0;
+}
+
+@media (min-width: 1025px) {
+  .responsive-grid {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  .responsive-grid > *:not(:first-child) {
+    margin-top: 1.5rem;
+  }
+}
+
+
+  .grid-filters,
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}

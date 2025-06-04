@@ -1,4 +1,3 @@
-# inspect_schema.py
 import sqlite3
 import pandas as pd
 from config import DB_PATH, TABLE_CLASSIFIED
