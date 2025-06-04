@@ -1,0 +1,17 @@
+committee,min_length,max_length,mean_length,median_length,total_questions,too_short,too_short_percent,unique_words,future_dates,future_percent
+Aplinkos Apsaugos Komitetas.Csv,14,402,123.11,103.0,83,7,8.43,381,19,22.89
+Ateities Komitetas.Csv,14,276,59.04,53.0,122,11,9.02,316,11,9.02
+Audito Komitetas.Csv,11,472,76.07,58.0,189,36,19.05,458,19,10.05
+Biudzeto Ir Finansu Komitetas.Csv,12,312,70.19,67.0,161,35,21.74,439,22,13.66
+Ekonomikos Komitetas.Csv,12,312,77.11,51.5,88,15,17.05,343,15,17.05
+Europos Reikalu Komitetas.Csv,14,198,60.23,42.0,56,6,10.71,141,21,37.5
+Kaimo Reikalu Komitetas.Csv,14,386,110.82,94.0,125,10,8.0,488,11,8.8
+Kulturos Komitetas.Csv,14,166,67.46,74.0,70,8,11.43,219,7,10.0
+Nacionalinio Saugumo Ir Gynybos Komitetas.Csv,14,284,87.1,73.0,50,10,20.0,195,6,12.0
+Socialiniu Reikalu Ir Darbo Komitetas.Csv,11,312,53.82,25.0,72,34,47.22,198,0,0.0
+Sveikatos Reikalu Komitetas.Csv,15,248,82.46,76.0,61,2,3.28,226,6,9.84
+Svietimo Ir Mokslo Komitetas.Csv,14,256,76.49,71.0,75,7,9.33,266,9,12.0
+Teises Ir Teisetvarkos Komitetas.Csv,12,229,59.04,39.0,109,10,9.17,306,17,15.6
+Uzsienio Reikalu Komitetas.Csv,14,277,76.78,49.5,58,10,17.24,221,6,10.34
+Valstybes Valdymo Ir Savivaldybiu Komitetas.Csv,12,160,44.12,33.0,163,32,19.63,339,42,25.77
+Zmogaus Teisiu Komitetas.Csv,14,284,81.84,78.0,55,5,9.09,238,4,7.27
