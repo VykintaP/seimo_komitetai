@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="dash" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;VykintaP&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/VykintaP/darbotvarkiu_analize.git&quot;,
+    &quot;accountId&quot;: &quot;e319449e-a248-4283-a4aa-ad179d496221&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2wzjfXTzFk6xLoh89noNKmxQBcG" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests in test_classify.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_classify_with_api.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_cleaning.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_gpt_key.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_scraper.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_train_classifier.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.analyze.executor&quot;: &quot;Run&quot;,
+    &quot;Python.analyze_plot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.analyze_topics.executor&quot;: &quot;Run&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.check_db.executor&quot;: &quot;Run&quot;,
+    &quot;Python.classify.executor&quot;: &quot;Run&quot;,
+    &quot;Python.classify_with_gpt_api.executor&quot;: &quot;Run&quot;,
+    &quot;Python.clean_questions.executor&quot;: &quot;Run&quot;,
+    &quot;Python.clean_words_by_committee.executor&quot;: &quot;Run&quot;,
+    &quot;Python.cleaning_pipeline.executor&quot;: &quot;Run&quot;,
+    &quot;Python.committee_callbacks.executor&quot;: &quot;Run&quot;,
+    &quot;Python.committee_diagram.executor&quot;: &quot;Run&quot;,
+    &quot;Python.committee_donut.executor&quot;: &quot;Run&quot;,
+    &quot;Python.committee_profiles.executor&quot;: &quot;Run&quot;,
+    &quot;Python.committee_summary_table.executor&quot;: &quot;Run&quot;,
+    &quot;Python.config.executor&quot;: &quot;Run&quot;,
+    &quot;Python.create_structure.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dashboard.executor&quot;: &quot;Run&quot;,
+    &quot;Python.data_quality_report.executor&quot;: &quot;Run&quot;,
+    &quot;Python.filters.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generate_training_data.executor&quot;: &quot;Run&quot;,
+    &quot;Python.get_commitees.executor&quot;: &quot;Run&quot;,
+    &quot;Python.inspect_schema.executor&quot;: &quot;Run&quot;,
+    &quot;Python.layout_callbacks.executor&quot;: &quot;Run&quot;,
+    &quot;Python.load_to_sql.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main_analysis.executor&quot;: &quot;Run&quot;,
+    &quot;Python.merge_agendas.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mistral_api_classifier.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mistral_classifier.executor&quot;: &quot;Run&quot;,
+    &quot;Python.plotting.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_load_to_db.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_pipeline.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_tests.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scraper.executor&quot;: &quot;Run&quot;,
+    &quot;Python.theme_area.executor&quot;: &quot;Run&quot;,
+    &quot;Python.theme_distribution.executor&quot;: &quot;Run&quot;,
+    &quot;Python.train_classifier.executor&quot;: &quot;Run&quot;,
+    &quot;Python.translate_and_classify.executor&quot;: &quot;Run&quot;,
+    &quot;Python.visualize_topics.executor&quot;: &quot;Run&quot;,
+    &quot;Python.wordcloud_component.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Vykinta/PycharmProjects/darbotvarkiu_analize/archive&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\archive" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\visualize" />
+      <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\archive" />
+      <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\visualize\components" />
+      <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\scripts" />
+      <recent name="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize\data" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.dashboard">
+    <configuration name="dashboard" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="darbotvarkiu_analize" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.13 (darbotvarkiu_analize)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/visualize/dashboard.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="run_pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="darbotvarkiu_analize" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\Vykinta\PycharmProjects\darbotvarkiu_analize" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/run_pipeline.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.dashboard" />
+      <item itemvalue="Python.run_pipeline" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.run_pipeline" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-dfff61a61320-9cdd278e9d02-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-251.25410.159" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="" />
+      <created>1747051400073</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1747051400073</updated>
+    </task>
+    <task id="LOCAL−00001" summary="First commit">
+      <option name="closed" value="true" />
+      <created>1747819812281</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1747819812281</updated>
+    </task>
+    <task id="LOCAL−00002" summary="Second commit - changes scraper and test_scraper, file structure">
+      <option name="closed" value="true" />
+      <created>1747827267305</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1747827267305</updated>
+    </task>
+    <task id="LOCAL−00003" summary="Refactor cleaning pipeline and add robust quality + testing tools&#10;&#10;- Split `cleaning_pipeline.py` into strict cleaning logic only (removed classification)&#10;- Created `data_quality_report.py` to generate file-level data quality diagnostics&#10;- Added `label_keywords.py` stub for future NLP feature extraction&#10;- Implemented `test_cleaning.py`:&#10;  - tests `clean_question` normalization&#10;  - tests full `clean_all_raw_files()` pipeline with mock input&#10;  - verifies filtered output and logging&#10;- Minor updates to `scraper.py` and `test_scraper.py` for integration and stability&#10;- Removed legacy `clean_questions.py` (superseded)">
+      <option name="closed" value="true" />
+      <created>1747837198441</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1747837198441</updated>
+    </task>
+    <task id="LOCAL−00004" summary="Refactor cleaning pipeline and add robust quality + testing tools&#10;&#10;- Split `cleaning_pipeline.py` into strict cleaning logic only (removed classification)&#10;- Created `data_quality_report.py` to generate file-level data quality diagnostics&#10;- Added `label_keywords.py` stub for future NLP feature extraction&#10;- Implemented `test_cleaning.py`:&#10;  - tests `clean_question` normalization&#10;  - tests full `clean_all_raw_files()` pipeline with mock input&#10;  - verifies filtered output and logging&#10;- Minor updates to `scraper.py` and `test_scraper.py` for integration and stability&#10;- Removed legacy `clean_questions.py` (superseded)">
+      <option name="closed" value="true" />
+      <created>1747840501715</created>
+      <option name="number" value="LOCAL−00004" />
+      <option name="presentableId" value="LOCAL−00004" />
+      <updated>1747840501715</updated>
+    </task>
+    <task id="LOCAL−00005" summary="Changed cleaning and scraping to identify project_idx flexibly">
+      <option name="closed" value="true" />
+      <created>1747907880224</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1747907880224</updated>
+    </task>
+    <task id="LOCAL−00006" summary="more elaborate testing,">
+      <option name="closed" value="true" />
+      <created>1747914124363</created>
+      <option name="number" value="LOCAL−00006" />
+      <option name="presentableId" value="LOCAL−00006" />
+      <updated>1747914124363</updated>
+    </task>
+    <task id="LOCAL−00007" summary="added classification (transformers, translator)">
+      <option name="closed" value="true" />
+      <created>1747923291359</created>
+      <option name="number" value="LOCAL−00007" />
+      <option name="presentableId" value="LOCAL−00007" />
+      <updated>1747923291359</updated>
+    </task>
+    <task id="LOCAL−00008" summary="classification with mistral_classifier.py">
+      <option name="closed" value="true" />
+      <created>1748344300643</created>
+      <option name="number" value="LOCAL−00008" />
+      <option name="presentableId" value="LOCAL−00008" />
+      <updated>1748344300643</updated>
+    </task>
+    <task id="LOCAL−00009" summary="classification with mistral_classifier.py">
+      <option name="closed" value="true" />
+      <created>1748344315080</created>
+      <option name="number" value="LOCAL−00009" />
+      <option name="presentableId" value="LOCAL−00009" />
+      <updated>1748344315080</updated>
+    </task>
+    <task id="LOCAL−00010" summary="classification with mistral_classifier API">
+      <option name="closed" value="true" />
+      <created>1748350765761</created>
+      <option name="number" value="LOCAL−00010" />
+      <option name="presentableId" value="LOCAL−00010" />
+      <updated>1748350765761</updated>
+    </task>
+    <task id="LOCAL−00011" summary="added:&#10;&#10;translation LT &lt;-&gt; EN&#10;donnut pie&#10;sql">
+      <option name="closed" value="true" />
+      <created>1748435746670</created>
+      <option name="number" value="LOCAL−00011" />
+      <option name="presentableId" value="LOCAL−00011" />
+      <updated>1748435746670</updated>
+    </task>
+    <task id="LOCAL−00012" summary="fixed some visualisations">
+      <option name="closed" value="true" />
+      <created>1748509870306</created>
+      <option name="number" value="LOCAL−00012" />
+      <option name="presentableId" value="LOCAL−00012" />
+      <updated>1748509870306</updated>
+    </task>
+    <task id="LOCAL−00013" summary="fixed some visualisations">
+      <option name="closed" value="true" />
+      <created>1748525634981</created>
+      <option name="number" value="LOCAL−00013" />
+      <option name="presentableId" value="LOCAL−00013" />
+      <updated>1748525634981</updated>
+    </task>
+    <task id="LOCAL−00014" summary="fixed some visualisations">
+      <option name="closed" value="true" />
+      <created>1748525648686</created>
+      <option name="number" value="LOCAL−00014" />
+      <option name="presentableId" value="LOCAL−00014" />
+      <updated>1748525648686</updated>
+    </task>
+    <task id="LOCAL−00015" summary="Improve robustness of topic classification: added logging for unmapped subtopics and optional CSV export for diagnostics">
+      <option name="closed" value="true" />
+      <created>1748722251441</created>
+      <option name="number" value="LOCAL−00015" />
+      <option name="presentableId" value="LOCAL−00015" />
+      <updated>1748722251441</updated>
+    </task>
+    <task id="LOCAL−00016" summary="restarted creating dash">
+      <option name="closed" value="true" />
+      <created>1748960365726</created>
+      <option name="number" value="LOCAL−00016" />
+      <option name="presentableId" value="LOCAL−00016" />
+      <updated>1748960365726</updated>
+    </task>
+    <task id="LOCAL−00017" summary="improved dash">
+      <option name="closed" value="true" />
+      <created>1748980618177</created>
+      <option name="number" value="LOCAL−00017" />
+      <option name="presentableId" value="LOCAL−00017" />
+      <updated>1748980618177</updated>
+    </task>
+    <task id="LOCAL−00018" summary="improved dash">
+      <option name="closed" value="true" />
+      <created>1748980634343</created>
+      <option name="number" value="LOCAL−00018" />
+      <option name="presentableId" value="LOCAL−00018" />
+      <updated>1748980634343</updated>
+    </task>
+    <task id="LOCAL−00019" summary="add lemminization (not implemented yet)">
+      <option name="closed" value="true" />
+      <created>1749042500803</created>
+      <option name="number" value="LOCAL−00019" />
+      <option name="presentableId" value="LOCAL−00019" />
+      <updated>1749042500803</updated>
+    </task>
+    <task id="LOCAL−00020" summary="dash">
+      <option name="closed" value="true" />
+      <created>1749067412813</created>
+      <option name="number" value="LOCAL−00020" />
+      <option name="presentableId" value="LOCAL−00020" />
+      <updated>1749067412813</updated>
+    </task>
+    <task id="LOCAL−00021" summary="dash">
+      <option name="closed" value="true" />
+      <created>1749068443439</created>
+      <option name="number" value="LOCAL−00021" />
+      <option name="presentableId" value="LOCAL−00021" />
+      <updated>1749068443439</updated>
+    </task>
+    <task id="LOCAL−00022" summary="dash">
+      <option name="closed" value="true" />
+      <created>1749068868154</created>
+      <option name="number" value="LOCAL−00022" />
+      <option name="presentableId" value="LOCAL−00022" />
+      <updated>1749068868154</updated>
+    </task>
+    <task id="LOCAL−00023" summary="dash">
+      <option name="closed" value="true" />
+      <created>1749069043868</created>
+      <option name="number" value="LOCAL−00023" />
+      <option name="presentableId" value="LOCAL−00023" />
+      <updated>1749069043868</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First commit" />
+    <MESSAGE value="Second commit - changes scraper and test_scraper, file structure" />
+    <MESSAGE value="Refactor cleaning pipeline and add robust quality + testing tools&#10;&#10;- Split `cleaning_pipeline.py` into strict cleaning logic only (removed classification)&#10;- Created `data_quality_report.py` to generate file-level data quality diagnostics&#10;- Added `label_keywords.py` stub for future NLP feature extraction&#10;- Implemented `test_cleaning.py`:&#10;  - tests `clean_question` normalization&#10;  - tests full `clean_all_raw_files()` pipeline with mock input&#10;  - verifies filtered output and logging&#10;- Minor updates to `scraper.py` and `test_scraper.py` for integration and stability&#10;- Removed legacy `clean_questions.py` (superseded)" />
+    <MESSAGE value="Changed cleaning and scraping to identify project_idx flexibly" />
+    <MESSAGE value="more elaborate testing," />
+    <MESSAGE value="added classification (transformers, translator)" />
+    <MESSAGE value="classification with mistral_classifier.py" />
+    <MESSAGE value="classification with mistral_classifier API" />
+    <MESSAGE value="added:&#10;&#10;translation LT &lt;-&gt; EN&#10;donnut pie&#10;sql" />
+    <MESSAGE value="fixed some visualisations" />
+    <MESSAGE value="Improve robustness of topic classification: added logging for unmapped subtopics and optional CSV export for diagnostics" />
+    <MESSAGE value="restarted creating dash" />
+    <MESSAGE value="improved dash" />
+    <MESSAGE value="add lemminization (not implemented yet)" />
+    <MESSAGE value="dash" />
+    <option name="LAST_COMMIT_MESSAGE" value="dash" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/visualize/main.py</url>
+          <line>8</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/visualize/components/questions_table.py</url>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
