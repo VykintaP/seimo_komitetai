@@ -74,46 +74,25 @@ class CommitteeScraper:
             if date_match:
                 current_date = pd.to_datetime(date_match.group()).strftime("%Y-%m-%d")
 
-            raw_text = cells[question_idx].get_text(separator="\n", strip=True)
-            lines = raw_text.splitlines()
-            for line in lines:
-                line = line.strip()
-                if not line:
-                    continue
-
-                if line.lower().startswith("kviečiami dalyvauti"):
-                    current_invited_block = []
-                    continue
-                elif current_invited_block != []:
-                    current_invited_block.append(line)
-                    continue
-                elif len(line.split()) < 3 and re.match(r"^[A-ZĄČĘĖĮŠŲŪŽ]\.\s?[A-ZĄČĘĖĮŠŲŪŽ][a-ząčęėįšųūž]+$", line):
-                    continue
-                elif len(line.split()) < 3 and re.match(
-                        r"^[A-ZĄČĘĖĮŠŲŪŽ][a-ząčęėįšųūž]+(\s+[A-ZĄČĘĖĮŠŲŪŽ][a-ząčęėįšųūž]+)?$", line):
-                    continue
-
-                if current_question:
-                    invited = "; ".join(current_invited_block)
-                    items.append(
-                        (current_date, current_question, self.name, current_project, current_responsible, invited))
-                    current_invited_block = []
-                # Praleidžia beprasmius klausimus: tik skaičiai ar per trumpi
-                if len(line) < 5 or re.match(r"^\d+(\.\d+)?$", line):
-                    continue
-
-                current_question = line
+            raw_text = cells[question_idx].get_text(separator=" ", strip=True)
+            if len(raw_text) >= 5 and not re.match(r"^\d+(\.\d+)?$", raw_text):
                 project_from_text = extract_project_id_from_text(raw_text)
                 cell_project_text = cells[project_idx].get_text(
                     strip=True) if project_idx is not None and project_idx < len(cells) else ""
                 current_project = project_from_text or cell_project_text
                 current_responsible = cells[responsible_idx].get_text(
                     strip=True) if responsible_idx is not None and responsible_idx < len(cells) else ""
+                invited = "; ".join(current_invited_block)
+                items.append((
+                    current_date,
+                    raw_text,
+                    self.name,
+                    current_project,
+                    current_responsible,
+                    invited
+                ))
+                current_invited_block = []
 
-        # paskutinis klausimas
-        if current_question:
-            invited = "; ".join(current_invited_block)
-            items.append((current_date, current_question, self.name, current_project, current_responsible, invited))
 
         return items
 

@@ -1,0 +1,567 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Open+Sans&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* =================== Bendrai =================== */
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #F4F6F9;
+  border-bottom: 1px solid #DDE3EC;
+  margin: 0;
+  padding: 2rem;
+  color: #2C3E50;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 0rem;
+}
+
+h2, h3 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+h1, h2, h3 {
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #1A2E4F;
+}
+.subtitle {
+  font-size: 25px;
+  color: #5C6F84;
+  margin-bottom: 0.5rem;
+}
+.about-link {
+  font-size: 20px;
+  color: #2C3E50;
+  text-decoration: none;
+  border-bottom: 1px dashed #2C3E50;
+  margin-top: 0.5rem;
+  display: inline-block;
+}
+
+.about-link:hover {
+  color: #1F77B4;
+  border-bottom-color: #1F77B4;
+}
+
+
+/* ===================  Grafikai =================== */
+.card,
+.chart-half,
+.chart.half,
+.card-fixed {
+  background-color: #FFFFFF;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid #D1D5DB;
+  box-shadow: none;
+  margin-bottom: 1rem;
+}
+.chart-card {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* =================== KPIs =================== */
+.kpi-zone {
+  display: flex;
+  gap: 2rem;
+  margin: 0rem 0 2rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: FFFFFF;
+  padding: 1.5rem 1rem;
+  border-radius: 8px;
+}
+
+.kpi-box {
+  flex: 1 1 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background: white;
+  padding: 2rem 2.5rem; 
+  border-radius: 12px;
+  border: 1px solid #D1D5DB;
+  box-shadow: none;
+}
+
+.kpi-box h4 {
+  font-size: 20px;
+  margin-bottom: 0.5rem;
+  color: #2C3E50;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.kpi-box p {
+  font-size: 25px;
+  font-weight: bold;
+  color: #1F77B4;
+  margin: 0;
+}
+
+.kpi-icon {
+  font-size: 26px;
+  margin-bottom: 0.3rem;
+}
+
+
+/* =================== Dropdowns ir datos pasirinkimas =================== */
+.filter-dropdown,
+.date-picker-range {
+  min-width: 280px;
+  max-width: 320px;
+  height: 42px;
+  font-size: 15px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  color: #2C3E50;
+  border: none;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Datos pasirinkimo */
+.DateRangePickerInput {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  height: auto;
+}
+
+.DateInput {
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  text-align: center;
+  background-color: transparent;
+}
+
+.DateInput_input {
+  padding: 6px 10px;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  border: none
+  box-shadow: none;
+  outline: none;
+  height: 38px;
+  text-align: center;
+  color: #2C3E50;
+  background-color: white;
+}
+
+.DateInput_input__focused {
+  border: none
+  box-shadow: none !important;
+}
+
+.DateRangePickerInput_arrow {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1;
+  color: #999;
+  font-size: 16px;
+}
+.top-filters {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+
+.Select__control {
+  min-height: 42px !important;
+  border-radius: 8px !important;
+  border: 1px solid #D1D5DB !important;
+  box-shadow: none !important;
+  font-size: 15px;
+  padding: 0 12px !important;
+  box-sizing: border-box;
+}
+
+.Select {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.Select__single-value {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  color: #2C3E50;
+  padding-left: 10px;
+}
+
+/* =================== Antraštė =================== */
+.dashboard-header {
+  text-align: center;
+  padding: 1.2rem 1rem 1rem;
+  background-color: #F9FAFB;
+  border-bottom: 1px solid #DDE3EC;
+}
+
+.about-container {
+  margin-top: 0.5rem;
+  font-size: 20px;
+}
+
+
+/* =================== Išdėstymas =================== */
+.grid-filters,
+.responsive-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.chart-row {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 1rem 1.5rem;
+}
+
+.dashboard-content {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.card-fixed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.card {
+  overflow: hidden;
+  position: relative;
+}
+.js-plotly-plot .main-svg {
+  max-height: 100%;
+}
+
+.display-grid-two {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+.card {
+    overflow-x: auto;
+}
+
+/* =================== Lentelė =================== */
+.dash-table-container {
+  overflow-x: auto;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.dash-table-container .dash-cell:hover {
+  background-color: #F4D03F !important;
+}
+
+/* =================== Kortelių skirtukai =================== */
+.tab {
+  border: 1px solid #DDD;
+  padding: 0.5rem 1rem;
+  background-color: #F5F7FA;
+  font-weight: 600;
+  color: #2C3E50;
+}
+
+.tab--selected {
+  background-color: #FFFFFF;
+  border-bottom: none;
+  color: #C0392B;
+}
+
+/* =================== Nuorodos =================== */
+.show-button {
+  background-color: #F5F7FA;
+  border: 1px solid #DDD;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.project-link {
+  color: #2C3E50;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px dashed #2C3E50;
+  transition: color 0.2s ease;
+}
+.project-link:hover {
+  color: #C0392B;
+}
+.back-link {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 16px;
+    color: #1F77B4;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+/* =================== Kita =================== */
+.dashboard-title {
+  text-align: center;
+  font-size: 45px;
+  font-weight: 700;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.filter-controls {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0 1.5rem;
+  margin-top: 1rem;
+}
+.filter-controls > * {
+  margin-right: 1rem;
+}
+.filter-controls > *:last-child {
+  margin-right: 0;
+}
+.grid-span-5 {
+  grid-column: span 5;
+}
+
+.grid-span-7 {
+  grid-column: span 7;
+}
+.grid-span-6 {
+  grid-column: span 6;
+}
+.grid-span-12 {
+  grid-column: span 12;
+}
+@media (max-width: 1200px) {
+  .dashboard-content {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .chart-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .chart-half {
+    max-width: 100%;
+  }
+
+  .grid-span-6,
+  .grid-span-12 {
+    grid-column: span 12;
+  }
+
+  .display-grid-two {
+    grid-template-columns: 1fr;
+  }
+}
+
+div.DateRangePicker {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+
+div.DateRangePickerInput {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: auto !important;
+  gap: 0px !important;
+}
+
+div.DateInput {
+  border: none !important;
+  background-color: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+input.DateInput_input {
+  border: 1px solid #D1D5DB !important;
+  border-radius: 6px !important;
+  padding: 6px 10px !important;
+  font-size: 14px !important;
+  font-family: 'Open Sans', sans-serif !important;
+  background-color: #FFFFFF !important;
+  color: #2C3E50 !important;
+  height: 38px !important;
+  box-shadow: none !important;
+  outline: none !important;
+  text-align: center !important;
+}
+
+input.DateInput_input__focused {
+  border: 1px solid #1F77B4 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.reset-button {
+  height: 38px;
+  padding: 6px 10px;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #fff;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  color: #2C3E50;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  box-shadow: none;
+  outline: none;
+  margin-left: -10px;
+  margin-top: -3px;
+}
+
+.reset-button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Užtikrina vieną eilutę */
+.top-filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.active-filters-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 14px;
+}
+
+.filter-badge {
+  background-color: #E5F6FD;
+  color: #0077B6;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.no-filters {
+  color: #999;
+  font-size: 14px;
+  font-style: italic;
+}
+.filter-badge {
+  background-color: #E6F0FF;
+  color: #333;
+  font-size: 14px;
+  padding: 6px 10px;
+  margin: 4px 6px 4px 0;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* === Apie projektą info sritis === */
+.info-container {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    font-size: 20px;
+    line-height: 1.7;
+    color: #2C3E50;
+}
+
+.info-container h2 {
+    font-size: 28px;
+    margin-bottom: 1rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.info-container h3 {
+    font-size: 20px;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.info-container p {
+    margin-bottom: 1rem;
+}
+
+.info-container ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.info-container li {
+    margin-bottom: 0.4rem;
+}
+
+.info-container a {
+    color: #1F77B4;
+    text-decoration: none;
+}
+
+.info-container a:hover {
+    text-decoration: underline;
+}
+.card .dash-graph {
+  overflow-x: auto;
+  width: 100%;
+}
+.js-plotly-plot .main-svg {
+  min-width: 700px;
+}

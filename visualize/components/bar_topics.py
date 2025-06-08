@@ -1,38 +1,41 @@
-import plotly.express as px
+# visualize/components/bar_topics.py
+
 import plotly.graph_objects as go
+import pandas as pd
 from visualize.utils.topic_labels import TOPIC_LABELS
 
-def get_bar_figure(df, selected_topic=None):
+def get_bar_figure(df: pd.DataFrame, selected_topic: str = None) -> go.Figure:
+    """
+    Returns a horizontal bar chart showing topic frequencies.
+    Highlights the selected topic in a different color.
+    """
     print(f"[DEBUG] bar_figure: rows={len(df)}")
 
     if df is None or df.empty or "tema" not in df.columns:
         return go.Figure()
+
+    # Temų vertimas ir skaičiavimas
     df["tema_lt"] = df["tema"].map(TOPIC_LABELS).fillna(df["tema"])
-    topic_counts = df["tema_lt"].value_counts().reset_index()
+    topic_counts = df["tema_lt"].value_counts(sort=False).reset_index()
     topic_counts.columns = ["tema", "kiekis"]
 
-    fig = px.bar(
-        topic_counts,
-        x="kiekis",
-        y="tema",
-        orientation="h",
-        color="tema",
-        color_discrete_sequence=["#2C3E50"] * len(topic_counts)
-    )
+    # Spalvų paruošimas: raudona pasirinktam, mėlyna visiems kitiems
+    colors = ["#C0392B" if t == selected_topic else "#2C3E50" for t in topic_counts["tema"]]
 
-    # Jei yra pasirinkta tema – pažymim kita spalva
-    if selected_topic and selected_topic in topic_counts["tema"].values:
-        colors = ["#C0392B" if t == selected_topic else "#2C3E50" for t in topic_counts["tema"]]
-        fig.update_traces(marker_color=colors)
+    # Grafinis objektas
+    fig = go.Figure(go.Bar(
+        x=topic_counts["kiekis"],
+        y=topic_counts["tema"],
+        orientation="h",
+        marker_color=colors
+    ))
 
     fig.update_layout(
-        yaxis_title="",
+        title="Temų dažnumas",
         xaxis_title="Klausimų skaičius",
-        yaxis=dict(automargin=True),
+        yaxis=dict(title="", automargin=True),
         margin=dict(t=40, b=40, r=20),
-        showlegend = False
-
+        showlegend=False
     )
 
     return fig
-
