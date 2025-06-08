@@ -11,8 +11,6 @@ import sqlite3
 conn = sqlite3.connect(DB_PATH)
 # TOKENAS
 
-#flan-t5-xl-pmr
-API_URL = "https://u73js246kn9da1w7.us-east4.gcp.endpoints.huggingface.cloud"
 
 # autentifikacija
 headers = {

@@ -6,60 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="dash">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/classified_questions.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/classified_questions.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/aplinkos_apsaugos_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaned/aplinkos_apsaugos_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/ateities_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaned/ateities_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/audito_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaned/audito_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/biudzeto_ir_finansu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaned/biudzeto_ir_finansu_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/ekonomikos_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaned/ekonomikos_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/europos_reikalu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaned/europos_reikalu_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/kaimo_reikalu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaned/kaimo_reikalu_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/kulturos_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaned/kulturos_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/nacionalinio_saugumo_ir_gynybos_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaned/nacionalinio_saugumo_ir_gynybos_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/socialiniu_reikalu_ir_darbo_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaned/socialiniu_reikalu_ir_darbo_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/sveikatos_reikalu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaned/sveikatos_reikalu_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/svietimo_ir_mokslo_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaned/svietimo_ir_mokslo_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/teises_ir_teisetvarkos_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaned/teises_ir_teisetvarkos_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/uzsienio_reikalu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaned/uzsienio_reikalu_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/valstybes_valdymo_ir_savivaldybiu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaned/valstybes_valdymo_ir_savivaldybiu_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cleaned/zmogaus_teisiu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/cleaned/zmogaus_teisiu_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/diagnostics/classification_quality.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/diagnostics/classification_quality.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/diagnostics/unmapped_subtopics.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/diagnostics/unmapped_subtopics.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/diagnostics/unmapped_subtopics_summary.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/diagnostics/unmapped_subtopics_summary.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/aplinkos_apsaugos_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/aplinkos_apsaugos_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/ateities_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/ateities_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/audito_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/audito_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/biudzeto_ir_finansu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/biudzeto_ir_finansu_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/ekonomikos_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/ekonomikos_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/europos_reikalu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/europos_reikalu_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/kaimo_reikalu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/kaimo_reikalu_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/kulturos_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/kulturos_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/nacionalinio_saugumo_ir_gynybos_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/nacionalinio_saugumo_ir_gynybos_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/socialiniu_reikalu_ir_darbo_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/socialiniu_reikalu_ir_darbo_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/sveikatos_reikalu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/sveikatos_reikalu_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/svietimo_ir_mokslo_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/svietimo_ir_mokslo_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/teises_ir_teisetvarkos_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/teises_ir_teisetvarkos_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/uzsienio_reikalu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/uzsienio_reikalu_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/valstybes_valdymo_ir_savivaldybiu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/valstybes_valdymo_ir_savivaldybiu_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/zmogaus_teisiu_komitetas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/zmogaus_teisiu_komitetas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processing/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing/scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/run_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/run_pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/assets/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/assets/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/callbacks/filter_callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/callbacks/filter_callbacks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/callbacks/layout_callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/callbacks/layout_callbacks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/components/bar_committees.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/bar_committees.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/components/bar_topics.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/bar_topics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/components/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/filters.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/components/kpi_cards.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/kpi_cards.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/components/line_topics.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/line_topics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/components/pie_topics.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/pie_topics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/components/questions_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/questions_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/dashboard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/info_layout.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/info_layout.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/layout.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/layout.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/utils/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/utils/db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/utils/filtering.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/utils/filtering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/google_api_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/google_api_classifier.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
