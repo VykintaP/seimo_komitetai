@@ -5,17 +5,25 @@ from processing.scraper import get_committee_urls, CommitteeScraper
 from processing.scraper import extract_project_id_from_text
 from processing.scraper import run_scraper
 
+
+# Testuojame ar scraperis sugeba sugeneruoti CSV failus į nurodytą direktoriją
 def test_run_scraper_creates_csv(tmp_path):
     run_scraper(output_dir=tmp_path)
     files = list(tmp_path.glob("*.csv"))
     assert len(files) > 0, "Nepavyko sugeneruoti jokių CSV"
     assert any("komitetas" in f.name or f.name.endswith(".csv") for f in files)
 
+    # Tikriname ar teisingai gaunami ir filtruojami komitetų URL adresai, neįtraukiant komisijų
+
+
 def test_committee_urls_are_retrieved_and_filtered():
     urls = get_committee_urls()
     assert len(urls) > 0, "Nerasta jokių komitetų"
     for name, _ in urls:
         assert "komisija" not in name.lower(), f"Komisija neturėtų būti įtraukta: {name}"
+
+    # Tikriname ar pavyksta gauti darbotvarkių nuorodas iš žinomo komiteto puslapio
+
 
 def test_agenda_links_for_known_committee():
     name = "Ateities komitetas"
@@ -25,11 +33,16 @@ def test_agenda_links_for_known_committee():
     assert isinstance(links, list), "Rezultatas turi būti sąrašas"
     assert len(links) > 0, "Nerasta jokių darbotvarkių"
 
+    # Testuojame įvairius projekto numerio ištraukimo iš teksto variantus
+
 
 def test_extract_project_id_variants():
     assert extract_project_id_from_text("Projektas Nr. XIIIP-123") == "XIIIP-123"
     assert extract_project_id_from_text("Nr. ABC-456/789") == "ABC-456/789"
     assert extract_project_id_from_text("Tekstas be numerio") == ""
+
+    # Tikriname ar funkcija teisingai apdoroja trūkstamus laukus darbotvarkėje
+
 
 def test_fetch_items_handles_missing_fields():
     url = "https://www.lrs.lt/sip/portal.show?p_r=35299&p_k=1&p_event_id=41208"
@@ -38,6 +51,9 @@ def test_fetch_items_handles_missing_fields():
     for row in items:
         assert len(row) == 6
         assert isinstance(row[1], str)  # klausimas
+
+    # Tikriname ar iš vienos darbotvarkės ištraukti duomenys atitinka reikalaujamą struktūrą
+
 
 def test_fetch_items_structure_from_one_agenda():
     name = "Sveikatos reikalų komitetas"
@@ -52,7 +68,7 @@ def test_fetch_items_structure_from_one_agenda():
         assert isinstance(row[1], str) and len(row[1]) > 3, "Klausimo tekstas per trumpas arba tuščias"
 
 
-
+# Testuojame duomenų ištraukimą iš pirmųjų trijų tikrų komitetų darbotvarkių
 @pytest.mark.parametrize("name, url", get_committee_urls()[:3])
 def test_fetch_items_structure_from_real_committees(name, url):
     scraper = CommitteeScraper(name, url)
