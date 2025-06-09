@@ -11,4 +11,4 @@ def shorten(text: str, max_length: int = 15) -> str:
     """
     if len(text) <= max_length:
         return text
-    return text[:max_length-2] + '...'
+    return text[: max_length - 2] + "..."

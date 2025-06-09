@@ -1,8 +1,9 @@
 def plot_questions_per_week():
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    import seaborn as sns
     from pathlib import Path
+
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    import seaborn as sns
 
     cleaned_dir = Path(__file__).resolve().parents[1] / "data" / "cleaned"
     files = list(cleaned_dir.glob("*.csv"))

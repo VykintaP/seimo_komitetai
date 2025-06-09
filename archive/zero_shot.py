@@ -1,9 +1,10 @@
-import pandas as pd
-from pathlib import Path
-from transformers import pipeline
-from deep_translator import GoogleTranslator
 import logging
 from functools import lru_cache
+from pathlib import Path
+
+import pandas as pd
+from deep_translator import GoogleTranslator
+from transformers import pipeline
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
@@ -26,7 +27,7 @@ topics_en = [
     "Infrastructure and Transport",
     "Technology and Digital policy",
     "Labour and Employment",
-    "Public administration reform"
+    "Public administration reform",
 ]
 
 topics_lt = [
@@ -46,10 +47,11 @@ topics_lt = [
     "Infrastruktūra ir transportas",
     "Technologijos ir skaitmeninė politika",
     "Darbo rinka",
-    "Viešojo valdymo reforma"
+    "Viešojo valdymo reforma",
 ]
 
 topic_dict = dict(zip(topics_en, topics_lt))
+
 
 @lru_cache(maxsize=2048)
 def translate_lt_to_en(text):
@@ -59,6 +61,7 @@ def translate_lt_to_en(text):
         logging.warning(f"LT>EN vertimas nepavyko: {e}")
         return text
 
+
 def classify_question(question_lt):
     q_en = translate_lt_to_en(question_lt)
     result = classifier(q_en, candidate_labels=topics_en)
@@ -67,12 +70,14 @@ def classify_question(question_lt):
     best_label_lt = topic_dict.get(best_label_en, "Nežinoma tema")
     return best_label_lt, score, q_en
 
+
 def classify_dataframe(df):
     df = df[df["question"].notnull()].copy()
-    df[["predicted_topic_lt", "confidence_score", "translated_question"]] = df["question"].apply(
-        lambda q: pd.Series(classify_question(q))
-    )
+    df[["predicted_topic_lt", "confidence_score", "translated_question"]] = df[
+        "question"
+    ].apply(lambda q: pd.Series(classify_question(q)))
     return df
+
 
 def classify_all_files(input_dir, output_dir):
     input_dir = Path(input_dir)
@@ -85,7 +90,9 @@ def classify_all_files(input_dir, output_dir):
     for file in files:
         df = pd.read_csv(file)
         if "question" not in df.columns:
-            logging.warning(f"'question' stulpelis nerastas faile {file.name} – praleidžiama")
+            logging.warning(
+                f"'question' stulpelis nerastas faile {file.name} – praleidžiama"
+            )
             continue
         if "committee" not in df.columns:
             df["committee"] = file.stem

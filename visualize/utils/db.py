@@ -1,8 +1,11 @@
 # visualize/utils/db.py
 
 import sqlite3
+
 import pandas as pd
+
 from config import DB_PATH
+
 
 def query_df(sql: str, params: tuple = ()) -> pd.DataFrame:
     """

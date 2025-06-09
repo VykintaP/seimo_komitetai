@@ -1,35 +1,45 @@
-from dash import html, dcc
+"""Komitetų filtrų Dash komponentai"""
+
 import pandas as pd
-from visualize.utils.db import query_df
+from dash import dcc, html
+
 from config import TABLE_CLASSIFIED
+from visualize.utils.db import query_df
 
 
 def get_filters():
+    """Grąžina filtrų komponentus - komitetų sąrašą ir datų intervalą"""
 
     committee_options = get_committee_options()
 
-    return html.Div(className="grid-filters", children=[
-        dcc.Dropdown(
-            id="committee-filter",
-            options=committee_options,
-            placeholder="Pasirink komitetą (-us)",
-            multi=True,
-            clearable=True
-        ),
-        dcc.DatePickerRange(
-            id="date-filter",
-            display_format="YYYY-MM-DD",
-            start_date_placeholder_text="Data nuo",
-            end_date_placeholder_text="Data iki",
-            minimum_nights=0
-        )
-    ])
+    return html.Div(
+        className="grid-filters",
+        children=[
+            dcc.Dropdown(
+                id="committee-filter",
+                options=committee_options,
+                placeholder="Pasirink komitetą (-us)",
+                multi=True,
+                clearable=True,
+            ),
+            dcc.DatePickerRange(
+                id="date-filter",
+                display_format="YYYY-MM-DD",
+                start_date_placeholder_text="Data nuo",
+                end_date_placeholder_text="Data iki",
+                minimum_nights=0,
+            ),
+        ],
+    )
 
 
 def get_committee_options() -> list[dict]:
+    """Grąžina unikalių komitetų sąrašą iš DB"""
 
     try:
-        df = query_df(f"SELECT DISTINCT komitetas FROM {TABLE_CLASSIFIED} ORDER BY komitetas")
+        df = query_df(
+            f"SELECT DISTINCT komitetas FROM {TABLE_CLASSIFIED} ORDER BY komitetas"
+        )
         komitetai = df["komitetas"].dropna().unique()
         return [{"label": kom, "value": kom} for kom in komitetai]
     except Exception as e:
@@ -38,6 +48,7 @@ def get_committee_options() -> list[dict]:
 
 
 def filter_df_by_filters(df: pd.DataFrame, filters: dict) -> pd.DataFrame:
+    """Filtruoja duomenų rinkinį pagal pasirinktus filtrus"""
 
     # Data formatavimas
     if not pd.api.types.is_datetime64_any_dtype(df["data"]):

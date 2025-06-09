@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def filter_df_by_filters(df: pd.DataFrame, filters: dict) -> pd.DataFrame:
     if df.empty:
         return df

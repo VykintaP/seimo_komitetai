@@ -1,25 +1,24 @@
-from dash import Input, Output, html, callback, dash_table, dcc
 import plotly.express as px
-from visualize.utils.db import query_df
+from dash import Input, Output, callback, dash_table, dcc, html
+
 from config import TABLE_CLASSIFIED
+from visualize.utils.db import query_df
 
 
-# 1) Callback, kai paspaudžiamas komitetas grafike
-@callback(
-    Output("selected-committee", "data"),
-    Input("committee-bar", "clickData")
-)
+# 1) Iškvietimas, kai paspaudžiamas komitetas grafike
+@callback(Output("selected-committee", "data"), Input("committee-bar", "clickData"))
 def store_selected_committee(clickData):
     if clickData:
-        return clickData['points'][0]['y']
+        return clickData["points"][0]["y"]
     return None
 
-# 2) Callback, kai pasikeičia pasirinktasis komitetas ar filtrai
+
+# 2) Iškvietimas, kai pasikeičia pasirinktasis komitetas ar filtrai
 @callback(
     Output("theme-by-committee", "children"),
     Input("selected-committee", "data"),
     Input("filters-store", "data"),
-    prevent_initial_call=True
+    prevent_initial_call=True,
 )
 def update_theme_chart(committee, filters):
     if not committee:
@@ -46,20 +45,25 @@ def update_theme_chart(committee, filters):
         x="Klausimų skaičius",
         y="Tema",
         orientation="h",
-        title=f"Temos komitete: {committee}"
+        title=f"Temos komitete: {committee}",
     )
     fig.update_traces(hovertemplate="%{y}: %{x} klausimų")
 
     klausimai_df = df[["data", "klausimas"]].copy()
 
-    return html.Div([
-        dcc.Graph(figure=fig),
-        html.H4(f"Klausimai komitete: {committee}", style={"marginTop": "20px"}),
-        dash_table.DataTable(
-            columns=[{"name": "Data", "id": "data"}, {"name": "Klausimas", "id": "klausimas"}],
-            data=klausimai_df.to_dict("records"),
-            page_size=15,
-            style_table={"overflowX": "auto"},
-            style_cell={"textAlign": "left"},
-        )
-    ])
+    return html.Div(
+        [
+            dcc.Graph(figure=fig),
+            html.H4(f"Klausimai komitete: {committee}", style={"marginTop": "20px"}),
+            dash_table.DataTable(
+                columns=[
+                    {"name": "Data", "id": "data"},
+                    {"name": "Klausimas", "id": "klausimas"},
+                ],
+                data=klausimai_df.to_dict("records"),
+                page_size=15,
+                style_table={"overflowX": "auto"},
+                style_cell={"textAlign": "left"},
+            ),
+        ]
+    )

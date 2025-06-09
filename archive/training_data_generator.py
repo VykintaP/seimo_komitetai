@@ -1,6 +1,9 @@
-from processing.cleaning_pipeline import clean_question
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
+
+from processing.cleaning_pipeline import clean_question
+
 
 def generate_training_data(input_dir: Path, output_path: Path):
     rows = []

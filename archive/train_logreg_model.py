@@ -1,11 +1,17 @@
+from pathlib import Path
+
+import joblib
+import matplotlib.pyplot as plt
 import pandas as pd
-from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
-import matplotlib.pyplot as plt
-import joblib
-from pathlib import Path
+from sklearn.metrics import (
+    ConfusionMatrixDisplay,
+    classification_report,
+    confusion_matrix,
+)
+from sklearn.model_selection import train_test_split
+
 
 def train_model(data_path: str = "data/training_data.csv", model_dir: str = "model"):
     df = pd.read_csv(data_path)
@@ -15,7 +21,9 @@ def train_model(data_path: str = "data/training_data.csv", model_dir: str = "mod
     X = vectorizer.fit_transform(df["question"])
     y = df["topic"]
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, stratify=y, random_state=42
+    )
 
     model = LogisticRegression(max_iter=1000, class_weight="balanced")
     model.fit(X_train, y_train)
@@ -26,7 +34,9 @@ def train_model(data_path: str = "data/training_data.csv", model_dir: str = "mod
     print(report)
 
     Path(model_dir).mkdir(parents=True, exist_ok=True)
-    report_df = pd.DataFrame(classification_report(y_test, y_pred, output_dict=True)).transpose()
+    report_df = pd.DataFrame(
+        classification_report(y_test, y_pred, output_dict=True)
+    ).transpose()
     report_df.to_csv(f"{model_dir}/classification_report.csv", float_format="%.3f")
     print(f"[INFO] Išsaugotas: {model_dir}/classification_report.csv")
 

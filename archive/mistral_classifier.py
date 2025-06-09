@@ -1,8 +1,9 @@
 import os
+
 os.environ["TRANSFORMERS_CACHE"] = "E:/hf_models_cache"
 
-from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 
 # "truksta"
 )
@@ -53,8 +54,9 @@ Atsakyk tik tema, be jokio paaiškinimo.
     return "Nežinoma"
 
 if __name__ == "__main__":
-    import pandas as pd
     from pathlib import Path
+
+    import pandas as pd
 
     cleaned_dir = Path("data/cleaned")
     classified_dir = Path("data/classified")

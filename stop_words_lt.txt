@@ -1,6 +1,7 @@
+# Stop žodžių lietuviškiems tekstams analizuoti sąrašas
 stop_words_manual = [
     "aptarimas", "aptariami", "aptarti",
-    "dėl", "dokumentas",
+    "dėl", "dokumentas", 
     "informacija", "ir",
     "klausimas", "klausimai",
     "komitetas", "komiteto",
@@ -19,7 +20,7 @@ stop_words_manual = [
 
     ]
 
-# Išsaugom kaip txt
+# Išsaugome žodžius į failą, rūšiuodami unikalius
 stopwords_path = Path("/mnt/data/stop_words_lt.txt")
 with stopwords_path.open("w", encoding="utf-8") as f:
     for word in sorted(set(stop_words_manual)):

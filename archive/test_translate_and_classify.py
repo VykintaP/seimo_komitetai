@@ -1,5 +1,7 @@
 import pandas as pd
-from archive.zero_shot import classify_question, classify_dataframe
+
+from archive.zero_shot import classify_dataframe, classify_question
+
 
 def test_classify_question_returns_valid_output():
     question = "Kaip bus reformuojamas sveikatos sektorius?"
@@ -9,6 +11,7 @@ def test_classify_question_returns_valid_output():
     assert isinstance(translated, str)
     assert 0.0 <= score <= 1.0
     assert len(topic) > 1
+
 
 def test_classify_dataframe_structure():
     df = pd.DataFrame({"question": ["Kokie pokyčiai švietimo srityje?"]})

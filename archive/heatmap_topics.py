@@ -1,18 +1,25 @@
-import plotly.graph_objects as go
 import pandas as pd
+import plotly.graph_objects as go
+
 
 def get_heatmap(df, selected_topic=None):
     if df.empty:
         return go.Figure()
 
-    pivot_table = df.pivot_table(index="komitetas", columns="tema", values="klausimas", aggfunc="count", fill_value=0)
+    pivot_table = df.pivot_table(
+        index="komitetas",
+        columns="tema",
+        values="klausimas",
+        aggfunc="count",
+        fill_value=0,
+    )
 
     fig = go.Figure(
         data=go.Heatmap(
             z=pivot_table.values,
             x=pivot_table.columns,
             y=pivot_table.index,
-            colorscale="Reds"
+            colorscale="Reds",
         )
     )
 

@@ -14,5 +14,5 @@ TOPIC_LABELS = {
     "Justice": "Teisingumas",
     "Foreign policy": "Užsienio politika",
     "Land and food farming, rural development and fisheries": "Žemės ir maisto ūkis, kaimo plėtra ir žuvininkystė",
-    "Neatpažinta tema": "Neatpažinta tema"
+    "Neatpažinta tema": "Neatpažinta tema",
 }
