@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-/* =================== Bendrai =================== */
+/* Bendra struktūra, fonas, šriftai */
 body {
   font-family: 'Open Sans', sans-serif;
   background-color: #F4F6F9;
@@ -16,26 +16,33 @@ body {
   color: #2C3E50;
 }
 
+/* H1 antraštė – pagrindinė */
 h1 {
   font-size: 40px;
   font-weight: 700;
   margin-bottom: 0rem;
 }
 
+/* H2, H3 – poantraštės */
 h2, h3 {
   font-size: 30px;
   font-weight: 600;
 }
 
+/* Antraštėms naudojamas antrinis šriftas */
 h1, h2, h3 {
   font-family: 'IBM Plex Sans', sans-serif;
   color: #1A2E4F;
 }
+
+/* Paaantraštė virš grafiko */
 .subtitle {
   font-size: 25px;
   color: #5C6F84;
   margin-bottom: 0.5rem;
 }
+
+/* Nuoroda į „Apie“ puslapį */
 .about-link {
   font-size: 20px;
   color: #2C3E50;
@@ -45,13 +52,13 @@ h1, h2, h3 {
   display: inline-block;
 }
 
+/* Nuorodos užvedimo būsena */
 .about-link:hover {
   color: #1F77B4;
   border-bottom-color: #1F77B4;
 }
 
-
-/* ===================  Grafikai =================== */
+/* Grafiko kortelių išvaizda */
 .card,
 .chart-half,
 .chart.half,
@@ -63,23 +70,26 @@ h1, h2, h3 {
   box-shadow: none;
   margin-bottom: 1rem;
 }
+
+/* Grafiko kortelės atstumas nuo kitų */
 .chart-card {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
-/* =================== KPIs =================== */
+/* KPI zona: išdėstymas ir fonas */
 .kpi-zone {
   display: flex;
   gap: 2rem;
   margin: 0rem 0 2rem;
   flex-wrap: wrap;
   justify-content: space-between;
-  background-color: FFFFFF;
+  background-color: #FFFFFF;
   padding: 1.5rem 1rem;
   border-radius: 8px;
 }
 
+/* KPI kortelė: dėžutės stilius */
 .kpi-box {
   flex: 1 1 280px;
   display: flex;
@@ -87,12 +97,13 @@ h1, h2, h3 {
   justify-content: center;
   text-align: center;
   background: white;
-  padding: 2rem 2.5rem; 
+  padding: 2rem 2.5rem;
   border-radius: 12px;
   border: 1px solid #D1D5DB;
   box-shadow: none;
 }
 
+/* KPI pavadinimo formatas */
 .kpi-box h4 {
   font-size: 20px;
   margin-bottom: 0.5rem;
@@ -101,6 +112,8 @@ h1, h2, h3 {
   align-items: center;
   text-align: center;
 }
+
+/* KPI reikšmės formatas */
 .kpi-box p {
   font-size: 25px;
   font-weight: bold;
@@ -108,13 +121,13 @@ h1, h2, h3 {
   margin: 0;
 }
 
+/* KPI ikonos dydis */
 .kpi-icon {
   font-size: 26px;
   margin-bottom: 0.3rem;
 }
 
-
-/* =================== Dropdowns ir datos pasirinkimas =================== */
+/* Dropdown ir datos lauko bendras stilius */
 .filter-dropdown,
 .date-picker-range {
   min-width: 280px;
@@ -132,7 +145,7 @@ h1, h2, h3 {
   cursor: pointer;
 }
 
-/* Datos pasirinkimo */
+/* DatePicker – laukelio išdėstymas */
 .DateRangePickerInput {
   display: flex;
   align-items: center;
@@ -144,6 +157,7 @@ h1, h2, h3 {
   height: auto;
 }
 
+/* Datos įvedimo laukelio stilius */
 .DateInput {
   padding: 0;
   font-family: 'Open Sans', sans-serif;
@@ -154,6 +168,7 @@ h1, h2, h3 {
   background-color: transparent;
 }
 
+/* Įvesties vidinis laukelis */
 .DateInput_input {
   padding: 6px 10px;
   font-size: 14px;
@@ -167,11 +182,13 @@ h1, h2, h3 {
   background-color: white;
 }
 
+/* Fokusavimo būsena datos lauke */
 .DateInput_input__focused {
   border: none
   box-shadow: none !important;
 }
 
+/* Rodyklė tarp datų įvedimo laukų */
 .DateRangePickerInput_arrow {
   margin: 0 !important;
   padding: 0 !important;
@@ -179,6 +196,8 @@ h1, h2, h3 {
   color: #999;
   font-size: 16px;
 }
+
+/* Viršutinių filtrų (data + dropdown) juosta */
 .top-filters {
   display: flex;
   gap: 1rem;
@@ -187,7 +206,7 @@ h1, h2, h3 {
   margin-bottom: 1.5rem;
 }
 
-
+/* Select valdiklio rėmelis ir išvaizda */
 .Select__control {
   min-height: 42px !important;
   border-radius: 8px !important;
@@ -198,19 +217,20 @@ h1, h2, h3 {
   box-sizing: border-box;
 }
 
+/* Select elementas be papildomo rėmelio */
 .Select {
   border: none !important;
   box-shadow: none !important;
 }
 
+/* Pasirinkta reikšmė Select'e */
 .Select__single-value {
   font-family: 'Open Sans', sans-serif;
   font-size: 15px;
   color: #2C3E50;
   padding-left: 10px;
 }
-
-/* =================== Antraštė =================== */
+/* Antraštės viršuje – pavadinimas ir fonas */
 .dashboard-header {
   text-align: center;
   padding: 1.2rem 1rem 1rem;
@@ -223,8 +243,7 @@ h1, h2, h3 {
   font-size: 20px;
 }
 
-
-/* =================== Išdėstymas =================== */
+/* Tinklelio išdėstymas (grafikams, filtrams) */
 .grid-filters,
 .responsive-grid {
   display: grid;
@@ -232,6 +251,7 @@ h1, h2, h3 {
   gap: 1rem;
 }
 
+/* Grafikai vienoje eilėje (horizontaliai) */
 .chart-row {
   display: flex;
   flex-direction: row;
@@ -241,6 +261,7 @@ h1, h2, h3 {
   padding: 1rem 1.5rem;
 }
 
+/* Pagrindinė dashboard struktūra */
 .dashboard-content {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -248,20 +269,26 @@ h1, h2, h3 {
   padding: 1.5rem;
 }
 
+/* Fiksuotos kortelės – vertikalus išdėstymas */
 .card-fixed {
   display: flex;
   flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
 }
+
+/* Bendra kortelės struktūra */
 .card {
   overflow: hidden;
   position: relative;
 }
+
+/* Maksimalus grafiko aukštis – SVG viduje */
 .js-plotly-plot .main-svg {
   max-height: 100%;
 }
 
+/* Lankstus dviejų stulpelių tinklelis */
 .display-grid-two {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -269,22 +296,25 @@ h1, h2, h3 {
   margin-bottom: 2rem;
   width: 100%;
 }
+
+/* Kortelės horizontalinis scroll */
 .card {
     overflow-x: auto;
 }
 
-/* =================== Lentelė =================== */
+/* Lentelės konteineris – scroll ir aukščio limitas */
 .dash-table-container {
   overflow-x: auto;
   max-height: 400px;
   overflow-y: auto;
 }
 
+/* Lentelės ląstelių hover spalva */
 .dash-table-container .dash-cell:hover {
   background-color: #F4D03F !important;
 }
 
-/* =================== Kortelių skirtukai =================== */
+/* Kortelių skirtukai – neaktyvus */
 .tab {
   border: 1px solid #DDD;
   padding: 0.5rem 1rem;
@@ -293,13 +323,14 @@ h1, h2, h3 {
   color: #2C3E50;
 }
 
+/* Kortelių skirtukas – aktyvus */
 .tab--selected {
   background-color: #FFFFFF;
   border-bottom: none;
   color: #C0392B;
 }
 
-/* =================== Nuorodos =================== */
+/* Mygtukas „rodyti“ – nuoroda */
 .show-button {
   background-color: #F5F7FA;
   border: 1px solid #DDD;
@@ -310,6 +341,7 @@ h1, h2, h3 {
   font-weight: 500;
 }
 
+/* Nuoroda į išorinį projektą */
 .project-link {
   color: #2C3E50;
   font-weight: 500;
@@ -317,9 +349,13 @@ h1, h2, h3 {
   border-bottom: 1px dashed #2C3E50;
   transition: color 0.2s ease;
 }
+
+/* Užvedus – nuoroda raudona */
 .project-link:hover {
   color: #C0392B;
 }
+
+/* Nuoroda atgal (po lentelės) */
 .back-link {
     display: inline-block;
     margin-top: 2rem;
@@ -331,7 +367,8 @@ h1, h2, h3 {
 .back-link:hover {
     text-decoration: underline;
 }
-/* =================== Kita =================== */
+
+/* Pagrindinė dashboard antraštė */
 .dashboard-title {
   text-align: center;
   font-size: 45px;
@@ -341,6 +378,7 @@ h1, h2, h3 {
   color: #333;
 }
 
+/* Filtrų valdiklių juosta */
 .filter-controls {
   display: flex;
   justify-content: flex-start;
@@ -350,12 +388,16 @@ h1, h2, h3 {
   padding: 0 1.5rem;
   margin-top: 1rem;
 }
+
+/* Filtrų elementų atstumai */
 .filter-controls > * {
   margin-right: 1rem;
 }
 .filter-controls > *:last-child {
   margin-right: 0;
 }
+
+/* Grid – skirtingo dydžio grafikai */
 .grid-span-5 {
   grid-column: span 5;
 }
@@ -369,6 +411,8 @@ h1, h2, h3 {
 .grid-span-12 {
   grid-column: span 12;
 }
+
+/* Mobilus rodymas – mažesni stulpeliai */
 @media (max-width: 1200px) {
   .dashboard-content {
     grid-template-columns: repeat(6, 1fr);
@@ -376,31 +420,37 @@ h1, h2, h3 {
 }
 
 @media (max-width: 768px) {
+  /* Mobilus: vienas stulpelis ir mažesni tarpai */
   .dashboard-content {
     grid-template-columns: 1fr;
     gap: 1rem;
     padding: 1rem;
   }
 
+  /* Grafikai – vertikalus išdėstymas */
   .chart-row {
     flex-direction: column;
     gap: 1rem;
   }
 
+  /* Grafiko plotis – pilnas */
   .chart-half {
     max-width: 100%;
   }
 
+  /* Grid elementų plotis – per visą eilutę */
   .grid-span-6,
   .grid-span-12 {
     grid-column: span 12;
   }
 
+  /* Mobilus – vienas stulpelis */
   .display-grid-two {
     grid-template-columns: 1fr;
   }
 }
 
+/* Datos pasirinkimo stiliai – pašalina rėmelius, fonus */
 div.DateRangePicker {
   border: none !important;
   box-shadow: none !important;
@@ -409,7 +459,7 @@ div.DateRangePicker {
   margin: 0 !important;
 }
 
-
+/* Datos įvedimo apvalkalas */
 div.DateRangePickerInput {
   border: none !important;
   box-shadow: none !important;
@@ -420,6 +470,7 @@ div.DateRangePickerInput {
   gap: 0px !important;
 }
 
+/* Datos įvedimo lauko stilizavimas */
 div.DateInput {
   border: none !important;
   background-color: transparent !important;
@@ -428,6 +479,7 @@ div.DateInput {
   box-shadow: none !important;
 }
 
+/* Datos įvedimo laukelio vidus */
 input.DateInput_input {
   border: 1px solid #D1D5DB !important;
   border-radius: 6px !important;
@@ -442,12 +494,14 @@ input.DateInput_input {
   text-align: center !important;
 }
 
+/* Fokusavimo būsena – mėlynas rėmelis */
 input.DateInput_input__focused {
   border: 1px solid #1F77B4 !important;
   box-shadow: none !important;
   outline: none !important;
 }
 
+/* Reset mygtukas šalia datos */
 .reset-button {
   height: 38px;
   padding: 6px 10px;
@@ -469,12 +523,14 @@ input.DateInput_input__focused {
   background-color: #f0f0f0;
 }
 
-/* Užtikrina vieną eilutę */
+/* Filtrų eilutė – vienoje linijoje */
 .top-filters {
   display: flex;
   align-items: center;
   gap: 10px;
 }
+
+/* Aktyvių filtrų juosta – virš lentelės */
 .active-filters-bar {
   display: flex;
   align-items: center;
@@ -483,6 +539,7 @@ input.DateInput_input__focused {
   margin-top: 0.5rem;
 }
 
+/* Aktyvūs filtrai – ženkliukai */
 .active-filters {
   display: flex;
   flex-wrap: wrap;
@@ -490,20 +547,7 @@ input.DateInput_input__focused {
   font-size: 14px;
 }
 
-.filter-badge {
-  background-color: #E5F6FD;
-  color: #0077B6;
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-weight: 500;
-  font-family: 'Open Sans', sans-serif;
-}
-
-.no-filters {
-  color: #999;
-  font-size: 14px;
-  font-style: italic;
-}
+/* Vienas filtro ženkliukas (dvi versijos) */
 .filter-badge {
   background-color: #E6F0FF;
   color: #333;
@@ -514,54 +558,65 @@ input.DateInput_input__focused {
   display: inline-block;
 }
 
-/* === Apie projektą info sritis === */
+/* Kai nėra aktyvių filtrų */
+.no-filters {
+  color: #999;
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* Apie projektą – turinio blokas */
 .info-container {
-    max-width: 840px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-    font-size: 20px;
-    line-height: 1.7;
-    color: #2C3E50;
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-size: 20px;
+  line-height: 1.7;
+  color: #2C3E50;
 }
 
 .info-container h2 {
-    font-size: 28px;
-    margin-bottom: 1rem;
-    font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 28px;
+  margin-bottom: 1rem;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .info-container h3 {
-    font-size: 20px;
-    margin-top: 2rem;
-    margin-bottom: 0.5rem;
-    font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 20px;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .info-container p {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .info-container ul {
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .info-container li {
-    margin-bottom: 0.4rem;
+  margin-bottom: 0.4rem;
 }
 
 .info-container a {
-    color: #1F77B4;
-    text-decoration: none;
+  color: #1F77B4;
+  text-decoration: none;
 }
 
 .info-container a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
+
+/* Plotly grafiko scroll kai per platus */
 .card .dash-graph {
   overflow-x: auto;
   width: 100%;
 }
+
+/* Minimalus Plotly grafiko plotis */
 .js-plotly-plot .main-svg {
   min-width: 700px;
 }

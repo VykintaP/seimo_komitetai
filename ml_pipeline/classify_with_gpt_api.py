@@ -1,17 +1,20 @@
+import re
+from collections import Counter
+from pathlib import Path
+
+import pandas as pd
 from deep_translator import GoogleTranslator
 from dotenv import load_dotenv
-import re
-import pandas as pd
-from pathlib import Path
 from openai import OpenAI
-from collections import Counter
 
 load_dotenv()
 import os
+
+# Debuginimui OpenAI API rakto patikrinimas 
 print("[DEBUG] API KEY yra:", os.getenv("OPENAI_API_KEY")[:8], "...")
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-
+# Neatpažintų subtemos/temos saugojimui
 unmapped_subtopics = []
 unmapped_details = []
 unmapped_subtopics_counter = Counter()
@@ -33,9 +36,10 @@ TOPICS = [
     "Švietimas, mokslas ir sportas",
     "Teisingumas",
     "Užsienio politika",
-    "Žemės ir maisto ūkis, kaimo plėtra ir žuvininkystė"
+    "Žemės ir maisto ūkis, kaimo plėtra ir žuvininkystė",
 ]
 
+# Temų vertimai į anglų kalbą
 EN_TOPICS = [
     "State governance, regional policy and public administration",
     "Environment, forests and climate change",
@@ -51,16 +55,16 @@ EN_TOPICS = [
     "Education, science and sport",
     "Justice",
     "Foreign policy",
-    "Land and food farming, rural development and fisheries"
+    "Land and food farming, rural development and fisheries",
 ]
 
-# Automatiškai sugeneruoti subtemas ir jų žemėlapį
+
 def extract_subtopics(topics: list[str]) -> tuple[list[str], dict[str, str]]:
+    """Iš temų generuoja subtemas ir jų žemėlapį"""
     subtopics = set()
     subtopic_map = {}
 
     for topic in topics:
-
         fragments = topic.split(",")
         for frag in fragments:
             frag = frag.strip()
@@ -78,12 +82,14 @@ def extract_subtopics(topics: list[str]) -> tuple[list[str], dict[str, str]]:
 
     return sorted(subtopics), subtopic_map
 
+
 EN_SUBTOPICS, SUBTOPIC_TO_TOPIC = extract_subtopics(EN_TOPICS)
 
-# klasifikavimas
+
 def classify_with_api(question: str) -> str:
+    """Klasifikuoja klausimą naudojant OpenAI API"""
     try:
-        translated_q = GoogleTranslator(source='lt', target='en').translate(question)
+        translated_q = GoogleTranslator(source="lt", target="en").translate(question)
     except Exception as e:
         print(f"Vertimo į EN klaida: {e}")
         return "Vertimo klaida"
@@ -116,8 +122,9 @@ def classify_with_api(question: str) -> str:
         print(f"API užklausos klaida: {e}")
         return "API užklausos klaida"
 
-    # print("GPT atsakymas:", response["choices"][0]["message"]["content"].strip())
-    answer_subtopic = response.choices[0].message.content.strip().split("\n")[-1].strip()
+    answer_subtopic = (
+        response.choices[0].message.content.strip().split("\n")[-1].strip()
+    )
     answer_subtopic = answer_subtopic.strip('"')
     if not answer_subtopic:
         print(f"[WARNING] GPT atsakymas tuščias – nėra subtemos")
@@ -131,7 +138,7 @@ def classify_with_api(question: str) -> str:
     if normalized_answer in SUBTOPIC_TO_TOPIC:
         return SUBTOPIC_TO_TOPIC[normalized_answer]
 
-    # 2. Tikrinam ar tai pilnas temos pavadinimas
+    # 2. Tikrinam ar tai pilnas temos pavadinimas  
     for i, topic in enumerate(EN_TOPICS):
         if normalized_answer == topic.lower():
             return TOPICS[i]
@@ -146,11 +153,13 @@ def classify_with_api(question: str) -> str:
     # 4. Tikrinam ar tai pilna tema, bet modelis ją grąžino vietoj subtemos
     for i, topic in enumerate(EN_TOPICS):
         if answer_subtopic in topic.lower():
-            print(f"[WARNING] Subtema neatpažinta, bet panašu į temą: \"{answer_subtopic}\" → {TOPICS[i]}")
+            print(
+                f'[WARNING] Subtema neatpažinta, bet panašu į temą: "{answer_subtopic}" → {TOPICS[i]}'
+            )
             return TOPICS[i]
 
     # Jei niekas netinka – grąžinam kaip neatpažintą
-    print(f"[WARNING] Neatpažinta subtema ar tema: \"{answer_subtopic}\"")
+    print(f'[WARNING] Neatpažinta subtema ar tema: "{answer_subtopic}"')
     unmapped_subtopics.append(answer_subtopic)
     unmapped_subtopics_counter[normalized_answer] += 1
     unmapped_details.append((question, answer_subtopic))
@@ -168,8 +177,6 @@ def classify_with_api(question: str) -> str:
     #     return "Neatpažinta tema"
 
     return SUBTOPIC_TO_TOPIC[answer_subtopic]
-
-
 
 
 # def retry_with_topics(translated_q: str, explain: bool = False) -> str:
@@ -209,9 +216,10 @@ def classify_with_api(question: str) -> str:
 
 
 def safe_classify(question: str) -> str:
+    """Saugus klausimo klasifikavimas"""
     try:
         tema = classify_with_api(question)
-        quality_counter[tema] += 1  # ← BŪTINA
+        quality_counter[tema] += 1  # Kiekvienam atsakymui skaičiuojama statistika
         if tema == "Neatpažinta tema":
             unmapped_details.append((question, "Neatpažinta tema"))
         return tema
@@ -220,8 +228,10 @@ def safe_classify(question: str) -> str:
         return "Klasifikavimo klaida"
 
 
-
-def classify_all_files_with_gpt(cleaned_dir: Path, classified_dir: Path, base_dir: Path):
+def classify_all_files_with_gpt(
+        cleaned_dir: Path, classified_dir: Path, base_dir: Path
+):
+    """Klasifikuoja visus CSV failus iš nurodyto katalogo"""
     classified_dir.mkdir(parents=True, exist_ok=True)
     files = list(cleaned_dir.glob("*.csv"))
     print(f"Rasti {len(files)} failai '{cleaned_dir}'")
@@ -245,30 +255,31 @@ def classify_all_files_with_gpt(cleaned_dir: Path, classified_dir: Path, base_di
 
         print(f"Išsaugota: {output_path}")
 
-    # --- Rezultatų įrašymas po visų failų ---
+    # Rezultatų įrašymas
     diagnostics_dir = base_dir / "data" / "diagnostics"
     diagnostics_dir.mkdir(parents=True, exist_ok=True)
 
     # Klasifikavimo kokybės suvestinė
     out_path = diagnostics_dir / "classification_quality.csv"
-    pd.DataFrame.from_dict(quality_counter, orient="index", columns=["count"]) \
-        .sort_values("count", ascending=False) \
-        .to_csv(out_path)
+    pd.DataFrame.from_dict(
+        quality_counter, orient="index", columns=["count"]
+    ).sort_values("count", ascending=False).to_csv(out_path)
     print(f"Klasifikavimo kokybės santrauka išsaugota: {out_path}")
 
     # Neatpažintų klausimų sąrašas
     if unmapped_details:
         details_path = diagnostics_dir / "unmapped_subtopics.csv"
-        pd.DataFrame(unmapped_details, columns=["question", "model_output"]) \
-            .to_csv(details_path, index=False)
+        pd.DataFrame(unmapped_details, columns=["question", "model_output"]).to_csv(
+            details_path, index=False
+        )
         print(f"Neatpažintų klausimų sąrašas išsaugotas: {details_path}")
 
     # Neatpažintų reikšmių santrauka
     if unmapped_subtopics_counter:
         summary_path = diagnostics_dir / "unmapped_subtopics_summary.csv"
-        pd.DataFrame.from_dict(unmapped_subtopics_counter, orient="index", columns=["count"]) \
-            .sort_values("count", ascending=False) \
-            .to_csv(summary_path)
+        pd.DataFrame.from_dict(
+            unmapped_subtopics_counter, orient="index", columns=["count"]
+        ).sort_values("count", ascending=False).to_csv(summary_path)
         print(f"Neatpažintų reikšmių santrauka išsaugota: {summary_path}")
 
 
@@ -277,4 +288,3 @@ if __name__ == "__main__":
     cleaned = base_dir / "data" / "cleaned"
     classified = base_dir / "data" / "classified"
     classify_all_files_with_gpt(cleaned, classified, base_dir)
-

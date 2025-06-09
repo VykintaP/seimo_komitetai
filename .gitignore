@@ -1,34 +1,42 @@
+# Aplinkos kintamųjų failai
 .env
 *.env
 config.py
 .idea/
 
+# Virtualios aplinkos katalogas
 .venv/
 
+# Python kompiliuoti failai
 *.pyc
 *.pyo
 *.pyd
 __pycache__/
 
+# Duomenų bazių failai
 *.db
 *.sqlite3
 classified_questions.db
 
+# Duomenų katalogai
 data/raw/
 data/cleaned/
 data/classified/
 
+# Log ir testavimo failai
 *.log
 *.coverage
 nosetests.xml
 coverage.xml
 *.hypothesis/
 
+# IDE ir redaktorių failai
 .vscode/
 .idea/
 *.swp
 *.swo
 
+# Python pakavimo ir distribucijos failai
 *.egg-info/
 *.eggs/
 dist/

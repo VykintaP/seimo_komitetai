@@ -1,22 +1,19 @@
-import requests
-import pandas as pd
-from pathlib import Path
-import time
-from deep_translator import GoogleTranslator
-from config import DB_PATH
-from collections import Counter
 import sqlite3
+import time
+from collections import Counter
+from pathlib import Path
 
+import pandas as pd
+import requests
+from deep_translator import GoogleTranslator
+
+from config import DB_PATH
 
 conn = sqlite3.connect(DB_PATH)
 # TOKENAS
 
 
-# autentifikacija
-headers = {
-    "Authorization": f"Bearer {HF_TOKEN}",
-    "Content-Type": "application/json"
-}
+headers = {"Authorization": f"Bearer {HF_TOKEN}", "Content-Type": "application/json"}
 
 # Valstybės veiklos sritys pagal LR Strateginio valdymo įstatymo 3 str. 26 dalį
 TOPICS = [
@@ -34,7 +31,7 @@ TOPICS = [
     "Švietimas, mokslas ir sportas",
     "Teisingumas",
     "Užsienio politika",
-    "Žemės ir maisto ūkis, kaimo plėtra ir žuvininkystė"
+    "Žemės ir maisto ūkis, kaimo plėtra ir žuvininkystė",
 ]
 
 EN_TOPICS = [
@@ -52,10 +49,11 @@ EN_TOPICS = [
     "Education, science and sport",
     "Justice",
     "Foreign policy",
-    "Land and food farming, rural development and fisheries"
+    "Land and food farming, rural development and fisheries",
 ]
 
-# Automatiškai sugeneruoti subtemas ir jų žemėlapį
+
+# Automatiškai sugeneruoti subtemas
 def extract_subtopics(topics: list[str]) -> tuple[list[str], dict[str, str]]:
     subtopics = set()
     subtopic_map = {}
@@ -80,8 +78,8 @@ def extract_subtopics(topics: list[str]) -> tuple[list[str], dict[str, str]]:
     return sorted(subtopics), subtopic_map
 
 
-
 EN_SUBTOPICS, SUBTOPIC_TO_TOPIC = extract_subtopics(EN_TOPICS)
+
 
 # grąžina į temas atgal
 def generate_subtopic_map(topics: list[str]) -> dict:
@@ -96,13 +94,14 @@ def generate_subtopic_map(topics: list[str]) -> dict:
 
 unmapped_subtopics = []
 
+
 # klasifikavimas
 def classify_with_api(question: str) -> str:
     if not is_question_informative(question):
         return "Nėra"
 
     try:
-        translated_q = GoogleTranslator(source='lt', target='en').translate(question)
+        translated_q = GoogleTranslator(source="lt", target="en").translate(question)
     except Exception as e:
         print(f"Vertimo į EN klaida: {e}")
         return "Vertimo klaida"
@@ -125,7 +124,9 @@ def classify_with_api(question: str) -> str:
     """
 
     try:
-        response = requests.post(API_URL, headers=headers, json={"inputs": prompt}, timeout=10)
+        response = requests.post(
+            API_URL, headers=headers, json={"inputs": prompt}, timeout=10
+        )
         time.sleep(0.5)
         if response.status_code != 200:
             print(f"API klaida: {response.status_code}, {response.text}")
@@ -141,8 +142,7 @@ def classify_with_api(question: str) -> str:
 
     answer_subtopic = result.split("\n")[-1].strip().lower()
 
-
-    # Bandome dar kartą naudodami jei nesuklasifikuoja pirmu bandimu
+    # Bandome dar kartą jei nesuklasifikuoja pirmu bandimu
     if answer_subtopic not in SUBTOPIC_TO_TOPIC:
         print(f"[WARNING] Neatpažinta subtema: {answer_subtopic}")
 
@@ -159,12 +159,14 @@ def classify_with_api(question: str) -> str:
 
     return SUBTOPIC_TO_TOPIC[answer_subtopic]
 
+
 print(f"[WARNING] Neatpažinta subtema: {answer_subtopic}")
 
 
 def retry_with_topics(translated_q: str, explain: bool = False) -> str:
     topic_str = "\n".join(EN_TOPICS)
-    prompt = f"""
+    prompt = (
+        f"""
     Classify the following policy question into one of the topics listed below. Choose only one and respond with the topic name, no explanation:
 
     {topic_str}
@@ -172,7 +174,9 @@ def retry_with_topics(translated_q: str, explain: bool = False) -> str:
     Question: {translated_q}
 
     Topic:
-    """ if not explain else f"""
+    """
+        if not explain
+        else f"""
     We were not able to classify the question earlier. Please try again.
 
     Classify the following policy question into one of the topics listed below. Choose only one and respond with the topic name:
@@ -182,8 +186,11 @@ def retry_with_topics(translated_q: str, explain: bool = False) -> str:
     Question: {translated_q}
     Topic:
     """
+    )
     try:
-        response = requests.post(API_URL, headers=headers, json={"inputs": prompt}, timeout=10)
+        response = requests.post(
+            API_URL, headers=headers, json={"inputs": prompt}, timeout=10
+        )
         time.sleep(0.5)
         if response.status_code != 200:
             print(f"[RETRY] API klaida: {response.status_code}")
@@ -237,15 +244,17 @@ def classify_all_files_with_mistral(cleaned_dir: Path, classified_dir: Path):
         diagnostics_dir = base_dir / "data" / "diagnostics"
         diagnostics_dir.mkdir(parents=True, exist_ok=True)
         out_path = diagnostics_dir / "classification_quality.csv"
-        pd.DataFrame.from_dict(quality_counter, orient="index", columns=["count"]) \
-            .sort_values("count", ascending=False) \
-            .to_csv(out_path)
+        pd.DataFrame.from_dict(
+            quality_counter, orient="index", columns=["count"]
+        ).sort_values("count", ascending=False).to_csv(out_path)
         print(f"Klasifikavimo kokybės santrauka išsaugota: {out_path}")
 
     if unmapped_subtopics:
         diagnostics_dir = base_dir / "data" / "diagnostics"
         diagnostics_dir.mkdir(parents=True, exist_ok=True)
-        pd.Series(unmapped_subtopics).value_counts().to_csv(diagnostics_dir / "unmapped_subtopics.csv")
+        pd.Series(unmapped_subtopics).value_counts().to_csv(
+            diagnostics_dir / "unmapped_subtopics.csv"
+        )
 
 
 if __name__ == "__main__":

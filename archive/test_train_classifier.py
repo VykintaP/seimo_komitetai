@@ -1,10 +1,12 @@
-import pandas as pd
-from sklearn.linear_model import LogisticRegression
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.model_selection import train_test_split
-import tempfile
-import joblib
 import os
+import tempfile
+
+import joblib
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+
 
 def test_train_model_pipeline():
     data = {
@@ -14,7 +16,7 @@ def test_train_model_pipeline():
             "Kokie sprendimai dėl aplinkosaugos?",
             "Kaip mažinamas taršos lygis miestuose?",
             "Kaip veikia Europos Sąjungos fondai?",
-            "Kokios yra ES paramos galimybės?"
+            "Kokios yra ES paramos galimybės?",
         ],
         "topic": [
             "Ekonomika",
@@ -22,8 +24,8 @@ def test_train_model_pipeline():
             "Aplinkosauga",
             "Aplinkosauga",
             "Europos Sąjunga",
-            "Europos Sąjunga"
-        ]
+            "Europos Sąjunga",
+        ],
     }
     df = pd.DataFrame(data)
     vectorizer = TfidfVectorizer()
@@ -31,7 +33,9 @@ def test_train_model_pipeline():
     y = df["topic"]
 
     # Pakeista čia: test_size=0.5 vietoj default (0.25)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, test_size=0.5, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, stratify=y, test_size=0.5, random_state=42
+    )
     model = LogisticRegression(max_iter=1000)
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)

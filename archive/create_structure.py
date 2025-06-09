@@ -1,21 +1,10 @@
 import os
 from pathlib import Path
 
-# 1. Išvardiname visus reikiamus katalogus
-#    Sukursime tik šią struktūrą:
-#    visualize/
-#      components/
-#      callbacks/
-#    assets/
-directories = [
-    "visualize",
-    "visualize/components",
-    "visualize/callbacks",
-    "assets"
-]
+# Reikiami katalogai
 
-# 2. Išvardiname visus reikiamus failus su jų keliais
-#    Jei jie neegzistuoja, sukursime tuščius modulius/failus.
+directories = ["visualize", "visualize/components", "visualize/callbacks", "assets"]
+
 files = [
     "visualize/layout.py",
     "visualize/components/filters.py",
@@ -25,12 +14,13 @@ files = [
     "visualize/components/questions_table.py",
     "visualize/callbacks/filter_callbacks.py",
     "visualize/callbacks/crossfilter_callbacks.py",
-    "assets/custom.css"
+    "assets/custom.css",
 ]
+
 
 def ensure_directories_exist(dir_list):
     """
-    Patikrina, ar katalogai egzistuoja. Jei ne – sukuria.
+    Patikrina, ar  egzistuoja.
     """
     for dir_path in dir_list:
         path_obj = Path(dir_path)
@@ -40,10 +30,8 @@ def ensure_directories_exist(dir_list):
         else:
             print(f"Direktorija jau egzistuoja: {dir_path}")
 
+
 def ensure_files_exist(file_list):
-    """
-    Patikrina, ar failai egzistuoja. Jei ne – sukuria tuščius failus.
-    """
     for file_path in file_list:
         path_obj = Path(file_path)
         parent_dir = path_obj.parent
@@ -55,6 +43,7 @@ def ensure_files_exist(file_list):
             print(f"Sukurta failas: {file_path}")
         else:
             print(f"Failas jau egzistuoja: {file_path}")
+
 
 if __name__ == "__main__":
     ensure_directories_exist(directories)
