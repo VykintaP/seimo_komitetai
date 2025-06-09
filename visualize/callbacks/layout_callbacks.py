@@ -61,14 +61,18 @@ def render_dashboard(
     if df.empty:
         return html.Div([html.H4("Nėra duomenų pagal pasirinktus filtrus.")])
 
+    if not df.empty and pd.to_datetime(df["data"], errors="coerce").dropna().empty:
+        return html.Div([
+            html.H4("Nėra datų pasirinkimui pagal pasirinktus filtrus."),
+            html.P("Pabandykite pasirinkti kitą temą ar komitetą."),
+        ])
+
     df_filtered = df.copy()
 
     # Pritaikome pasirinktus filtrus
     if selected_committee:
         df_filtered = df_filtered[df_filtered["komitetas"] == selected_committee]
-    pie_fig = pie_topics.get_pie_figure(
-        df_filtered, selected_topic, selected_committee
-    )
+
     if selected_topic:
         df_filtered = df_filtered[df_filtered["tema"] == selected_topic]
 
@@ -77,7 +81,9 @@ def render_dashboard(
         bar_fig = bar_committees.get_committees_bar(
             pd.DataFrame(filtered_bar_data), selected_committee
         )
-
+        pie_fig = pie_topics.get_pie_figure(
+            df_filtered, selected_topic, selected_committee
+        )
         line_fig = get_line_figure(df_filtered, selected_topic, selected_date)
 
     except Exception as e:

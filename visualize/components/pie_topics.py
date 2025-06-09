@@ -72,14 +72,14 @@ def get_pie_figure(
     if df is None or "tema" not in df.columns:
         return generate_no_data_figure()
 
-    df_for_plot = filter_dataframe(df, selected_committee)
-    if df_for_plot.empty:
+    df = filter_dataframe(df, selected_committee)
+    if df.empty:
         return generate_no_data_figure()
 
     # Paruošiam duomenis grafikui
-    df_for_plot["tema_lt"] = df_for_plot["tema"].map(TOPIC_LABELS).fillna(df_for_plot["tema"])
+    df["tema_lt"] = df["tema"].map(TOPIC_LABELS).fillna(df["tema"])
     topic_counts = (
-        df_for_plot.groupby(["tema", "tema_lt"]).size().reset_index(name="Klausimų skaičius")
+        df.groupby(["tema", "tema_lt"]).size().reset_index(name="Klausimų skaičius")
     )
     topic_counts = topic_counts.sort_values("Klausimų skaičius", ascending=False)
     top_topics = topic_counts.head(15).copy()
@@ -90,7 +90,6 @@ def get_pie_figure(
     customdata = top_topics["tema"]  # Saugom originalius temų pavadinimus
 
     total_questions = topic_counts["Klausimų skaičius"].sum()
-    top_topics = topic_counts.iloc[:15].copy()
     if len(topic_counts) > 15:
         other_sum = topic_counts.iloc[15:]["Klausimų skaičius"].sum()
         top_topics.loc[len(top_topics)] = {
@@ -112,7 +111,7 @@ def get_pie_figure(
             colors.append(DARK_PALETTE_EXTENDED[i % len(DARK_PALETTE_EXTENDED)])
 
     title = DEFAULT_TITLE
-    if selected_topic and selected_topic in df_for_plot["tema"].unique():
+    if selected_topic and selected_topic in df["tema"].unique():
         selected_tema_lt = TOPIC_LABELS.get(selected_topic, selected_topic)
         title = f"Temų pasiskirstymas – akcentuota tema: {selected_tema_lt}"
 
