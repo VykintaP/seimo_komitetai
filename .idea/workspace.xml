@@ -6,13 +6,68 @@
   <component name="ChangeListManager">
     <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="dash">
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025-06-04_23_02_[Changes]/seimas_logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025-06-04_23_02_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025-06-04_23_02__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis/main_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/analysis/main_analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/committee_callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/committee_callbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/committee_chart.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/committee_chart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/committee_profiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/committee_profiles.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/committee_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/committee_selection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/committee_summary.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/committee_summary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/create_structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/create_structure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/dashboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/donut_chart.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/donut_chart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/google_api_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/google_api_classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/heatmap_topics.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/heatmap_topics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/init_callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/init_callbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/mistral_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/mistral_classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/plots.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/plots.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/test_classified_data_quality.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/test_classified_data_quality.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/test_train_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/test_train_classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/test_translate_and_classify.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/test_translate_and_classify.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/theme_area.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/theme_area.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/theme_distribution.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/theme_distribution.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/train_logreg_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/train_logreg_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/training_data_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/training_data_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/wordcloud_component.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/wordcloud_component.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive/zero_shot.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/zero_shot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/check_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inspect_schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/inspect_schema.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_pipeline/classify_with_gpt_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml_pipeline/classify_with_gpt_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/processing/cleaning_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing/cleaning_pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/processing/data_quality_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing/data_quality_report.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/processing/lemmatization.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing/lemmatization.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/processing/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing/scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/clean_words_by_committee.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/clean_words_by_committee.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/load_to_sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/load_to_sql.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/run_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/run_pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/run_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/run_tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stop_words_lt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/stop_words_lt.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_classify_with_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_classify_with_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_cleaning.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_cleaning.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_scraper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/assets/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/assets/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/assets/seimas_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/callbacks/filter_callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/callbacks/filter_callbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/callbacks/layout_callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/callbacks/layout_callbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/components/bar_committees.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/bar_committees.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/components/bar_topics.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/bar_topics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visualize/components/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/filters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/components/kpi_cards.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/kpi_cards.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/components/line_topics.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/line_topics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/components/pie_topics.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/pie_topics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/components/questions_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/questions_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/dashboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/info_layout.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/info_layout.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/layout.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/layout.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/utils/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/utils/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/utils/filtering.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/utils/filtering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/utils/text_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/utils/text_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/utils/topic_labels.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/utils/topic_labels.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +168,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Vykinta/PycharmProjects/darbotvarkiu_analize/archive&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -382,11 +437,6 @@
           <url>file://$PROJECT_DIR$/visualize/main.py</url>
           <line>8</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/processing/lemmatization.py</url>
-          <line>14</line>
-          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
