@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b3e030bc-a6f9-41ba-be25-b65ded6e56e5" name="Changes" comment="dash">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025-06-04_23_02_[Changes]/seimas_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025-06-04_23_02_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025-06-04_23_02__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/callbacks/layout_callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/callbacks/layout_callbacks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualize/components/pie_topics.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/pie_topics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/processing/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/processing/scraper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualize/components/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualize/components/filters.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +113,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Vykinta/PycharmProjects/darbotvarkiu_analize/archive&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -377,6 +382,11 @@
           <url>file://$PROJECT_DIR$/visualize/main.py</url>
           <line>8</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/processing/lemmatization.py</url>
+          <line>14</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

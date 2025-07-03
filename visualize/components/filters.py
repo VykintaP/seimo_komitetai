@@ -25,8 +25,8 @@ def get_filters():
             dcc.DatePickerRange(
                 id="date-filter",
                 display_format="YYYY-MM-DD",
-                start_date_placeholder_text="Data nuo",
-                end_date_placeholder_text="Data iki",
+                start_date_placeholder_text="2025, 3, 12",
+                end_date_placeholder_text=date.today(),
                 minimum_nights=0,
             ),
         ],

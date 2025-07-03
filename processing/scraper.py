@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
 
 def extract_project_id_from_text(text: str) -> str:
-    """Ištraukia projekto ID iš teksto"""
+    """Ištraukia projekto Nr. iš teksto"""
     matches = re.findall(
         r"(?:Projekt(?:o|as)?\s+Nr\.?|Įstatymo\s+projektas\s+Nr\.?|Dokumento\s+Nr\.?|Nr\.)\s*([A-Z0-9\-\/]+)",
         text,
