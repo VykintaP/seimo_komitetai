@@ -1,61 +1,48 @@
-# Seimo temų filtratorius
-
+Seimo temų filtratorius
 Teminis klasifikatorius Lietuvos Respublikos Seimo komitetų darbotvarkėms
 
-## Apie projektą
-
+Apie projektą
 Šis projektas automatizuoja Lietuvos Respublikos Seimo komitetų darbotvarkių turinio apdorojimą. Sistema surenka darbotvarkių duomenis iš oficialaus Seimo puslapio, išvalo nereikalingą tekstą, suklasifikuoja kiekvieną klausimą pagal iš anksto apibrėžtas viešosios politikos temas ir pateikia interaktyvią analizę. Klasifikavimui naudojamas didelės apimties kalbos modelis Mistral-7B-Instruct-v0.1, veikiantis zero-shot principu, be išankstinio modelio apmokymo konkrečiomis temomis. Klasifikavimo temos atitinka Lietuvos Respublikos Vyriausybės strategines kryptis.
 
-## Diegimas
+Diegimas
+Sukurkite virtualią Python aplinką (pvz., venv):
 
-1. Sukurkite virtualią Python aplinką (pvz., venv):
+python -m venv .venv source .venv/bin/activate
 
-    python -m venv .venv
-    source .venv/bin/activate
+Windows naudotojams:
 
-    Windows naudotojams:
+.venv\Scripts\activate
 
-    .venv\Scripts\activate
+Įdiekite reikalingus paketus:
 
-2. Įdiekite reikalingus paketus:
+pip install -r requirements.txt
 
-    pip install -r requirements.txt
+Prisijunkite prie Hugging Face paskyros:
 
-3. Prisijunkite prie Hugging Face paskyros:
+huggingface-cli login
 
-    huggingface-cli login
+Paprašykite prieigos prie Mistral modelio:
 
-4. Paprašykite prieigos prie Mistral modelio:
+https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1
 
-    https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1
-
-## Paleidimas
-
+Paleidimas
 Norint įvykdyti visą automatizuotą procesą (nuo duomenų surinkimo iki klasifikavimo ir treniravimo):
 
-    python scripts/run_pipeline.py
-
+python scripts/run_pipeline.py
 Norint atidaryti interaktyvų vizualizacijos puslapį:
 
-    python visualize/dashboard.py
-
-## Aplankų struktūra
-
-- data/raw – pradiniai CSV failai, surinkti iš Seimo svetainės
-- data/cleaned – išvalyti klausimai po valymo žingsnio
-- data/classified – suklasifikuoti klausimai su priskirta tema
-- data/diagnostics – duomenų kokybės analizės rezultatai
-
-## Temos
-
+python visualize/dashboard.py
+Aplankų struktūra
+data/raw – pradiniai CSV failai, surinkti iš Seimo svetainės
+data/cleaned – išvalyti klausimai po valymo žingsnio
+data/classified – suklasifikuoti klausimai su priskirta tema
+data/diagnostics – duomenų kokybės analizės rezultatai
+Temos
 Klasifikavimui naudojamos temos atitinka Vyriausybės strateginių krypčių politikos sritis: valstybės valdymas, aplinka, energetika, finansai, sveikata, švietimas, teisingumas ir kt.
 
-## Testavimas
-
+Testavimas
 Norėdami paleisti automatinį testų rinkinį:
 
-    python scripts/run_tests.py
-
-## Autorius
-
+python scripts/run_tests.py
+Autorius
 Projektą sukūrė Vykinta P. kaip tarpdisciplininį duomenų analizės, NLP ir viešosios politikos tyrimų įrankį.
