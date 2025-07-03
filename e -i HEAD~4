@@ -1,0 +1,47 @@
+[33m5c79115[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Merge remote-tracking branch 'origin/main'
+[33m694bd60[m atnaujintas dash
+[33m0d887cb[m atnaujintas filtravimas
+[33m82d77b0[m[33m ([m[1;31morigin/main[m[33m)[m Update README.md
+[33m55becfc[m 🛠️ Pridėtas pranešimas kai filtruota data be rezultatų
+[33m3858b21[m Pradinis įkėlimas
+[33m5060e8b[m Sujungti nuotoliniai pakeitimai
+[33m8c7ccbd[m[33m ([m[1;31morigin/master[m[33m)[m Initial commit
+[33m254e5a9[m Initial commit for project
+[33mffb9e59[m Initial commit
+[33m5e1aca1[m Finished merge and added .idea/workspace.xml
+[33m2c7ada5[m Fix line endings
+[33mcecc30b[m Update google_api_classifier.py
+[33m1fb1cf4[m Išspręsti konfliktai, išlaikyta vietinė versija
+[33m7d99edc[m Išsaugoti pakeitimus prieš atlikdami pull
+[33m7aea9ea[m Pridėtas .gitignore failas atgal
+[33m85c37f2[m varus commit be slaptų raktų
+[33m762197d[m Merge remote-tracking branch 'origin/master'
+[33m51f4790[m dash
+[33m4436644[m Add .gitignore for sensitive files
+[33m5832342[m dash
+[33m4fff8d6[m dash
+[33m860cba5[m dash
+[33m2571200[m Merge remote-tracking branch 'origin/master'
+[33mf55e0a2[m add lemminization (not implemented yet)
+[33mc6e40cf[m Add .env to .gitignore
+[33md6607fa[m improved dash
+[33mc5598bc[m restarted creating dash
+[33m2873a90[m Remove .env from version control
+[33m5d57b25[m Improve robustness of topic classification: added logging for unmapped subtopics and optional CSV export for diagnostics
+[33m986649b[m Vizualizacijoje naudojamas centrinis DB_PATH ir TABLE_CLASSIFIED per query_df
+[33m88c2f0b[m Išcentrintas lentelės vardas į config.py, suvienodintas TABLE_CLASSIFIED
+[33ma482934[m Pridėta projekto struktūros schema
+[33mdbf5ac7[m fixed some visualisations
+[33me02d3a0[m fixed some visualisations
+[33mceb1a3f[m fixed some visualisations
+[33m85bd843[m added:
+[33mcfc7a89[m classification with mistral_classifier API
+[33me60b5e9[m classification with mistral_classifier.py
+[33md5f097c[m classification with mistral_classifier.py
+[33m767e6b1[m added classification (transformers, translator)
+[33m7288b34[m more elaborate testing,
+[33ma51207f[m Changed cleaning and scraping to identify project_idx flexibly
+[33mb05b98f[m Refactor cleaning pipeline and add robust quality + testing tools
+[33m7010420[m Refactor cleaning pipeline and add robust quality + testing tools
+[33m11f51b4[m Second commit - changes scraper and test_scraper, file structure
+[33m1a6a60c[m First commit
