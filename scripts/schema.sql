@@ -1,4 +1,4 @@
-# Lentelė saugo klasifikuotų komitetų posėdžių klausimų duomenis
+-- Lentelė saugo klasifikuotų komitetų posėdžių klausimų duomenis
 CREATE TABLE IF NOT EXISTS classified_questions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,  # Unikalus identifikatorius
     komitetas TEXT,  # Komiteto pavadinimas 
