@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from processing.lemmatization import lemmatize_text
+from archive.lemmatization import lemmatize_text
 
 # Pridedame pagrindinį projekto katalogą į Python kelią
 sys.path.append(str(Path(__file__).resolve().parents[1]))
